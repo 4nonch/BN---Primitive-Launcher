@@ -64,7 +64,7 @@ namespace BN_Primitive_Launcher
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
 
-				WebClient wc = new WebClient(); //total_bytes = 0;
+				WebClient wc = new WebClient(); //total_bytes = 0; // бесполезный код?
 				while (total_bytes == 0)
 				{
 					wc.OpenRead(@"https://github.com/" + matches[0]);
@@ -78,9 +78,9 @@ namespace BN_Primitive_Launcher
 		}
 		public void KenanDownload()
         {
-			string url = @"https://github.com/Kenan2000/CDDA-Kenan-Modpack/archive/refs/heads/master.zip";
+			string url = @"https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip";
 
-			WebClient wc = new WebClient(); MessageBox.Show($"{total_bytes}");//total_bytes = 0;
+			WebClient wc = new WebClient(); //MessageBox.Show($"{total_bytes}");//total_bytes = 0; // бесполезный код?
 			while (total_bytes == 0)
 			{
 				wc.OpenRead(url);
@@ -246,7 +246,7 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
-			string KenanPath = rootdir + @"\CDDA-Kenan-Modpack-master\Kenan-Modpack";
+			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
 			if (Properties.Settings.Default.KenanState && Directory.Exists(KenanPath))
             {
 				var folders = Directory.GetDirectories(KenanPath);
@@ -264,7 +264,7 @@ namespace BN_Primitive_Launcher
 						}
 					}
 				}
-				Directory.Delete(rootdir + @"\CDDA-Kenan-Modpack-master", true);
+				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
 			}
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
