@@ -1,1 +1,5 @@
-Lancher EXE/
+# txt-files
+docs/*.txt
+
+#exe-files
+docs/*.exe
