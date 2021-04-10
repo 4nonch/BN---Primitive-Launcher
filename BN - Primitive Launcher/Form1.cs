@@ -64,7 +64,7 @@ namespace BN_Primitive_Launcher
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
 
-				WebClient wc = new WebClient(); total_bytes = 0;
+				WebClient wc = new WebClient(); //total_bytes = 0;
 				while (total_bytes == 0)
 				{
 					wc.OpenRead(@"https://github.com/" + matches[0]);
@@ -80,7 +80,7 @@ namespace BN_Primitive_Launcher
         {
 			string url = @"https://github.com/Kenan2000/CDDA-Kenan-Modpack/archive/refs/heads/master.zip";
 
-			WebClient wc = new WebClient(); total_bytes = 0;
+			WebClient wc = new WebClient(); MessageBox.Show($"{total_bytes}");//total_bytes = 0;
 			while (total_bytes == 0)
 			{
 				wc.OpenRead(url);
@@ -218,7 +218,6 @@ namespace BN_Primitive_Launcher
 			if (Directory.Exists(oldData))
 			{
 				var folders = Directory.GetDirectories(oldData);
-				var files = Directory.GetFiles(oldData);
 
 				if (folders.Count() != 0)
 				{
@@ -261,9 +260,7 @@ namespace BN_Primitive_Launcher
                         }
                         catch(IOException)
                         {
-							// Необходимо перемещать с заменой, а не просто удалять и перемещать.
-							Directory.Delete(rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}", true);
-							Directory.Move(folder, rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}");
+							MoveWithReplacement(folder, rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}");
 						}
 					}
 				}
@@ -272,8 +269,40 @@ namespace BN_Primitive_Launcher
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
         {
+			var folders = Directory.GetDirectories(startdir);
+			var files = Directory.GetFiles(startdir);
 
-        }
+			if (files.Count() != 0)
+			{
+				foreach (var file in files)
+				{
+					try
+					{
+						File.Move(file, destdir + $"\\{file.Split('\\').Last()}");
+                    }
+                    catch(IOException)
+                    {
+						File.Delete(destdir + $"\\{file.Split('\\').Last()}");
+						File.Move(file, destdir + $"\\{file.Split('\\').Last()}");
+					}
+				}
+			}
+
+			if (folders.Count() != 0)
+			{
+				foreach (var folder in folders)
+				{
+					if (!Directory.Exists(destdir + $"\\{folder.Split('\\').Last()}"))
+                    {
+						Directory.Move(startdir + $"\\{folder.Split('\\').Last()}", destdir + $"\\{folder.Split('\\').Last()}");
+                    }
+                    else
+                    {
+						MoveWithReplacement(startdir + $"\\{folder.Split('\\').Last()}", destdir + $"\\{folder.Split('\\').Last()}");
+					}
+				}
+			}
+		}
 		private void button1_Click(object sender, EventArgs e)
 		{
 			var dlg = new FolderPicker();
