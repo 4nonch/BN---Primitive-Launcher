@@ -1,4 +1,4 @@
-# BN---Primitive-Launcher
+# BN - Primitive-Launcher
 ![alt text](https://i.ibb.co/k8rvP7h/1.png)
 
 Adds a primitive launcher that should be able update and run the game.
