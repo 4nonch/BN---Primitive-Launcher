@@ -59,15 +59,5 @@ namespace BN_Primitive_Launcher.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Byte[].
-        /// </summary>
-        internal static byte[] BN___Primitive_Launcher_resources {
-            get {
-                object obj = ResourceManager.GetObject("BN___Primitive_Launcher_resources", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

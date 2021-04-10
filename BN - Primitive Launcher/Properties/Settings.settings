@@ -32,9 +32,6 @@
     <Setting Name="TextboxState" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="LanguageState" Type="System.String" Scope="User">
-      <Value Profile="(Default)">EN</Value>
-    </Setting>
     <Setting Name="KenanState" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>

@@ -22,11 +22,6 @@ namespace BN_Primitive_Launcher
 		static int total_bytes = 0;
 		public Form1()
 		{
-			if (Properties.Settings.Default.LanguageState == "EN")
-			{
-				System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en");
-				System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en");
-			}
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			InitializeComponent();
 		}
@@ -140,12 +135,12 @@ namespace BN_Primitive_Launcher
 			catch(System.UnauthorizedAccessException)
 			{
 				error = true;
-				MessageBox.Show($"{rootdir}\n" + MessagesRes.AccessDenied_Error);
+				MessageBox.Show($"{rootdir}\nAccess denied. Run as administrator");
 			}
 			catch(Exception e)
 			{
 				error = true;
-				MessageBox.Show(MessagesRes.Unexpected_Error + $"\n{e.Message}\n{e.TargetSite}");
+				MessageBox.Show($"Unexpected error\n{e.Message}\n{e.TargetSite}");
 			}
 			zipArchive.Dispose();
 			File.Delete(Directory.GetCurrentDirectory() + "\\" + bn_archiveName);
@@ -279,8 +274,8 @@ namespace BN_Primitive_Launcher
 		}
 		private async void button2_Click(object sender, EventArgs e)
 		{
-            if (availability == false) { MessageBox.Show(MessagesRes.UpdateInProcess_Error); return; }
-			if (comboBox1.Text == "") { MessageBox.Show(MessagesRes.Version_Error); return; }
+            if (availability == false) { MessageBox.Show("Game is currently updating..."); return; }
+			if (comboBox1.Text == "") { MessageBox.Show("Game version not selected"); return; }
 			if (label3.Visible == true) { label3.Visible = false; }
 			availability = false;
 			textBox1.Enabled = false;
@@ -294,7 +289,7 @@ namespace BN_Primitive_Launcher
 				}
 				catch
 				{
-					MessageBox.Show(MessagesRes.InputDirectory_Error);
+					MessageBox.Show("Enter the correct path to the root folder");
 					availability = true;
 					return;
 				}
@@ -337,7 +332,7 @@ namespace BN_Primitive_Launcher
 			}
             else
             {
-				MessageBox.Show(MessagesRes.ExecutableNotfound_Error);
+				MessageBox.Show("The game executable was not found in the root folder, or it has been renamed");
             }
 		}
 
@@ -367,28 +362,6 @@ namespace BN_Primitive_Launcher
 			if (Size.Height != MaximumSize.Height) { Size = MaximumSize; }
 			else { Size = MinimumSize; }
 		}
-		private void label5_Click(object sender, EventArgs e)
-		{
-			if (!availability) { return; }
-
-			string lang;
-            if (LanguageLabel.Text == "RU")
-            {
-                LanguageLabel.Text = "EN";
-                lang = "en";
-            }
-            else
-            {
-                LanguageLabel.Text = "RU";
-				lang = "ru-RU";
-            }
-
-			foreach (Control c in this.Controls)
-			{
-				ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
-				resources.ApplyResources(c, c.Name, new System.Globalization.CultureInfo(lang));
-			}
-		}
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Properties.Settings.Default.Save();
@@ -398,7 +371,6 @@ namespace BN_Primitive_Launcher
         {
 			preferences = GetUserPreferences();
 			statusStrip1.Cursor = Cursors.Hand;
-			LanguageLabel.Cursor = Cursors.Hand;
 			if (textBox1.Text != "") { textBox1.Enabled = false; }
         }
     }

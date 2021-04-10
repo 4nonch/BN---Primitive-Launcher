@@ -118,87 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 39</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>BN root folder:</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Update</value>
-  </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 339</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 151</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 13</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Folders to carry:</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 125</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Update completed!</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 125</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Backup...</value>
-  </data>
-  <data name="button3.Text" xml:space="preserve">
-    <value>Play</value>
-  </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>Install Kenan's modpack</value>
-  </data>
-  <data name="backupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 17</value>
-  </data>
-  <data name="backupBox.Text" xml:space="preserve">
-    <value>Current version full backup</value>
-  </data>
-  <data name="graveyardBox.Text" xml:space="preserve">
-    <value>graveyard folder\</value>
-  </data>
-  <data name="memorialBox.Text" xml:space="preserve">
-    <value>\memorial folder</value>
-  </data>
-  <data name="templatesBox.Text" xml:space="preserve">
-    <value>templates folder\</value>
-  </data>
-  <data name="configBox.Text" xml:space="preserve">
-    <value>\config folder</value>
-  </data>
-  <data name="fontBox.Text" xml:space="preserve">
-    <value>font folder\</value>
-  </data>
-  <data name="soundBox.Text" xml:space="preserve">
-    <value>Sounds</value>
-  </data>
-  <data name="ModsBox.Text" xml:space="preserve">
-    <value>\Mods folder</value>
-  </data>
-  <data name="saveBox.Text" xml:space="preserve">
-    <value>Saves</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>253, 361</value>
-  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAMAEBAAAAEACABoBQAANgAAACAgAAABAAgAqAgAAJ4FAAAwMAAAAQAIAKgOAABGDgAAKAAAABAA
@@ -326,9 +245,5 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
 </root>

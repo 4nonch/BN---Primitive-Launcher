@@ -145,18 +145,6 @@ namespace BN_Primitive_Launcher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("EN")]
-        public string LanguageState {
-            get {
-                return ((string)(this["LanguageState"]));
-            }
-            set {
-                this["LanguageState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool KenanState {
             get {
