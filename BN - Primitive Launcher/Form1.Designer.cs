@@ -63,16 +63,16 @@ namespace BN_Primitive_Launcher
             // 
             // button1
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.button1, "button1");
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.button2, "button2");
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Name = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -84,10 +84,10 @@ namespace BN_Primitive_Launcher
             // 
             // statusStrip1
             // 
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.BackColor = System.Drawing.Color.LightGray;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.Click += new System.EventHandler(this.statusStrip1_Click);
@@ -114,30 +114,30 @@ namespace BN_Primitive_Launcher
             // 
             // button3
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.button3, "button3");
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // comboBox1
             // 
+            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "GameState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             resources.GetString("comboBox1.Items"),
             resources.GetString("comboBox1.Items1")});
-            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.GameState;
             // 
             // checkBox1
             // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.KenanState;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "KenanState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -152,90 +152,90 @@ namespace BN_Primitive_Launcher
             // 
             // backupBox
             // 
+            resources.ApplyResources(this.backupBox, "backupBox");
             this.backupBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.backupBoxState;
             this.backupBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.backupBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "backupBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.backupBox, "backupBox");
             this.backupBox.Name = "backupBox";
             this.backupBox.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Name = "textBox1";
             this.textBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.TextboxState;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // graveyardBox
             // 
+            resources.ApplyResources(this.graveyardBox, "graveyardBox");
             this.graveyardBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.graveyardBoxState;
             this.graveyardBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.graveyardBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "graveyardBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.graveyardBox, "graveyardBox");
             this.graveyardBox.Name = "graveyardBox";
             this.graveyardBox.UseVisualStyleBackColor = true;
             // 
             // memorialBox
             // 
+            resources.ApplyResources(this.memorialBox, "memorialBox");
             this.memorialBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.memorialBoxState;
             this.memorialBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.memorialBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "memorialBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.memorialBox, "memorialBox");
             this.memorialBox.Name = "memorialBox";
             this.memorialBox.UseVisualStyleBackColor = true;
             // 
             // templatesBox
             // 
+            resources.ApplyResources(this.templatesBox, "templatesBox");
             this.templatesBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.templatesBoxState;
             this.templatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.templatesBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "templatesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.templatesBox, "templatesBox");
             this.templatesBox.Name = "templatesBox";
             this.templatesBox.UseVisualStyleBackColor = true;
             // 
             // configBox
             // 
+            resources.ApplyResources(this.configBox, "configBox");
             this.configBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.configBoxState;
             this.configBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.configBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "configBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.configBox, "configBox");
             this.configBox.Name = "configBox";
             this.configBox.UseVisualStyleBackColor = true;
             // 
             // fontBox
             // 
+            resources.ApplyResources(this.fontBox, "fontBox");
             this.fontBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.fontBoxState;
             this.fontBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fontBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "fontBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.fontBox, "fontBox");
             this.fontBox.Name = "fontBox";
             this.fontBox.UseVisualStyleBackColor = true;
             // 
             // soundBox
             // 
+            resources.ApplyResources(this.soundBox, "soundBox");
             this.soundBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.soundBoxState;
             this.soundBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.soundBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "soundBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.soundBox, "soundBox");
             this.soundBox.Name = "soundBox";
             this.soundBox.UseVisualStyleBackColor = true;
             // 
             // ModsBox
             // 
+            resources.ApplyResources(this.ModsBox, "ModsBox");
             this.ModsBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.ModBoxState;
             this.ModsBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ModsBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "ModBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.ModsBox, "ModsBox");
             this.ModsBox.Name = "ModsBox";
             this.ModsBox.UseVisualStyleBackColor = true;
             // 
             // saveBox
             // 
+            resources.ApplyResources(this.saveBox, "saveBox");
             this.saveBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.savesBoxState;
             this.saveBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.saveBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "savesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.saveBox, "saveBox");
             this.saveBox.Name = "saveBox";
             this.saveBox.UseVisualStyleBackColor = true;
             // 

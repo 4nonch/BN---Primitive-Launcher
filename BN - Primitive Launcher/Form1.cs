@@ -254,6 +254,7 @@ namespace BN_Primitive_Launcher
                         }
                         catch(IOException)
                         {
+							// Необходимо перемещать с заменой, а не просто удалять и перемещать.
 							Directory.Delete(rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}", true);
 							Directory.Move(folder, rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}");
 						}
@@ -262,6 +263,10 @@ namespace BN_Primitive_Launcher
 				Directory.Delete(rootdir + @"\CDDA-Kenan-Modpack-master", true);
 			}
 		}
+		public void MoveWithReplacement(string startdir, string destdir)
+        {
+
+        }
 		private void button1_Click(object sender, EventArgs e)
 		{
 			var dlg = new FolderPicker();
