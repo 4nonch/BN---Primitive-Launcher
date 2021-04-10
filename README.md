@@ -26,6 +26,6 @@ If you use english version launcher will create \en folder to store it dll in it
 9. Current version full backup - Makes backup of all root folder (Actually all directories and files in "BN - old data")
 10. Install Kenan's modpack - Downloads and installs Kenan's modpack after extracting new version
 
-It has option to download&install [Kenan modpack](https://github.com/Kenan2000/CDDA-Kenan-Modpack) after updating the game.
+It has option to download&install [Kenan modpack](https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack) after updating the game.
 The advantage of this modpack is that it already contains the necessary tilesets from [SomeDeadGuy](https://github.com/SomeDeadGuy) for mods.
 This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset), you don't have to install graphical mods separately
