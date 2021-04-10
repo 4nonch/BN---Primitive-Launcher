@@ -27,8 +27,20 @@ namespace BN_Primitive_Launcher
 		}
         public List<string> GetUserPreferences()
 		{
-			List<string> preferences = new List<string>();
+			textBox1.Text = Properties.Settings.Default.TextboxState;
+			comboBox1.Text = Properties.Settings.Default.GameState;
+			saveBox.Checked = Properties.Settings.Default.savesBoxState;
+			soundBox.Checked = Properties.Settings.Default.soundBoxState;
+			ModsBox.Checked = Properties.Settings.Default.ModBoxState;
+			fontBox.Checked = Properties.Settings.Default.fontBoxState;
+			configBox.Checked = Properties.Settings.Default.configBoxState;
+			templatesBox.Checked = Properties.Settings.Default.templatesBoxState;
+			memorialBox.Checked = Properties.Settings.Default.memorialBoxState;
+			graveyardBox.Checked = Properties.Settings.Default.graveyardBoxState;
+			backupBox.Checked = Properties.Settings.Default.backupBoxState;
+			kenanBox.Checked = Properties.Settings.Default.KenanState;
 
+			List<string> preferences = new List<string>();
 			if (saveBox.Checked)      { preferences.Add("save"); }
 			if (ModsBox.Checked)      { preferences.Add("mods"); } //// переводить в ловеркейс
 			if (soundBox.Checked)     { preferences.Add("sound"); }
@@ -52,7 +64,7 @@ namespace BN_Primitive_Launcher
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
 
-				WebClient wc = new WebClient();
+				WebClient wc = new WebClient(); total_bytes = 0;
 				while (total_bytes == 0)
 				{
 					wc.OpenRead(@"https://github.com/" + matches[0]);
@@ -68,7 +80,7 @@ namespace BN_Primitive_Launcher
         {
 			string url = @"https://github.com/Kenan2000/CDDA-Kenan-Modpack/archive/refs/heads/master.zip";
 
-			WebClient wc = new WebClient();
+			WebClient wc = new WebClient(); total_bytes = 0;
 			while (total_bytes == 0)
 			{
 				wc.OpenRead(url);
@@ -321,7 +333,7 @@ namespace BN_Primitive_Launcher
 		}
 		private void button3_Click(object sender, EventArgs e)
 		{
-			string game_path = textBox1.Text + "\\cataclysm -tiles.exe";
+			string game_path = textBox1.Text + "\\cataclysm-tiles.exe";
 			if (File.Exists(game_path) && textBox1.Text != "")
             {
 				var previous_directory = Directory.GetCurrentDirectory();
