@@ -59,7 +59,7 @@ namespace BN_Primitive_Launcher
             // 
             this.label1.AutoSize = true;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(89, 39);
+            this.label1.Location = new System.Drawing.Point(92, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 0;
@@ -69,7 +69,7 @@ namespace BN_Primitive_Launcher
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(166, 61);
+            this.button1.Location = new System.Drawing.Point(169, 61);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(27, 20);
             this.button1.TabIndex = 3;
@@ -81,7 +81,7 @@ namespace BN_Primitive_Launcher
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button2.Location = new System.Drawing.Point(129, 90);
+            this.button2.Location = new System.Drawing.Point(132, 90);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -92,7 +92,7 @@ namespace BN_Primitive_Launcher
             // progressBar1
             // 
             this.progressBar1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.progressBar1.Location = new System.Drawing.Point(60, 120);
+            this.progressBar1.Location = new System.Drawing.Point(63, 120);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(133, 23);
             this.progressBar1.TabIndex = 4;
@@ -105,7 +105,7 @@ namespace BN_Primitive_Launcher
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 339);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(253, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(259, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
@@ -121,7 +121,7 @@ namespace BN_Primitive_Launcher
             // 
             this.label2.AutoSize = true;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(85, 151);
+            this.label2.Location = new System.Drawing.Point(88, 151);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 14;
@@ -131,7 +131,7 @@ namespace BN_Primitive_Launcher
             // 
             this.label3.AutoSize = true;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(78, 125);
+            this.label3.Location = new System.Drawing.Point(81, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 16;
@@ -142,7 +142,7 @@ namespace BN_Primitive_Launcher
             // 
             this.label4.AutoSize = true;
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(100, 125);
+            this.label4.Location = new System.Drawing.Point(103, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 17;
@@ -153,7 +153,7 @@ namespace BN_Primitive_Launcher
             // 
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(48, 90);
+            this.button3.Location = new System.Drawing.Point(51, 90);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 18;
@@ -167,11 +167,12 @@ namespace BN_Primitive_Launcher
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "cataclysmbn-win64-tiles-o3",
             "cataclysmbn-win64-tiles",
             "cataclysmbn-win32-tiles"});
-            this.comboBox1.Location = new System.Drawing.Point(59, 171);
+            this.comboBox1.Location = new System.Drawing.Point(52, 171);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 21);
+            this.comboBox1.Size = new System.Drawing.Size(154, 21);
             this.comboBox1.TabIndex = 21;
             this.comboBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.GameState;
             // 
@@ -181,9 +182,9 @@ namespace BN_Primitive_Launcher
             this.kenanBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.kenanBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "KenanState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.kenanBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.kenanBox.Location = new System.Drawing.Point(47, 311);
+            this.kenanBox.Location = new System.Drawing.Point(51, 311);
             this.kenanBox.Name = "kenanBox";
-            this.kenanBox.Size = new System.Drawing.Size(194, 17);
+            this.kenanBox.Size = new System.Drawing.Size(196, 17);
             this.kenanBox.TabIndex = 20;
             this.kenanBox.Text = "Install Kenan\'s modpack";
             this.kenanBox.UseVisualStyleBackColor = true;
@@ -194,9 +195,9 @@ namespace BN_Primitive_Launcher
             this.backupBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.backupBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "backupBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.backupBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.backupBox.Location = new System.Drawing.Point(47, 288);
+            this.backupBox.Location = new System.Drawing.Point(51, 288);
             this.backupBox.Name = "backupBox";
-            this.backupBox.Size = new System.Drawing.Size(194, 17);
+            this.backupBox.Size = new System.Drawing.Size(196, 17);
             this.backupBox.TabIndex = 15;
             this.backupBox.Text = "Current version full backup";
             this.backupBox.UseVisualStyleBackColor = true;
@@ -204,7 +205,7 @@ namespace BN_Primitive_Launcher
             // textBox1
             // 
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(60, 61);
+            this.textBox1.Location = new System.Drawing.Point(63, 61);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 1;
@@ -217,10 +218,10 @@ namespace BN_Primitive_Launcher
             this.graveyardBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.graveyardBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "graveyardBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.graveyardBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.graveyardBox.Location = new System.Drawing.Point(119, 265);
+            this.graveyardBox.Location = new System.Drawing.Point(130, 265);
             this.graveyardBox.Name = "graveyardBox";
             this.graveyardBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.graveyardBox.Size = new System.Drawing.Size(122, 17);
+            this.graveyardBox.Size = new System.Drawing.Size(117, 17);
             this.graveyardBox.TabIndex = 13;
             this.graveyardBox.Text = "graveyard folder\\";
             this.graveyardBox.UseVisualStyleBackColor = true;
@@ -233,7 +234,7 @@ namespace BN_Primitive_Launcher
             this.memorialBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.memorialBox.Location = new System.Drawing.Point(12, 265);
             this.memorialBox.Name = "memorialBox";
-            this.memorialBox.Size = new System.Drawing.Size(111, 17);
+            this.memorialBox.Size = new System.Drawing.Size(114, 17);
             this.memorialBox.TabIndex = 12;
             this.memorialBox.Text = "\\memorial folder";
             this.memorialBox.UseVisualStyleBackColor = true;
@@ -244,10 +245,10 @@ namespace BN_Primitive_Launcher
             this.templatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.templatesBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "templatesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.templatesBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.templatesBox.Location = new System.Drawing.Point(129, 242);
+            this.templatesBox.Location = new System.Drawing.Point(125, 242);
             this.templatesBox.Name = "templatesBox";
             this.templatesBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.templatesBox.Size = new System.Drawing.Size(112, 17);
+            this.templatesBox.Size = new System.Drawing.Size(122, 17);
             this.templatesBox.TabIndex = 11;
             this.templatesBox.Text = "templates folder\\";
             this.templatesBox.UseVisualStyleBackColor = true;
@@ -260,7 +261,7 @@ namespace BN_Primitive_Launcher
             this.configBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.configBox.Location = new System.Drawing.Point(12, 242);
             this.configBox.Name = "configBox";
-            this.configBox.Size = new System.Drawing.Size(113, 17);
+            this.configBox.Size = new System.Drawing.Size(101, 17);
             this.configBox.TabIndex = 10;
             this.configBox.Text = "\\config folder";
             this.configBox.UseVisualStyleBackColor = true;
@@ -271,7 +272,7 @@ namespace BN_Primitive_Launcher
             this.fontBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fontBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "fontBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.fontBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.fontBox.Location = new System.Drawing.Point(131, 219);
+            this.fontBox.Location = new System.Drawing.Point(137, 219);
             this.fontBox.Name = "fontBox";
             this.fontBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.fontBox.Size = new System.Drawing.Size(110, 17);
@@ -285,7 +286,7 @@ namespace BN_Primitive_Launcher
             this.soundBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.soundBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "soundBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.soundBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.soundBox.Location = new System.Drawing.Point(128, 196);
+            this.soundBox.Location = new System.Drawing.Point(134, 196);
             this.soundBox.Name = "soundBox";
             this.soundBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.soundBox.Size = new System.Drawing.Size(113, 17);
@@ -323,7 +324,7 @@ namespace BN_Primitive_Launcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(253, 361);
+            this.ClientSize = new System.Drawing.Size(259, 361);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.kenanBox);
@@ -346,8 +347,8 @@ namespace BN_Primitive_Launcher
             this.Controls.Add(this.saveBox);
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(269, 400);
-            this.MinimumSize = new System.Drawing.Size(269, 213);
+            this.MaximumSize = new System.Drawing.Size(275, 400);
+            this.MinimumSize = new System.Drawing.Size(275, 213);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BN Primitive";

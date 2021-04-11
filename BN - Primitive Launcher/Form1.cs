@@ -19,7 +19,6 @@ namespace BN_Primitive_Launcher
 		static string bn_archiveName = "";
 		static string rootdir = "";
 		static bool availability = true;
-		static int total_bytes = 0;
 		public Form1()
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -64,13 +63,6 @@ namespace BN_Primitive_Launcher
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
 
-				WebClient wc = new WebClient(); //total_bytes = 0; // бесполезный код?
-				while (total_bytes == 0)
-				{
-					wc.OpenRead(@"https://github.com/" + matches[0]);
-					total_bytes = Convert.ToInt32(wc.ResponseHeaders["Content-Length"]);
-				}
-
 				bn_archiveName = matches[0].ToString().Split('/').Last();
 				client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
 				while(progressBar1.Visible) { ; }
@@ -80,16 +72,10 @@ namespace BN_Primitive_Launcher
         {
 			string url = @"https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip";
 
-			WebClient wc = new WebClient(); //MessageBox.Show($"{total_bytes}");//total_bytes = 0; // бесполезный код?
-			while (total_bytes == 0)
-			{
-				wc.OpenRead(url);
-				total_bytes = Convert.ToInt32(wc.ResponseHeaders["Content-Length"]);
-			}
+			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 
 			using (var client = new WebClient())
 			{
-				client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
 				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 				client.Headers.Add("user-agent", "Anything");
 				bn_archiveName = "Kenan.zip";
@@ -100,11 +86,13 @@ namespace BN_Primitive_Launcher
 		void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
 			double bytesIn = double.Parse(e.BytesReceived.ToString());
-			double percentage = bytesIn / total_bytes * 100;
+			double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+			double percentage = bytesIn / totalBytes * 100;
 			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Value = int.Parse(Math.Truncate(percentage).ToString()); });
 		}
 		async void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
+			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Value = 0; });
 			IProgress<int> zip_progressSetMax = new Progress<int>(value =>
 			{
@@ -249,6 +237,8 @@ namespace BN_Primitive_Launcher
 			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
 			if (Properties.Settings.Default.KenanState && Directory.Exists(KenanPath))
             {
+				this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
+
 				var folders = Directory.GetDirectories(KenanPath);
 				if (folders.Count() != 0)
 				{
@@ -265,6 +255,7 @@ namespace BN_Primitive_Launcher
 					}
 				}
 				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
+				this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 			}
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
