@@ -32,4 +32,4 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 
 # TODO:
 1. Different soundpack download&install
-2. [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version)
+2. [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs)
