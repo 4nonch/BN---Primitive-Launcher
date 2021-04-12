@@ -32,4 +32,5 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 
 # TODO:
 1. Different soundpack download&install
-2. [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs)
+2. Make option to replace music on soundpack_name to [CO.AG MusicPack](https://discourse.cataclysmdda.org/t/musicpack-co-ag-musicpack-redux-11-dec-2019/18992) or smth
+3. [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs)
