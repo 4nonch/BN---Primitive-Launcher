@@ -29,3 +29,7 @@ If you use english version launcher will create \en folder to store it dll in it
 It has option to download&install [Kenan modpack](https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack) after updating the game.
 The advantage of this modpack is that it already contains the necessary tilesets from [SomeDeadGuy](https://github.com/SomeDeadGuy) for mods.
 This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset), you don't have to install graphical mods separately
+
+# TODO:
+1. Different soundpack download&install
+2. ???
