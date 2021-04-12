@@ -34,8 +34,6 @@ namespace BN_Primitive_Launcher
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,6 +50,8 @@ namespace BN_Primitive_Launcher
             this.soundBox = new System.Windows.Forms.CheckBox();
             this.ModsBox = new System.Windows.Forms.CheckBox();
             this.saveBox = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,25 +97,6 @@ namespace BN_Primitive_Launcher
             this.progressBar1.Size = new System.Drawing.Size(133, 23);
             this.progressBar1.TabIndex = 4;
             this.progressBar1.Visible = false;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.LightGray;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 152);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(259, 22);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 6;
-            this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.Click += new System.EventHandler(this.statusStrip1_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // label2
             // 
@@ -163,7 +144,6 @@ namespace BN_Primitive_Launcher
             // 
             // comboBox1
             // 
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "GameState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
@@ -174,13 +154,11 @@ namespace BN_Primitive_Launcher
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
             this.comboBox1.TabIndex = 21;
-            this.comboBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.GameState;
             // 
             // kenanBox
             // 
-            this.kenanBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.KenanState;
+            this.kenanBox.Checked = true;
             this.kenanBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.kenanBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "KenanState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.kenanBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.kenanBox.Location = new System.Drawing.Point(51, 311);
             this.kenanBox.Name = "kenanBox";
@@ -191,9 +169,8 @@ namespace BN_Primitive_Launcher
             // 
             // backupBox
             // 
-            this.backupBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.backupBoxState;
+            this.backupBox.Checked = true;
             this.backupBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.backupBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "backupBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.backupBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.backupBox.Location = new System.Drawing.Point(51, 288);
             this.backupBox.Name = "backupBox";
@@ -204,19 +181,16 @@ namespace BN_Primitive_Launcher
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Location = new System.Drawing.Point(63, 61);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.TextboxState;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // graveyardBox
             // 
-            this.graveyardBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.graveyardBoxState;
+            this.graveyardBox.Checked = true;
             this.graveyardBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.graveyardBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "graveyardBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.graveyardBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.graveyardBox.Location = new System.Drawing.Point(130, 265);
             this.graveyardBox.Name = "graveyardBox";
@@ -228,9 +202,8 @@ namespace BN_Primitive_Launcher
             // 
             // memorialBox
             // 
-            this.memorialBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.memorialBoxState;
+            this.memorialBox.Checked = true;
             this.memorialBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.memorialBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "memorialBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.memorialBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.memorialBox.Location = new System.Drawing.Point(12, 265);
             this.memorialBox.Name = "memorialBox";
@@ -241,9 +214,8 @@ namespace BN_Primitive_Launcher
             // 
             // templatesBox
             // 
-            this.templatesBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.templatesBoxState;
+            this.templatesBox.Checked = true;
             this.templatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.templatesBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "templatesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.templatesBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.templatesBox.Location = new System.Drawing.Point(125, 242);
             this.templatesBox.Name = "templatesBox";
@@ -255,9 +227,8 @@ namespace BN_Primitive_Launcher
             // 
             // configBox
             // 
-            this.configBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.configBoxState;
+            this.configBox.Checked = true;
             this.configBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.configBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "configBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.configBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.configBox.Location = new System.Drawing.Point(12, 242);
             this.configBox.Name = "configBox";
@@ -268,9 +239,8 @@ namespace BN_Primitive_Launcher
             // 
             // fontBox
             // 
-            this.fontBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.fontBoxState;
+            this.fontBox.Checked = true;
             this.fontBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.fontBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "fontBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.fontBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.fontBox.Location = new System.Drawing.Point(137, 219);
             this.fontBox.Name = "fontBox";
@@ -282,9 +252,8 @@ namespace BN_Primitive_Launcher
             // 
             // soundBox
             // 
-            this.soundBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.soundBoxState;
+            this.soundBox.Checked = true;
             this.soundBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.soundBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "soundBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.soundBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.soundBox.Location = new System.Drawing.Point(134, 196);
             this.soundBox.Name = "soundBox";
@@ -296,9 +265,8 @@ namespace BN_Primitive_Launcher
             // 
             // ModsBox
             // 
-            this.ModsBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.ModBoxState;
+            this.ModsBox.Checked = true;
             this.ModsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ModsBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "ModBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ModsBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ModsBox.Location = new System.Drawing.Point(12, 219);
             this.ModsBox.Name = "ModsBox";
@@ -309,9 +277,8 @@ namespace BN_Primitive_Launcher
             // 
             // saveBox
             // 
-            this.saveBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.savesBoxState;
+            this.saveBox.Checked = true;
             this.saveBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.saveBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "savesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.saveBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.saveBox.Location = new System.Drawing.Point(12, 196);
             this.saveBox.Name = "saveBox";
@@ -319,6 +286,27 @@ namespace BN_Primitive_Launcher
             this.saveBox.TabIndex = 0;
             this.saveBox.Text = "Saves";
             this.saveBox.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.LightGray;
+            this.statusStrip1.BackgroundImage = global::BN_Primitive_Launcher.Properties.Resources.Strelki_vniz_vologodskaya_mebelnaya_fabrika;
+            this.statusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 152);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(259, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.Click += new System.EventHandler(this.statusStrip1_Click);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // Form1
             // 

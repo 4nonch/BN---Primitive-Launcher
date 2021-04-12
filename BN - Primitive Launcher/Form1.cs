@@ -327,6 +327,8 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
+			progressBar1.Visible = true;
+			progressBar1.Style = ProgressBarStyle.Marquee;
 			bool error = false;
 			IProgress<sbyte> progress = new Progress<sbyte>(value =>
 			{
@@ -339,14 +341,15 @@ namespace BN_Primitive_Launcher
 				}
 			});
 			await Task.Run(() => MoveFromRoot(progress));
-			if (error) { return; }
+			if (error) { progressBar1.Visible = false; progressBar1.Style = ProgressBarStyle.Blocks; return; }
+			progressBar1.Style = ProgressBarStyle.Blocks;
 
-			progressBar1.Visible = true;
 			string version = String.Join("-", comboBox1.Text.Split('-').Skip(1));
 			await Task.Run( () => GameDownload(version) );
 
 			progressBar1.Visible = true;
 			if (Properties.Settings.Default.KenanState) { await Task.Run( () => KenanDownload() ); }
+			progressBar1.Visible = false;
 
 			availability = true;
 			label3.Visible = true;
