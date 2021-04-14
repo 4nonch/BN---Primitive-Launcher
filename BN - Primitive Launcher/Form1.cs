@@ -314,7 +314,7 @@ namespace BN_Primitive_Launcher
                 {
 					foreach (var folder in Directory.GetDirectories(rootdir + @"\Mods"))
                     {
-						if (folder.Split('_').Contains("SDG") || folder.Split('_').Contains("UnDeadPeople"))
+						if (folder.Split('\\').Last().Split('_').Contains("SDG") || folder.Split('\\').Last().Split('_').Contains("UnDeadPeople"))
                         {
 							Directory.Delete(rootdir + $"\\Mods\\{folder.Split('\\').Last()}", true);
                         }
@@ -391,39 +391,11 @@ namespace BN_Primitive_Launcher
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
         {
-			var folders = Directory.GetDirectories(startdir);
-			var files = Directory.GetFiles(startdir);
+			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories))
+				Directory.CreateDirectory(dirPath.Replace(startdir, destdir));
 
-			if (files.Count() != 0)
-			{
-				foreach (var file in files)
-				{
-					try
-					{
-						File.Move(file, destdir + $"\\{file.Split('\\').Last()}");
-                    }
-                    catch(IOException)
-                    {
-						File.Delete(destdir + $"\\{file.Split('\\').Last()}");
-						File.Move(file, destdir + $"\\{file.Split('\\').Last()}");
-					}
-				}
-			}
-
-			if (folders.Count() != 0)
-			{
-				foreach (var folder in folders)
-				{
-					if (!Directory.Exists(destdir + $"\\{folder.Split('\\').Last()}"))
-                    {
-						Directory.Move(startdir + $"\\{folder.Split('\\').Last()}", destdir + $"\\{folder.Split('\\').Last()}");
-                    }
-                    else
-                    {
-						MoveWithReplacement(startdir + $"\\{folder.Split('\\').Last()}", destdir + $"\\{folder.Split('\\').Last()}");
-					}
-				}
-			}
+			foreach (string newPath in Directory.GetFiles(startdir, "*.*", SearchOption.AllDirectories))
+				File.Copy(newPath, newPath.Replace(startdir, destdir), true);
 		}
 		private void button1_Click(object sender, EventArgs e)
 		{

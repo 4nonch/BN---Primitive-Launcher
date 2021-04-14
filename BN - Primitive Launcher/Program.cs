@@ -14,16 +14,21 @@ namespace BN_Primitive_Launcher
         [STAThread]
         static void Main()
         {
-            try
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e.Message}");
-            }
+            //Application.ThreadException += ThreadException;
+            //AppDomain.CurrentDomain.UnhandledException += UnhandledException;
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
+        //private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        //{
+        //    ThreadException(sender, new ThreadExceptionEventArgs(e.ExceptionObject as Exception));
+        //}
+
+        //private static void ThreadException(object sender, ThreadExceptionEventArgs e)
+        //{
+        //    MessageBox.Show(e.Exception + e.Exception.StackTrace);
+        //}
     }
 }
