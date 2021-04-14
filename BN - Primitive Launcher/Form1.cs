@@ -190,6 +190,11 @@ namespace BN_Primitive_Launcher
 
 			MoveToRoot();
 		}
+
+		/// <summary>
+		/// Перенос всего в bn-olddata
+		/// </summary>
+		/// <param name="progress"></param>
 		public void MoveFromRoot(IProgress<sbyte> progress)
 		{
 			bool toBackup = backupBox.Checked;
