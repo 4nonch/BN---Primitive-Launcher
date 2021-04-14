@@ -190,6 +190,11 @@ namespace BN_Primitive_Launcher
 
 			MoveToRoot();
 		}
+
+		/// <summary>
+		/// Перенос всего в bn-olddata
+		/// </summary>
+		/// <param name="progress"></param>
 		public void MoveFromRoot(IProgress<sbyte> progress)
 		{
 			bool toBackup = backupBox.Checked;
@@ -389,6 +394,12 @@ namespace BN_Primitive_Launcher
             }
 			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = false; });
 		}
+
+		/// <summary>
+		/// Заменить каталоги
+		/// </summary>
+		/// <param name="startdir">Источник</param>
+		/// <param name="destdir">Приемник</param>
 		public void MoveWithReplacement(string startdir, string destdir)
         {
 			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories))
