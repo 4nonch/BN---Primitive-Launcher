@@ -379,7 +379,7 @@ namespace BN_Primitive_Launcher
 
 				if (Directory.Exists(Soundpath))
                 {
-					string txtcheck = Directory.GetFiles(Soundpath, "soundpack.txt")[0];
+					string txtcheck = Directory.GetFiles(Soundpath, "soundpack.txt", SearchOption.AllDirectories)[0];
 					string sounddir = txtcheck.Substring(0, txtcheck.Length - @"\soundpack.txt".Length);
 					try
 					{
