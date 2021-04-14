@@ -404,7 +404,8 @@ namespace BN_Primitive_Launcher
         {
 			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories))
 			{
-				Directory.CreateDirectory(destdir + dirPath.Substring(startdir.Length));
+				string path = destdir + dirPath.Substring(startdir.Length);
+				while (!Directory.Exists(path)) { Directory.CreateDirectory(path); }
 			}
 
 			foreach (string newPath in Directory.GetFiles(startdir, "*.*", SearchOption.AllDirectories))
