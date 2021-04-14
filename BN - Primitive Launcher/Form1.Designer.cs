@@ -31,17 +31,17 @@ namespace BN_Primitive_Launcher
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btDirDialogOpen = new System.Windows.Forms.Button();
+            this.btUpdate = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btPlay = new System.Windows.Forms.Button();
+            this.cbVerionBox = new System.Windows.Forms.ComboBox();
             this.kenanBox = new System.Windows.Forms.CheckBox();
             this.backupBox = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbPathInput = new System.Windows.Forms.TextBox();
             this.graveyardBox = new System.Windows.Forms.CheckBox();
             this.memorialBox = new System.Windows.Forms.CheckBox();
             this.templatesBox = new System.Windows.Forms.CheckBox();
@@ -79,29 +79,29 @@ namespace BN_Primitive_Launcher
             this.label1.TabIndex = 0;
             this.label1.Text = "BN root folder:";
             // 
-            // button1
+            // btDirDialogOpen
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(177, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 20);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "..";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btDirDialogOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btDirDialogOpen.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btDirDialogOpen.Location = new System.Drawing.Point(177, 45);
+            this.btDirDialogOpen.Name = "btDirDialogOpen";
+            this.btDirDialogOpen.Size = new System.Drawing.Size(27, 20);
+            this.btDirDialogOpen.TabIndex = 3;
+            this.btDirDialogOpen.Text = "..";
+            this.btDirDialogOpen.UseVisualStyleBackColor = true;
+            this.btDirDialogOpen.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btUpdate
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button2.Location = new System.Drawing.Point(140, 74);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btUpdate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btUpdate.Location = new System.Drawing.Point(140, 74);
+            this.btUpdate.Name = "btUpdate";
+            this.btUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btUpdate.TabIndex = 2;
+            this.btUpdate.Text = "Update";
+            this.btUpdate.UseVisualStyleBackColor = true;
+            this.btUpdate.Click += new System.EventHandler(this.button2_Click);
             // 
             // progressBar1
             // 
@@ -144,32 +144,32 @@ namespace BN_Primitive_Launcher
             this.label4.Text = "Backup...";
             this.label4.Visible = false;
             // 
-            // button3
+            // btPlay
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(59, 74);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Play";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btPlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btPlay.Location = new System.Drawing.Point(59, 74);
+            this.btPlay.Name = "btPlay";
+            this.btPlay.Size = new System.Drawing.Size(75, 23);
+            this.btPlay.TabIndex = 18;
+            this.btPlay.Text = "Play";
+            this.btPlay.UseVisualStyleBackColor = true;
+            this.btPlay.Click += new System.EventHandler(this.button3_Click);
             // 
-            // comboBox1
+            // cbVerionBox
             // 
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "GameState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbVerionBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "GameState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbVerionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVerionBox.FormattingEnabled = true;
+            this.cbVerionBox.Items.AddRange(new object[] {
             "cataclysmbn-win64-tiles-o3",
             "cataclysmbn-win64-tiles",
             "cataclysmbn-win32-tiles"});
-            this.comboBox1.Location = new System.Drawing.Point(61, 152);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(154, 21);
-            this.comboBox1.TabIndex = 21;
-            this.comboBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.GameState;
+            this.cbVerionBox.Location = new System.Drawing.Point(61, 152);
+            this.cbVerionBox.Name = "cbVerionBox";
+            this.cbVerionBox.Size = new System.Drawing.Size(154, 21);
+            this.cbVerionBox.TabIndex = 21;
+            this.cbVerionBox.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.GameState;
             // 
             // kenanBox
             // 
@@ -197,15 +197,15 @@ namespace BN_Primitive_Launcher
             this.backupBox.Text = "Current version full backup";
             this.backupBox.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tbPathInput
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(71, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.TextboxState;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.tbPathInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbPathInput.Location = new System.Drawing.Point(71, 45);
+            this.tbPathInput.Name = "tbPathInput";
+            this.tbPathInput.Size = new System.Drawing.Size(100, 20);
+            this.tbPathInput.TabIndex = 1;
+            this.tbPathInput.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.TextboxState;
+            this.tbPathInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // graveyardBox
             // 
@@ -481,13 +481,13 @@ namespace BN_Primitive_Launcher
             this.Controls.Add(this.flagLabel);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.cbVerionBox);
+            this.Controls.Add(this.btPlay);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btUpdate);
+            this.Controls.Add(this.btDirDialogOpen);
+            this.Controls.Add(this.tbPathInput);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label5);
@@ -515,9 +515,9 @@ namespace BN_Primitive_Launcher
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tbPathInput;
+        private System.Windows.Forms.Button btDirDialogOpen;
+        private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.CheckBox saveBox;
@@ -533,9 +533,9 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.CheckBox backupBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btPlay;
         private System.Windows.Forms.CheckBox kenanBox;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbVerionBox;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

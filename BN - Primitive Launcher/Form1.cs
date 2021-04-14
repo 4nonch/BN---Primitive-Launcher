@@ -31,8 +31,8 @@ namespace BN_Primitive_Launcher
 		}
         public void GetUserPreferences()
 		{
-			textBox1.Text = Properties.Settings.Default.TextboxState;
-			comboBox1.Text = Properties.Settings.Default.GameState;
+			tbPathInput.Text = Properties.Settings.Default.TextboxState;
+			cbVerionBox.Text = Properties.Settings.Default.GameState;
 			saveBox.Checked = Properties.Settings.Default.savesBoxState;
 			soundBox.Checked = Properties.Settings.Default.soundBoxState;
 			ModsBox.Checked = Properties.Settings.Default.ModBoxState;
@@ -416,19 +416,19 @@ namespace BN_Primitive_Launcher
 			dlg.InputPath = Directory.GetCurrentDirectory();
 			if (dlg.ShowDialog(IntPtr.Zero) == true)
 			{
-				textBox1.Text = dlg.ResultPath;
-				textBox1.Enabled = false;
+				tbPathInput.Text = dlg.ResultPath;
+				tbPathInput.Enabled = false;
 				UpdateButtonCheck();
 			}
 		}
 		private async void button2_Click(object sender, EventArgs e)
 		{
             if (availability == false) { MessageBox.Show("Game is currently updating..."); return; }
-			if (comboBox1.Text == "") { MessageBox.Show("Game version not selected"); return; }
+			if (cbVerionBox.Text == "") { MessageBox.Show("Game version not selected"); return; }
 			if (label3.Visible == true) { label3.Visible = false; }
 			availability = false;
-			textBox1.Enabled = false;
-			rootdir = textBox1.Text;
+			tbPathInput.Enabled = false;
+			rootdir = tbPathInput.Text;
 
 			if (!System.IO.Directory.Exists(rootdir))
 			{
@@ -463,7 +463,7 @@ namespace BN_Primitive_Launcher
 			if (error) { progressBar1.Visible = false; progressBar1.Style = ProgressBarStyle.Blocks; return; }
 			progressBar1.Style = ProgressBarStyle.Blocks;
 
-			string version = String.Join("-", comboBox1.Text.Split('-').Skip(1));
+			string version = String.Join("-", cbVerionBox.Text.Split('-').Skip(1));
 			await Task.Run( () => GameDownload(version) );
 
 			if (Properties.Settings.Default.KenanState) { await Task.Run( () => KenanDownload() ); }
@@ -478,11 +478,11 @@ namespace BN_Primitive_Launcher
 		private void button3_Click(object sender, EventArgs e)
 		{
 			if (!availability) { return; }
-			string game_path = textBox1.Text + "\\cataclysm-tiles.exe";
-			if (File.Exists(game_path) && textBox1.Text != "")
+			string game_path = tbPathInput.Text + "\\cataclysm-tiles.exe";
+			if (File.Exists(game_path) && tbPathInput.Text != "")
             {
 				var previous_directory = Directory.GetCurrentDirectory();
-				Directory.SetCurrentDirectory(textBox1.Text);
+				Directory.SetCurrentDirectory(tbPathInput.Text);
 				System.Diagnostics.Process.Start(game_path);
 				Directory.SetCurrentDirectory(previous_directory);
 				Application.Exit();
@@ -496,7 +496,7 @@ namespace BN_Primitive_Launcher
 		{
 			if (availability == false) { MessageBox.Show("Soundpack installation..."); return; }
 			availability = false;
-			rootdir = textBox1.Text;
+			rootdir = tbPathInput.Text;
 			progressBar1.Visible = true;
 			await Task.Run(() => SoundpackDownload());
 			progressBar1.Visible = false;
@@ -505,9 +505,9 @@ namespace BN_Primitive_Launcher
 
 		private void textBox1_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter && textBox1.Enabled == true) 
+			if (e.KeyCode == Keys.Enter && tbPathInput.Enabled == true) 
 			{ 
-				textBox1.Enabled = false;
+				tbPathInput.Enabled = false;
 				UpdateButtonCheck();
 			}
 		}
@@ -515,13 +515,13 @@ namespace BN_Primitive_Launcher
 		private void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
 			flagLabel.Focus();
-			if (textBox1.Bounds.Contains(e.Location) && availability == true)
+			if (tbPathInput.Bounds.Contains(e.Location) && availability == true)
 			{
-				if (textBox1.Enabled == false) 
+				if (tbPathInput.Enabled == false) 
 				{ 
-					textBox1.Enabled = true;
-					textBox1.SelectAll();
-					textBox1.Focus();
+					tbPathInput.Enabled = true;
+					tbPathInput.SelectAll();
+					tbPathInput.Focus();
 				}
 			}
 		}
@@ -537,14 +537,14 @@ namespace BN_Primitive_Launcher
 		}
 		public void UpdateButtonCheck()
         {
-			string game_path = textBox1.Text + "\\cataclysm-tiles.exe";
-			if (File.Exists(game_path) && textBox1.Text != "")
+			string game_path = tbPathInput.Text + "\\cataclysm-tiles.exe";
+			if (File.Exists(game_path) && tbPathInput.Text != "")
 			{
-				button2.Text = "Update";
+				btUpdate.Text = "Update";
 			}
 			else
 			{
-				button2.Text = "Install";
+				btUpdate.Text = "Install";
 			}
 		}
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -563,10 +563,10 @@ namespace BN_Primitive_Launcher
 		{
 			GetUserPreferences();
 			statusStrip1.Cursor = Cursors.Hand;
-			if (textBox1.Text != "") { textBox1.Enabled = false; }
+			if (tbPathInput.Text != "") { tbPathInput.Enabled = false; }
 			listBox1.SelectedIndex = 0;
 			comboBox2.SelectedIndex = 0;
-			if (comboBox1.Text == "") { comboBox1.Text = "cataclysmbn-win64-tiles"; }
+			if (cbVerionBox.Text == "") { cbVerionBox.Text = "cataclysmbn-win64-tiles"; }
 			UpdateButtonCheck();
 			//progressBar1.Visible = true;
 		}
