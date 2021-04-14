@@ -391,7 +391,7 @@ namespace BN_Primitive_Launcher
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
         {
-			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories))
+			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories)) //need to fix
 				Directory.CreateDirectory(dirPath.Replace(startdir, destdir));
 
 			foreach (string newPath in Directory.GetFiles(startdir, "*.*", SearchOption.AllDirectories))
