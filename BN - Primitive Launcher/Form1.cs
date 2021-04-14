@@ -19,12 +19,17 @@ namespace BN_Primitive_Launcher
 		static string bn_archiveName = "";
 		static string rootdir = "";
 		static bool availability = true;
+		static Dictionary<string, string> soundpacks = new Dictionary<string, string> 
+		{
+			{ "Otopack soundpack", @"https://github.com/Kenan2000/Otopack-Mods-Updates/archive/refs/heads/master.zip" },
+			{ "@'s soundpack",     @"https://github.com/damalsk/damalsksoundpack/archive/refs/heads/master.zip" }
+		};
 		public Form1()
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			InitializeComponent();
 		}
-        public List<string> GetUserPreferences()
+        public void GetUserPreferences()
 		{
 			textBox1.Text = Properties.Settings.Default.TextboxState;
 			comboBox1.Text = Properties.Settings.Default.GameState;
@@ -38,15 +43,17 @@ namespace BN_Primitive_Launcher
 			graveyardBox.Checked = Properties.Settings.Default.graveyardBoxState;
 			backupBox.Checked = Properties.Settings.Default.backupBoxState;
 			kenanBox.Checked = Properties.Settings.Default.KenanState;
-
+		}
+		public List<string> SetUserPreferences()
+        {
 			List<string> preferences = new List<string>();
-			if (saveBox.Checked)      { preferences.Add("save"); }
-			if (ModsBox.Checked)      { preferences.Add("mods"); } //// переводить в ловеркейс
-			if (soundBox.Checked)     { preferences.Add("sound"); }
-			if (fontBox.Checked)      { preferences.Add("font"); }
-			if (configBox.Checked)    { preferences.Add("config"); }
+			if (saveBox.Checked) { preferences.Add("save"); }
+			if (ModsBox.Checked) { preferences.Add("mods"); } //// переводить в ловеркейс
+			if (soundBox.Checked) { preferences.Add("sound"); }
+			if (fontBox.Checked) { preferences.Add("font"); }
+			if (configBox.Checked) { preferences.Add("config"); }
 			if (templatesBox.Checked) { preferences.Add("templates"); }
-			if (memorialBox.Checked)  { preferences.Add("memorial"); }
+			if (memorialBox.Checked) { preferences.Add("memorial"); }
 			if (graveyardBox.Checked) { preferences.Add("graveyard"); }
 
 			return preferences;
@@ -54,6 +61,9 @@ namespace BN_Primitive_Launcher
 		public void GameDownload(string version)
 		{
 			string url = @"https://github.com/cataclysmbnteam/Cataclysm-BN/releases";
+
+			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = true; });
+
 			using (var client = new WebClient())
 			{
 				client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
@@ -65,14 +75,14 @@ namespace BN_Primitive_Launcher
 
 				bn_archiveName = matches[0].ToString().Split('/').Last();
 				client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
-				while(progressBar1.Visible) { ; }
+				while(flagLabel.Visible) { ; }
 			}
 		}
 		public void KenanDownload()
         {
 			string url = @"https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip";
 
-			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 
 			using (var client = new WebClient())
 			{
@@ -80,7 +90,40 @@ namespace BN_Primitive_Launcher
 				client.Headers.Add("user-agent", "Anything");
 				bn_archiveName = "Kenan.zip";
 				client.DownloadFileAsync(new Uri(url), bn_archiveName);
-				while (progressBar1.Visible) { ; }
+				while (flagLabel.Visible) { ; }
+			}
+		}
+		public void UndeadpeopleDownload()
+        {
+			string url = @"https://github.com/SomeDeadGuy/UndeadPeopleTileset/archive/refs/heads/master.zip";
+
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
+
+			using (var client = new WebClient())
+			{
+				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+				client.Headers.Add("user-agent", "Anything");
+				bn_archiveName = "UPT.zip";
+				client.DownloadFileAsync(new Uri(url), bn_archiveName);
+				while (flagLabel.Visible) { ; }
+			}
+		}
+		public void SoundpackDownload()
+        {
+			foreach (var item in checkedListBox1.CheckedItems)
+			{
+				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
+
+				using (var client = new WebClient())
+				{
+					//this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
+					client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+					client.Headers.Add("user-agent", "Anything");
+					//MessageBox.Show((string)item + " 1 " + MessageBox.Show(bn_archiveName));
+					bn_archiveName = $"{(string)item}.zip";
+					client.DownloadFileAsync(new Uri(soundpacks[(string)item]), bn_archiveName);
+					while (flagLabel.Visible) {; }
+				}
 			}
 		}
 		void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -88,27 +131,27 @@ namespace BN_Primitive_Launcher
 			double bytesIn = double.Parse(e.BytesReceived.ToString());
 			double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
 			double percentage = bytesIn / totalBytes * 100;
-			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Value = int.Parse(Math.Truncate(percentage).ToString()); });
+			this.Invoke((MethodInvoker)delegate { progressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());});
 		}
 		async void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
-			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
-			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Value = 0; });
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
+			this.Invoke((MethodInvoker)delegate { progressBar1.Value = 0; });
 			IProgress<int> zip_progressSetMax = new Progress<int>(value =>
 			{
-				this.BeginInvoke((MethodInvoker)delegate { progressBar1.Maximum = value; });
+				this.Invoke((MethodInvoker)delegate { progressBar1.Maximum = value; });
 			});
 			IProgress<int> zip_progress = new Progress<int>	( value => 
 			{
-				this.BeginInvoke((MethodInvoker)delegate { progressBar1.Value += value; });
+				this.Invoke((MethodInvoker)delegate { progressBar1.Value += value; });
 			});
 			await Task.Run( () => ExtractAndUpdate( zip_progress, zip_progressSetMax ) );
-			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Value = 0; });
-			this.BeginInvoke((MethodInvoker)delegate { progressBar1.Visible = false; });
+			this.Invoke((MethodInvoker)delegate { progressBar1.Value = 0; });
 		}
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
 			bool error = false;
+			//MessageBox.Show(bn_archiveName);
 			ZipArchive zipArchive = ZipFile.OpenRead(Directory.GetCurrentDirectory() + "\\" + bn_archiveName);
 			int ammountF = zipArchive.Entries.Count();
 			progressSetMax.Report(ammountF);
@@ -127,7 +170,6 @@ namespace BN_Primitive_Launcher
 						Directory.CreateDirectory(Path.GetDirectoryName(completeFileName));
 						continue;
 					}
-
 					try	{ entry.ExtractToFile(completeFileName, true); }
 					catch { continue; }
 				}
@@ -218,16 +260,20 @@ namespace BN_Primitive_Launcher
 						}
 					}
 				}
-				if (preferences.Contains("sound"))
+
+				if (preferences != null)
 				{
-					if (Directory.Exists(oldData + "\\data\\sound"))
+					if (preferences.Contains("sound"))
 					{
-						var sounds = Directory.GetDirectories(oldData + "\\data\\sound");
-						if (folders.Count() != 0)
+						if (Directory.Exists(oldData + "\\data\\sound"))
 						{
-							foreach (var sound in sounds)
+							var sounds = Directory.GetDirectories(oldData + "\\data\\sound");
+							if (folders.Count() != 0)
 							{
-								if (sound.Split('\\').Last() != "Basic") { Directory.Move(sound, rootdir + $"\\data\\sound\\{sound.Split('\\').Last()}"); }
+								foreach (var sound in sounds)
+								{
+									if (sound.Split('\\').Last() != "Basic") { Directory.Move(sound, rootdir + $"\\data\\sound\\{sound.Split('\\').Last()}"); }
+								}
 							}
 						}
 					}
@@ -237,7 +283,7 @@ namespace BN_Primitive_Launcher
 			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
 			if (Properties.Settings.Default.KenanState && Directory.Exists(KenanPath))
             {
-				this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
+				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 
 				var folders = Directory.GetDirectories(KenanPath);
 				if (folders.Count() != 0)
@@ -254,9 +300,94 @@ namespace BN_Primitive_Launcher
 						}
 					}
 				}
+
 				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
-				this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
+				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 			}
+
+			string UndeadPath = rootdir + @"\UndeadPeopleTileset-master\TILESETS";
+			if (Directory.Exists(UndeadPath))
+            {
+				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
+
+				if (Directory.Exists(rootdir + @"\Mods"))
+                {
+					foreach (var folder in Directory.GetDirectories(rootdir + @"\Mods"))
+                    {
+						if (folder.Split('_').Contains("SDG") || folder.Split('_').Contains("UnDeadPeople"))
+                        {
+							Directory.Delete(rootdir + $"\\Mods\\{folder.Split('\\').Last()}", true);
+                        }
+                    }
+                }
+
+				string[] folders;
+				if (Properties.Settings.Default.KenanState)
+				{
+					
+					folders = Directory.GetDirectories(UndeadPath);
+					foreach (var folder in folders)
+					{
+						MoveWithReplacement(folder, rootdir + $"\\{folder.Split('\\').Last()}");
+					}
+				}
+				else
+				{
+					folders = Directory.GetDirectories(UndeadPath + @"\gfx");
+					foreach (var folder in folders)
+					{
+						try
+						{
+							Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
+						}
+						catch (IOException)
+                        {
+							Directory.Delete(rootdir + @"\gfx\" + folder.Split('\\').Last(), true);
+							Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
+						}
+					}
+
+					string[] paths = new string[] { rootdir + @"\UndeadPeopleTileset-master\GRAPHICAL_OVERMAP_MODS", rootdir + @"\UndeadPeopleTileset-master\TILESET_MODS" };
+					for (int i = 0; i < 2; i++)
+					{
+						folders = Directory.GetDirectories(paths[i]);
+						foreach (var folder in folders)
+						{
+							try
+							{
+								Directory.Move(folder, rootdir + $"\\{folder.Split('\\').Last()}");
+							}
+							catch (IOException)
+							{
+								MoveWithReplacement(folder, rootdir + $"\\{folder.Split('\\').Last()}");
+							}
+						}
+					}
+				}
+				Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
+			}
+
+			foreach (var item in checkedListBox1.CheckedItems)
+            {
+				string[] splited = soundpacks[(string)item].Split('/');
+				string Soundpath = rootdir + $"\\{splited[Array.IndexOf(splited, "archive") - 1] + "-master"}";
+
+				if (Directory.Exists(Soundpath))
+                {
+					string txtcheck = Directory.GetFiles(Soundpath, "soundpack.txt")[0];
+					string sounddir = txtcheck.Substring(0, txtcheck.Length - @"\soundpack.txt".Length);
+					try
+					{
+						Directory.Move(sounddir, rootdir + @"\data\sound\" + $"{sounddir.Split('\\').Last()}");
+                    }
+                    catch (IOException)
+                    {
+						Directory.Delete(rootdir + @"\data\sound\" + $"{sounddir.Split('\\').Last()}", true);
+						Directory.Move(sounddir, rootdir + @"\data\sound\" + $"{sounddir.Split('\\').Last()}");
+					}
+                }
+            }
+			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = false; });
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
         {
@@ -302,6 +433,7 @@ namespace BN_Primitive_Launcher
 			{
 				textBox1.Text = dlg.ResultPath;
 				textBox1.Enabled = false;
+				UpdateButtonCheck();
 			}
 		}
 		private async void button2_Click(object sender, EventArgs e)
@@ -327,6 +459,8 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
+			preferences = SetUserPreferences();
+
 			progressBar1.Visible = true;
 			progressBar1.Style = ProgressBarStyle.Marquee;
 			bool error = false;
@@ -347,15 +481,18 @@ namespace BN_Primitive_Launcher
 			string version = String.Join("-", comboBox1.Text.Split('-').Skip(1));
 			await Task.Run( () => GameDownload(version) );
 
-			progressBar1.Visible = true;
 			if (Properties.Settings.Default.KenanState) { await Task.Run( () => KenanDownload() ); }
-			progressBar1.Visible = false;
+			await Task.Run( () => UndeadpeopleDownload() );
+			await Task.Run(() => SoundpackDownload());
 
+			UpdateButtonCheck();
+			progressBar1.Visible = false;
 			availability = true;
 			label3.Visible = true;
 		}
 		private void button3_Click(object sender, EventArgs e)
 		{
+			if (!availability) { return; }
 			string game_path = textBox1.Text + "\\cataclysm-tiles.exe";
 			if (File.Exists(game_path) && textBox1.Text != "")
             {
@@ -370,17 +507,29 @@ namespace BN_Primitive_Launcher
 				MessageBox.Show("The game executable was not found in the root folder, or it has been renamed");
             }
 		}
+		private async void button6_Click(object sender, EventArgs e)
+		{
+			if (availability == false) { MessageBox.Show("Soundpack installation..."); return; }
+			availability = false;
+			rootdir = textBox1.Text;
+			progressBar1.Visible = true;
+			await Task.Run(() => SoundpackDownload());
+			progressBar1.Visible = false;
+			availability = true;
+		}
 
 		private void textBox1_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter && textBox1.Enabled == true) 
 			{ 
-				textBox1.Enabled = false; 
+				textBox1.Enabled = false;
+				UpdateButtonCheck();
 			}
 		}
 
 		private void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
+			flagLabel.Focus();
 			if (textBox1.Bounds.Contains(e.Location) && availability == true)
 			{
 				if (textBox1.Enabled == false) 
@@ -401,12 +550,40 @@ namespace BN_Primitive_Launcher
 		{
 			Properties.Settings.Default.Save();
 		}
-
-        private void Form1_Load(object sender, EventArgs e)
+		public void UpdateButtonCheck()
         {
-			preferences = GetUserPreferences();
+			string game_path = textBox1.Text + "\\cataclysm-tiles.exe";
+			if (File.Exists(game_path) && textBox1.Text != "")
+			{
+				button2.Text = "Update";
+			}
+			else
+			{
+				button2.Text = "Install";
+			}
+		}
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+			if (e.NewValue == CheckState.Checked) 
+			{ 
+				listBox1.Items.Add(checkedListBox1.Items[e.Index]);
+            }
+            else
+            {
+				listBox1.Items.Remove(checkedListBox1.Items[e.Index]);
+			}
+			//MessageBox.Show($"{listBox1.SelectedIndex}");
+        }
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			GetUserPreferences();
 			statusStrip1.Cursor = Cursors.Hand;
 			if (textBox1.Text != "") { textBox1.Enabled = false; }
-        }
+			listBox1.SelectedIndex = 0;
+			comboBox2.SelectedIndex = 0;
+			if (comboBox1.Text == "") { comboBox1.Text = "cataclysmbn-win64-tiles"; }
+			UpdateButtonCheck();
+			//progressBar1.Visible = true;
+		}
     }
 }
