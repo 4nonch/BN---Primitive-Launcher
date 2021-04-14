@@ -391,11 +391,13 @@ namespace BN_Primitive_Launcher
 		}
 		public void MoveWithReplacement(string startdir, string destdir)
         {
-			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories)) //need to fix
-				Directory.CreateDirectory(dirPath.Replace(startdir, destdir));
+			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories))
+			{
+				Directory.CreateDirectory(destdir + dirPath.Substring(startdir.Length));
+			}
 
 			foreach (string newPath in Directory.GetFiles(startdir, "*.*", SearchOption.AllDirectories))
-				File.Copy(newPath, newPath.Replace(startdir, destdir), true);
+				File.Copy(newPath, destdir + newPath.Substring(startdir.Length), true);
 		}
 		private void button1_Click(object sender, EventArgs e)
 		{
