@@ -485,7 +485,7 @@ namespace BN_Primitive_Launcher
 		}
 
 		private void ClearOldDirectory(IProgress<sbyte> progress)
-        {
+		{
 			progress.Report(1);
 			string oldDaataDirName = "BN - old data"; //TODO move old rirectory name to constants
 			string oldData =  Path.Combine(rootdir,oldDaataDirName);
@@ -493,7 +493,7 @@ namespace BN_Primitive_Launcher
 				Directory.Delete(oldData, true);
 
 			progress.Report(0);
-        }
+		}
 
 		private void button3_Click(object sender, EventArgs e)
 		{
