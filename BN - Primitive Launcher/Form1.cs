@@ -27,6 +27,7 @@ namespace BN_Primitive_Launcher
 			{ "CO.AG", @"https://github.com/4nonch/CO.AG-copy/archive/refs/heads/main.zip" }
 		};
 		static string listbox_selected = "";
+		static string musicname = "";
 		public Form1()
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -131,7 +132,7 @@ namespace BN_Primitive_Launcher
 				}
 			}
 		}
-		public void MusicDownload(string musicname)
+		public void MusicDownload()
 		{
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 
@@ -279,9 +280,12 @@ namespace BN_Primitive_Launcher
 					foreach (var folder in folders)
 					{
 						string pfolder = folder.Split('\\').Last().ToLower();
-						if (preferences.Contains(pfolder))
+						if (preferences != null)
 						{
-							Directory.Move(folder, rootdir + $"\\{folder.Split('\\').Last()}");
+							if (preferences.Contains(pfolder))
+							{
+								Directory.Move(folder, rootdir + $"\\{folder.Split('\\').Last()}");
+							}
 						}
 					}
 				}
@@ -394,8 +398,8 @@ namespace BN_Primitive_Launcher
 
 			foreach (var item in checkedListBox1.CheckedItems)
             {
-				string[] splited = soundpacks[(string)item].Split('/');
-				string soundpath = rootdir + $"\\{splited[Array.IndexOf(splited, "archive") - 1] + "-master"}";
+				string[] splited_sound = soundpacks[(string)item].Split('/');
+				string soundpath = rootdir + $"\\{splited_sound[Array.IndexOf(splited_sound, "archive") - 1] + "-master"}";
 
 				if (Directory.Exists(soundpath))
                 {
@@ -414,8 +418,20 @@ namespace BN_Primitive_Launcher
 
                 if (Directory.Exists(soundpath)) { Directory.Delete(soundpath, true); }
 
-				string musicpack = rootdir + $"\\{folder_name}";
-				if (Directory.Exists(musicpack))
+                string[] splited_music = soundpacks[musicname].Split('/');
+                string musicfolder = $"{splited_music[Array.IndexOf(splited_music, "archive") - 1]}";
+				string musicpack;
+				try
+				{
+					musicpack = Directory.GetDirectories(rootdir, $"{musicfolder.Split('\\').Last()}*")[0];
+				}
+				catch (IndexOutOfRangeException)
+                {
+					musicpack = null;
+                }
+                //// Надо будет (кажется теперь уже не надо) обязательно переделать folder name (при распаковке сабстринг
+                //// сабстринг с длинной (рутдир + символ слеша), сплит по слешу, беру первый элемент - это и будет название папки)
+                if (Directory.Exists(musicpack))
 				{
 					if (listbox_selected != "---")
 					{
@@ -467,6 +483,8 @@ namespace BN_Primitive_Launcher
 			availability = false;
 			tbPathInput.Enabled = false;
 			rootdir = tbPathInput.Text;
+			listbox_selected = (string)listBox1.Items[listBox1.SelectedIndex];
+			musicname = comboBox2.Text;
 
 			if (!System.IO.Directory.Exists(rootdir))
 			{
@@ -506,10 +524,8 @@ namespace BN_Primitive_Launcher
 
 			if (Properties.Settings.Default.KenanState) { await Task.Run( () => KenanDownload() ); }
 			await Task.Run( () => UndeadpeopleDownload() );
-			listbox_selected = (string)listBox1.Items[listBox1.SelectedIndex];
-			string musicname = comboBox2.Text;
 			await Task.Run( () => SoundpackDownload() );
-			if (listbox_selected != "---") { await Task.Run( () => MusicDownload(musicname) ); }
+			if (listbox_selected != "---") { await Task.Run( () => MusicDownload() ); }
 			UpdateButtonCheck();
 			progressBar1.Visible = false;
 			availability = true;
@@ -541,10 +557,10 @@ namespace BN_Primitive_Launcher
 			progressBar1.Visible = true;
 
 			listbox_selected = (string)listBox1.Items[listBox1.SelectedIndex];
-			string musicname = comboBox2.Text;
+			musicname = comboBox2.Text;
 
 			await Task.Run(() => SoundpackDownload());
-			if ((string)listBox1.Items[listBox1.SelectedIndex] != "---") { await Task.Run(() => MusicDownload(musicname)); }
+			if ((string)listBox1.Items[listBox1.SelectedIndex] != "---") { await Task.Run(() => MusicDownload()); }
 
 			progressBar1.Visible = false;
 			availability = true;
@@ -613,6 +629,8 @@ namespace BN_Primitive_Launcher
 		{
 			GetUserPreferences();
 			statusStrip1.Cursor = Cursors.Hand;
+			progressBar1.Minimum = 0;
+			progressBar1.Maximum = 100;
 			if (tbPathInput.Text != "") { tbPathInput.Enabled = false; }
 			listBox1.SelectedIndex = 0;
 			comboBox2.SelectedIndex = 0;
