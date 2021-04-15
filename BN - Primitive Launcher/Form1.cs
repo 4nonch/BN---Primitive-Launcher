@@ -23,8 +23,10 @@ namespace BN_Primitive_Launcher
 		static Dictionary<string, string> soundpacks = new Dictionary<string, string> 
 		{
 			{ "Otopack soundpack", @"https://github.com/Kenan2000/Otopack-Mods-Updates/archive/refs/heads/master.zip" },
-			{ "@'s soundpack",     @"https://github.com/damalsk/damalsksoundpack/archive/refs/heads/master.zip" }
+			{ "@'s soundpack",     @"https://github.com/damalsk/damalsksoundpack/archive/refs/heads/master.zip" },
+			{ "CO.AG", @"https://github.com/4nonch/CO.AG-copy/archive/refs/heads/main.zip" }
 		};
+		static string listbox_selected = "";
 		public Form1()
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -114,17 +116,32 @@ namespace BN_Primitive_Launcher
 			foreach (var item in checkedListBox1.CheckedItems)
 			{
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
-
-				using (var client = new WebClient())
+				if (listbox_selected != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
 				{
-					//this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
-					client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-					client.Headers.Add("user-agent", "Anything");
-					//MessageBox.Show((string)item + " 1 " + MessageBox.Show(bn_archiveName));
-					bn_archiveName = $"{(string)item}.zip";
-					client.DownloadFileAsync(new Uri(soundpacks[(string)item]), bn_archiveName);
-					while (flagLabel.Visible) {; }
+					using (var client = new WebClient())
+					{
+						//this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
+						client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+						client.Headers.Add("user-agent", "Anything");
+						//MessageBox.Show((string)item + " 1 " + MessageBox.Show(bn_archiveName));
+						bn_archiveName = $"{(string)item}.zip";
+						client.DownloadFileAsync(new Uri(soundpacks[(string)item]), bn_archiveName);
+						while (flagLabel.Visible) {; }
+					}
 				}
+			}
+		}
+		public void MusicDownload(string musicname)
+		{
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
+
+			using (var client = new WebClient())
+			{
+				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+				client.Headers.Add("user-agent", "Anything");
+				bn_archiveName = $"{musicname}.zip";
+				client.DownloadFileAsync(new Uri(soundpacks[musicname]), bn_archiveName);
+				while (flagLabel.Visible) { ; }
 			}
 		}
 		void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -152,6 +169,8 @@ namespace BN_Primitive_Launcher
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
 			bool error = false;
+			bool is_first_time = true;
+			string archive_name = "";
 			//MessageBox.Show(bn_archiveName);
 			ZipArchive zipArchive = ZipFile.OpenRead(Directory.GetCurrentDirectory() + "\\" + bn_archiveName);
 			int ammountF = zipArchive.Entries.Count();
@@ -163,7 +182,7 @@ namespace BN_Primitive_Launcher
 					progress.Report(1);
 
 					string endname = entry.FullName;
-					//if (endname.Contains('/')) { endname = endname.Replace('/', '\\'); }
+					if (is_first_time) { archive_name = Path.GetDirectoryName(endname); } else { is_first_time = false; }
 
 					string completeFileName = Path.GetFullPath(rootdir + "\\" + endname);
 					if (entry.Name == "")
@@ -189,7 +208,7 @@ namespace BN_Primitive_Launcher
 			File.Delete(Directory.GetCurrentDirectory() + "\\" + bn_archiveName);
 			if (error == true) { Application.Exit(); }
 
-			MoveToRoot();
+			MoveToRoot(archive_name);
 		}
 
 		/// <summary>
@@ -247,7 +266,7 @@ namespace BN_Primitive_Launcher
 			}
 			progress.Report(0);
 		}
-		public void MoveToRoot()
+		public void MoveToRoot(string folder_name)
 		{
 			string oldData = rootdir + "\\BN - old data";
 
@@ -376,22 +395,45 @@ namespace BN_Primitive_Launcher
 			foreach (var item in checkedListBox1.CheckedItems)
             {
 				string[] splited = soundpacks[(string)item].Split('/');
-				string Soundpath = rootdir + $"\\{splited[Array.IndexOf(splited, "archive") - 1] + "-master"}";
+				string soundpath = rootdir + $"\\{splited[Array.IndexOf(splited, "archive") - 1] + "-master"}";
 
-				if (Directory.Exists(Soundpath))
+				if (Directory.Exists(soundpath))
                 {
-					string txtcheck = Directory.GetFiles(Soundpath, "soundpack.txt", SearchOption.AllDirectories)[0];
+					string txtcheck = Directory.GetFiles(soundpath, "soundpack.txt", SearchOption.AllDirectories)[0];
 					string sounddir = txtcheck.Substring(0, txtcheck.Length - @"\soundpack.txt".Length);
 					try
 					{
-						Directory.Move(sounddir, rootdir + @"\data\sound\" + $"{sounddir.Split('\\').Last()}");
+						Directory.Move(sounddir, rootdir + @"\data\sound\" + (string)item);
                     }
                     catch (IOException)
                     {
-						Directory.Delete(rootdir + @"\data\sound\" + $"{sounddir.Split('\\').Last()}", true);
-						Directory.Move(sounddir, rootdir + @"\data\sound\" + $"{sounddir.Split('\\').Last()}");
+						Directory.Delete(rootdir + @"\data\sound\" + (string)item, true);
+						Directory.Move(sounddir, rootdir + @"\data\sound\" + (string)item);
 					}
                 }
+
+                if (Directory.Exists(soundpath)) { Directory.Delete(soundpath, true); }
+
+				string musicpack = rootdir + $"\\{folder_name}";
+				if (Directory.Exists(musicpack))
+				{
+					if (listbox_selected != "---")
+					{
+						string jsoncheck = Directory.GetFiles(musicpack, "musicset.json", SearchOption.AllDirectories)[0];
+						string musicdir = jsoncheck.Substring(0, jsoncheck.Length - @"\musicset.json".Length);
+						string sounddest = rootdir + $"\\data\\sound\\{listbox_selected}";
+						if (Directory.Exists(sounddest + @"\music"))
+                        {
+							Directory.Delete(sounddest + @"\music", true);
+							MoveWithReplacement(musicdir, sounddest);
+                        }
+                        else
+                        {
+							MoveWithReplacement(musicdir, sounddest);
+						}
+					}
+				}
+				if (Directory.Exists(musicpack)) { Directory.Delete(musicpack, true); }
             }
 			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = false; });
 		}
@@ -405,8 +447,9 @@ namespace BN_Primitive_Launcher
         {
 			Utils.CopyDirectories(startdir, destdir);
 		}
-		private void button1_Click(object sender, EventArgs e)
+		private void btDirDialogOpen_Click(object sender, EventArgs e)
 		{
+			if (!availability) { return; }
 			var dlg = new FolderPicker();
 			dlg.InputPath = Directory.GetCurrentDirectory();
 			if (dlg.ShowDialog(IntPtr.Zero) == true)
@@ -416,7 +459,7 @@ namespace BN_Primitive_Launcher
 				UpdateButtonCheck();
 			}
 		}
-		private async void button2_Click(object sender, EventArgs e)
+		private async void btUpdate_Click(object sender, EventArgs e)
 		{
             if (availability == false) { MessageBox.Show("Game is currently updating..."); return; }
 			if (cbVerionBox.Text == "") { MessageBox.Show("Game version not selected"); return; }
@@ -463,14 +506,16 @@ namespace BN_Primitive_Launcher
 
 			if (Properties.Settings.Default.KenanState) { await Task.Run( () => KenanDownload() ); }
 			await Task.Run( () => UndeadpeopleDownload() );
-			await Task.Run(() => SoundpackDownload());
-
+			listbox_selected = (string)listBox1.Items[listBox1.SelectedIndex];
+			string musicname = comboBox2.Text;
+			await Task.Run( () => SoundpackDownload() );
+			if (listbox_selected != "---") { await Task.Run( () => MusicDownload(musicname) ); }
 			UpdateButtonCheck();
 			progressBar1.Visible = false;
 			availability = true;
 			label3.Visible = true;
 		}
-		private void button3_Click(object sender, EventArgs e)
+		private void btPlay_Click(object sender, EventArgs e)
 		{
 			if (!availability) { return; }
 			string game_path = tbPathInput.Text + "\\cataclysm-tiles.exe";
@@ -487,15 +532,23 @@ namespace BN_Primitive_Launcher
 				MessageBox.Show("The game executable was not found in the root folder, or it has been renamed");
             }
 		}
-		private async void button6_Click(object sender, EventArgs e)
+		private async void btSPinstall_Click(object sender, EventArgs e)
 		{
 			if (availability == false) { MessageBox.Show("Soundpack installation..."); return; }
+			UpdateButtonCheck();
 			availability = false;
 			rootdir = tbPathInput.Text;
 			progressBar1.Visible = true;
+
+			listbox_selected = (string)listBox1.Items[listBox1.SelectedIndex];
+			string musicname = comboBox2.Text;
+
 			await Task.Run(() => SoundpackDownload());
+			if ((string)listBox1.Items[listBox1.SelectedIndex] != "---") { await Task.Run(() => MusicDownload(musicname)); }
+
 			progressBar1.Visible = false;
 			availability = true;
+
 		}
 
 		private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -536,10 +589,12 @@ namespace BN_Primitive_Launcher
 			if (File.Exists(game_path) && tbPathInput.Text != "")
 			{
 				btUpdate.Text = "Update";
+				btSPinstall.Enabled = true;
 			}
 			else
 			{
 				btUpdate.Text = "Install";
+				btSPinstall.Enabled = false;
 			}
 		}
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
