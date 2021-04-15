@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
-namespace BN_Primitive_Launcher
+namespace BN_Primitive_Launcher.Classes
 {
     class FolderPicker
     {

@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BN_Primitive_Launcher.Classes;
 
 namespace BN_Primitive_Launcher
 {
@@ -402,14 +403,7 @@ namespace BN_Primitive_Launcher
 		/// <param name="destdir">Приемник</param>
 		public void MoveWithReplacement(string startdir, string destdir)
         {
-			foreach (string dirPath in Directory.GetDirectories(startdir, "*", SearchOption.AllDirectories))
-			{
-				string path = destdir + dirPath.Substring(startdir.Length);
-				while (!Directory.Exists(path)) { Directory.CreateDirectory(path); }
-			}
-
-			foreach (string newPath in Directory.GetFiles(startdir, "*.*", SearchOption.AllDirectories))
-				File.Copy(newPath, destdir + newPath.Substring(startdir.Length), true);
+			Utils.CopyDirectories(startdir, destdir);
 		}
 		private void button1_Click(object sender, EventArgs e)
 		{
