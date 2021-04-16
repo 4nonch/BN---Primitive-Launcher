@@ -34,7 +34,8 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 1. ~~Different soundpack download&install~~
 2. ~~Make option to replace music on soundpack_name to [CO.AG MusicPack](https://discourse.cataclysmdda.org/t/musicpack-co-ag-musicpack-redux-11-dec-2019/18992) or smth~~
 3. ~~[UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs)~~
-4. Display current work near progressbar (like downloading Kenan; UPT; installing CO.AG and all that stuff)
-5. Add "Cancel" button to cancel updation
-6. Launcher update feature 
-7. Display new version description
+4. Make Controls unavvailable during update
+5. Display current work near progressbar (like downloading Kenan; UPT; installing CO.AG and all that stuff)
+6. Add "Cancel" button to cancel updation
+7. Launcher update feature 
+8. Display new version description
