@@ -50,8 +50,6 @@ namespace BN_Primitive_Launcher
             this.soundBox = new System.Windows.Forms.CheckBox();
             this.ModsBox = new System.Windows.Forms.CheckBox();
             this.saveBox = new System.Windows.Forms.CheckBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -63,7 +61,6 @@ namespace BN_Primitive_Launcher
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.flagLabel = new System.Windows.Forms.Label();
-            this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -323,35 +320,15 @@ namespace BN_Primitive_Launcher
             this.saveBox.Text = "Saves";
             this.saveBox.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.LightGray;
-            this.statusStrip1.BackgroundImage = global::BN_Primitive_Launcher.Properties.Resources.Strelki_vniz_vologodskaya_mebelnaya_fabrika;
-            this.statusStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 365);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(275, 22);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 6;
-            this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.Click += new System.EventHandler(this.statusStrip1_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 179);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabControl1.Location = new System.Drawing.Point(0, 191);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(284, 196);
+            this.tabControl1.Size = new System.Drawing.Size(275, 196);
             this.tabControl1.TabIndex = 22;
             // 
             // tabPage1
@@ -370,7 +347,7 @@ namespace BN_Primitive_Launcher
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(276, 170);
+            this.tabPage1.Size = new System.Drawing.Size(267, 170);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Update Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -479,7 +456,6 @@ namespace BN_Primitive_Launcher
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(275, 387);
             this.Controls.Add(this.flagLabel);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cbVerionBox);
             this.Controls.Add(this.btPlay);
@@ -493,15 +469,13 @@ namespace BN_Primitive_Launcher
             this.Controls.Add(this.label5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(291, 426);
-            this.MinimumSize = new System.Drawing.Size(291, 194);
+            this.MinimumSize = new System.Drawing.Size(291, 426);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BN Launcher";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -519,9 +493,7 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.Button btDirDialogOpen;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.CheckBox saveBox;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.CheckBox ModsBox;
         private System.Windows.Forms.CheckBox soundBox;
         private System.Windows.Forms.CheckBox fontBox;

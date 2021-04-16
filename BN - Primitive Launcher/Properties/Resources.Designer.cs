@@ -59,15 +59,5 @@ namespace BN_Primitive_Launcher.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Strelki_vniz_vologodskaya_mebelnaya_fabrika {
-            get {
-                object obj = ResourceManager.GetObject("Strelki-vniz-vologodskaya-mebelnaya-fabrika", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
