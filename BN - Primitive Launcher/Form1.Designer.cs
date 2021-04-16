@@ -59,7 +59,7 @@ namespace BN_Primitive_Launcher
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btSPinstall = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.flagLabel = new System.Windows.Forms.Label();
@@ -89,7 +89,7 @@ namespace BN_Primitive_Launcher
             this.btDirDialogOpen.TabIndex = 3;
             this.btDirDialogOpen.Text = "..";
             this.btDirDialogOpen.UseVisualStyleBackColor = true;
-            this.btDirDialogOpen.Click += new System.EventHandler(this.button1_Click);
+            this.btDirDialogOpen.Click += new System.EventHandler(this.btDirDialogOpen_Click);
             // 
             // btUpdate
             // 
@@ -101,7 +101,7 @@ namespace BN_Primitive_Launcher
             this.btUpdate.TabIndex = 2;
             this.btUpdate.Text = "Update";
             this.btUpdate.UseVisualStyleBackColor = true;
-            this.btUpdate.Click += new System.EventHandler(this.button2_Click);
+            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
             // 
             // progressBar1
             // 
@@ -154,7 +154,7 @@ namespace BN_Primitive_Launcher
             this.btPlay.TabIndex = 18;
             this.btPlay.Text = "Play";
             this.btPlay.UseVisualStyleBackColor = true;
-            this.btPlay.Click += new System.EventHandler(this.button3_Click);
+            this.btPlay.Click += new System.EventHandler(this.btPlay_Click);
             // 
             // cbVerionBox
             // 
@@ -382,7 +382,7 @@ namespace BN_Primitive_Launcher
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.listBox1);
-            this.tabPage2.Controls.Add(this.button6);
+            this.tabPage2.Controls.Add(this.btSPinstall);
             this.tabPage2.Controls.Add(this.checkedListBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -431,17 +431,17 @@ namespace BN_Primitive_Launcher
             this.listBox1.Size = new System.Drawing.Size(126, 95);
             this.listBox1.TabIndex = 25;
             // 
-            // button6
+            // btSPinstall
             // 
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button6.Location = new System.Drawing.Point(95, 134);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 20);
-            this.button6.TabIndex = 24;
-            this.button6.Text = "Install";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btSPinstall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSPinstall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btSPinstall.Location = new System.Drawing.Point(95, 134);
+            this.btSPinstall.Name = "btSPinstall";
+            this.btSPinstall.Size = new System.Drawing.Size(75, 20);
+            this.btSPinstall.TabIndex = 24;
+            this.btSPinstall.Text = "Install";
+            this.btSPinstall.UseVisualStyleBackColor = true;
+            this.btSPinstall.Click += new System.EventHandler(this.btSPinstall_Click);
             // 
             // checkedListBox1
             // 
@@ -544,7 +544,7 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btSPinstall;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label flagLabel;
     }
