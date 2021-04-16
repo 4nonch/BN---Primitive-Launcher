@@ -263,8 +263,19 @@ namespace BN_Primitive_Launcher
 			progress.Report(1);
 			if (toBackup && Directory.Exists(oldData))
 			{
-				ZipFile.CreateFromDirectory(oldData, rootdir + "\\BN - backup.zip", CompressionLevel.Fastest, true);
+				string zipFileName = "BN - backup.zip"; //TODO Move to constants!
+				string zipFileNameOldBackup = "BN - backup-old.zip"; //TODO Move to constants!
+				string oldZipPath = Path.Combine(oldData, zipFileName);
+				string oldZipPathBackup = Path.Combine(rootdir, zipFileNameOldBackup);
+				if (File.Exists(oldZipPath))
+					File.Move(oldZipPath, oldZipPathBackup);
+
+				ZipFile.CreateFromDirectory(oldData, Path.Combine(rootdir, zipFileName), CompressionLevel.Fastest, true);
+
+				if (File.Exists(oldZipPathBackup))
+					File.Delete(oldZipPathBackup);
 			}
+
 			progress.Report(0);
 		}
 		public void MoveToRoot(string folder_name)
@@ -526,11 +537,24 @@ namespace BN_Primitive_Launcher
 			await Task.Run( () => UndeadpeopleDownload() );
 			await Task.Run( () => SoundpackDownload() );
 			if (listbox_selected != "---") { await Task.Run( () => MusicDownload() ); }
+			await Task.Run( () => ClearOldDirectory(progress) );
 			UpdateButtonCheck();
 			progressBar1.Visible = false;
 			availability = true;
 			label3.Visible = true;
 		}
+
+		private void ClearOldDirectory(IProgress<sbyte> progress)
+		{
+			progress.Report(1);
+			string oldDataDirName = "BN - old data"; //TODO move old directory name to constants
+			string oldData =  Path.Combine(rootdir,oldDataDirName);
+			if (Directory.Exists(oldData))
+				Directory.Delete(oldData, true);
+
+			progress.Report(0);
+		}
+
 		private void btPlay_Click(object sender, EventArgs e)
 		{
 			if (!availability) { return; }
