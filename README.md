@@ -31,7 +31,7 @@ The advantage of this modpack is that it already contains the necessary tilesets
 This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset), you don't have to install graphical mods separately
 
 # TODO:
-1. Different soundpack download&install (done)
-2. Make option to replace music on soundpack_name to [CO.AG MusicPack](https://discourse.cataclysmdda.org/t/musicpack-co-ag-musicpack-redux-11-dec-2019/18992) or smth (done)
-3. [UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs) (done)
+1. ~~Different soundpack download&install~~
+2. ~~Make option to replace music on soundpack_name to [CO.AG MusicPack](https://discourse.cataclysmdda.org/t/musicpack-co-ag-musicpack-redux-11-dec-2019/18992) or smth~~
+3. ~~[UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs)~~
 4. Launcher update feature 
