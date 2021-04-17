@@ -216,7 +216,7 @@ namespace BN_Primitive_Launcher
 				Directory.CreateDirectory(oldData);
 				foreach (var file in files)
 				{
-					if (!file.EndsWith(launcher_name))
+					if (!file.EndsWith(launcher_name) && !file.EndsWith(SETTINGS_FILENAME))
 					{
 						File.Move(file, oldData + $"\\{file.Split('\\').Last()}");
 					}
