@@ -41,7 +41,7 @@ namespace BN_Primitive_Launcher
             this.cbVerionBox = new System.Windows.Forms.ComboBox();
             this.kenanBox = new System.Windows.Forms.CheckBox();
             this.backupBox = new System.Windows.Forms.CheckBox();
-            this.tbPathInput = new System.Windows.Forms.TextBox();
+            this.tbGamepath = new System.Windows.Forms.TextBox();
             this.graveyardBox = new System.Windows.Forms.CheckBox();
             this.memorialBox = new System.Windows.Forms.CheckBox();
             this.templatesBox = new System.Windows.Forms.CheckBox();
@@ -168,6 +168,7 @@ namespace BN_Primitive_Launcher
             // 
             // kenanBox
             // 
+            this.kenanBox.Checked = true;
             this.kenanBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.kenanBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.kenanBox.Location = new System.Drawing.Point(61, 144);
@@ -179,6 +180,7 @@ namespace BN_Primitive_Launcher
             // 
             // backupBox
             // 
+            this.backupBox.Checked = true;
             this.backupBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.backupBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.backupBox.Location = new System.Drawing.Point(61, 124);
@@ -188,17 +190,18 @@ namespace BN_Primitive_Launcher
             this.backupBox.Text = "Current version full backup";
             this.backupBox.UseVisualStyleBackColor = true;
             // 
-            // tbPathInput
+            // tbGamepath
             // 
-            this.tbPathInput.Location = new System.Drawing.Point(71, 45);
-            this.tbPathInput.Name = "tbPathInput";
-            this.tbPathInput.Size = new System.Drawing.Size(100, 20);
-            this.tbPathInput.TabIndex = 1;
-            this.tbPathInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.tbGamepath.Location = new System.Drawing.Point(71, 45);
+            this.tbGamepath.Name = "tbGamepath";
+            this.tbGamepath.Size = new System.Drawing.Size(100, 20);
+            this.tbGamepath.TabIndex = 1;
+            this.tbGamepath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // graveyardBox
             // 
             this.graveyardBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.graveyardBox.Checked = true;
             this.graveyardBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.graveyardBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.graveyardBox.Location = new System.Drawing.Point(136, 97);
@@ -212,6 +215,7 @@ namespace BN_Primitive_Launcher
             // memorialBox
             // 
             this.memorialBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.memorialBox.Checked = true;
             this.memorialBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.memorialBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.memorialBox.Location = new System.Drawing.Point(7, 97);
@@ -224,6 +228,7 @@ namespace BN_Primitive_Launcher
             // templatesBox
             // 
             this.templatesBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.templatesBox.Checked = true;
             this.templatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.templatesBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.templatesBox.Location = new System.Drawing.Point(136, 74);
@@ -237,6 +242,7 @@ namespace BN_Primitive_Launcher
             // configBox
             // 
             this.configBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.configBox.Checked = true;
             this.configBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.configBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.configBox.Location = new System.Drawing.Point(7, 74);
@@ -249,6 +255,7 @@ namespace BN_Primitive_Launcher
             // fontBox
             // 
             this.fontBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.fontBox.Checked = true;
             this.fontBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.fontBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.fontBox.Location = new System.Drawing.Point(136, 51);
@@ -262,6 +269,7 @@ namespace BN_Primitive_Launcher
             // soundBox
             // 
             this.soundBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.soundBox.Checked = true;
             this.soundBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.soundBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.soundBox.Location = new System.Drawing.Point(136, 28);
@@ -275,6 +283,7 @@ namespace BN_Primitive_Launcher
             // ModsBox
             // 
             this.ModsBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ModsBox.Checked = true;
             this.ModsBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ModsBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ModsBox.Location = new System.Drawing.Point(7, 51);
@@ -287,6 +296,7 @@ namespace BN_Primitive_Launcher
             // saveBox
             // 
             this.saveBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.saveBox.Checked = true;
             this.saveBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.saveBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.saveBox.Location = new System.Drawing.Point(7, 28);
@@ -439,7 +449,7 @@ namespace BN_Primitive_Launcher
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btUpdate);
             this.Controls.Add(this.btDirDialogOpen);
-            this.Controls.Add(this.tbPathInput);
+            this.Controls.Add(this.tbGamepath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label5);
@@ -465,7 +475,7 @@ namespace BN_Primitive_Launcher
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbPathInput;
+        private System.Windows.Forms.TextBox tbGamepath;
         private System.Windows.Forms.Button btDirDialogOpen;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.ProgressBar progressBar1;

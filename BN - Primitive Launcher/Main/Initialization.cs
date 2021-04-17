@@ -44,7 +44,7 @@ namespace BN_Primitive_Launcher
 			progressBar1.Minimum = 0;
 			progressBar1.Maximum = 100;
 			
-			if (tbPathInput.Text != "") { tbPathInput.Enabled = false; }
+			if (tbGamepath.Text != "") { tbGamepath.Enabled = false; }
 			
 			MusicreplaceListbox.SelectedIndex = 0;
 			cbMusicbox.SelectedIndex = 0;

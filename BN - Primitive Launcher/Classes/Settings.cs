@@ -74,7 +74,7 @@ namespace BN_Primitive_Launcher
 			graveyardBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "GraveyardBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			backupBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "BackupBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			kenanBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "KenanBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
-			tbPathInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings, "TextboxState", true, DataSourceUpdateMode.OnPropertyChanged));
+			tbGamepath.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings, "TextboxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			cbVerionBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings, "VersionState", true, DataSourceUpdateMode.OnPropertyChanged));
 		}
 
@@ -115,7 +115,7 @@ namespace BN_Primitive_Launcher
 			graveyardBox.Checked = settings.GraveyardBoxState;
 			backupBox.Checked    = settings.BackupBoxState;
 			kenanBox.Checked     = settings.KenanBoxState;
-			tbPathInput.Text     = settings.TextboxState;
+			tbGamepath.Text     = settings.TextboxState;
 			cbVerionBox.Text     = settings.VersionState;
 		}
 
@@ -131,7 +131,7 @@ namespace BN_Primitive_Launcher
 			settings.GraveyardBoxState = graveyardBox.Checked;
 			settings.BackupBoxState    = backupBox.Checked;
 			settings.KenanBoxState     = kenanBox.Checked;
-			settings.TextboxState      = tbPathInput.Text;
+			settings.TextboxState      = tbGamepath.Text;
 			settings.VersionState      = cbVerionBox.Text;
 		}
 

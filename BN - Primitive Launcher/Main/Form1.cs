@@ -27,8 +27,8 @@ namespace BN_Primitive_Launcher
 			dlg.InputPath = Directory.GetCurrentDirectory();
 			if (dlg.ShowDialog(IntPtr.Zero) == true)
 			{
-				tbPathInput.Text = dlg.ResultPath;
-				tbPathInput.Enabled = false;
+				tbGamepath.Text = dlg.ResultPath;
+				tbGamepath.Enabled = false;
 				UpdateButtonCheck();
 			}
 		}
@@ -37,9 +37,12 @@ namespace BN_Primitive_Launcher
             if (availability == false) { MessageBox.Show("Game is currently updating..."); return; }
 			if (cbVerionBox.Text == "") { MessageBox.Show("Game version not selected"); return; }
 			if (label3.Visible == true) { label3.Visible = false; }
+
 			availability = false;
-			tbPathInput.Enabled = false;
-			rootdir = tbPathInput.Text;
+			ToggleControlsAvailability();
+
+			tbGamepath.Enabled = false;
+			rootdir = tbGamepath.Text;
 			soundpack_music_to_replace = (string)MusicreplaceListbox.Items[MusicreplaceListbox.SelectedIndex];
 			musicpack_name = cbMusicbox.Text;
 
@@ -85,29 +88,21 @@ namespace BN_Primitive_Launcher
 			if (soundpack_music_to_replace != "---") { await Task.Run( () => MusicDownload() ); }
 			await Task.Run( () => ClearOldDirectory(progress) );
 			UpdateButtonCheck();
+
 			progressBar1.Visible = false;
 			availability = true;
+			ToggleControlsAvailability();
 			label3.Visible = true;
-		}
-
-		private void ClearOldDirectory(IProgress<sbyte> progress)
-		{
-			progress.Report(1);
-			string oldData =  Path.Combine(rootdir, OLD_DATA_DIR_NAME);
-			if (Directory.Exists(oldData))
-				Directory.Delete(oldData, true);
-
-			progress.Report(0);
 		}
 
 		private void btPlay_Click(object sender, EventArgs e)
 		{
 			if (!availability) { return; }
-			string game_path = tbPathInput.Text + "\\cataclysm-tiles.exe";
-			if (File.Exists(game_path) && tbPathInput.Text != "")
+			string game_path = tbGamepath.Text + "\\cataclysm-tiles.exe";
+			if (File.Exists(game_path) && tbGamepath.Text != "")
             {
 				var previous_directory = Directory.GetCurrentDirectory();
-				Directory.SetCurrentDirectory(tbPathInput.Text);
+				Directory.SetCurrentDirectory(tbGamepath.Text);
 				System.Diagnostics.Process.Start(game_path);
 				Directory.SetCurrentDirectory(previous_directory);
 				Application.Exit();
@@ -122,7 +117,9 @@ namespace BN_Primitive_Launcher
 			if (availability == false) { MessageBox.Show("Soundpack installation..."); return; }
 			UpdateButtonCheck();
 			availability = false;
-			rootdir = tbPathInput.Text;
+			ToggleControlsAvailability();
+
+			rootdir = tbGamepath.Text;
 			progressBar1.Visible = true;
 
 			soundpack_music_to_replace = (string)MusicreplaceListbox.Items[MusicreplaceListbox.SelectedIndex];
@@ -133,15 +130,16 @@ namespace BN_Primitive_Launcher
 
 			progressBar1.Visible = false;
 			availability = true;
+			ToggleControlsAvailability();
 
 		}
 
 		private void textBox1_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter && tbPathInput.Enabled == true)
+			if (e.KeyCode == Keys.Enter && tbGamepath.Enabled == true)
 			{
 				MessageBox.Show($"{settings.VersionState}");
-				tbPathInput.Enabled = false;
+				tbGamepath.Enabled = false;
 				UpdateButtonCheck();
 			}
 		}
@@ -149,26 +147,21 @@ namespace BN_Primitive_Launcher
 		private void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
 			flagLabel.Focus();
-			if (tbPathInput.Bounds.Contains(e.Location) && availability == true)
+			if (tbGamepath.Bounds.Contains(e.Location) && availability == true)
 			{
-				if (tbPathInput.Enabled == false) 
+				if (tbGamepath.Enabled == false) 
 				{ 
-					tbPathInput.Enabled = true;
-					tbPathInput.SelectAll();
-					tbPathInput.Focus();
+					tbGamepath.Enabled = true;
+					tbGamepath.SelectAll();
+					tbGamepath.Focus();
 				}
 			}
 		}
 
-		private void statusStrip1_Click(object sender, EventArgs e)
-		{
-
-        }
-
 		public void UpdateButtonCheck()
         {
-			string game_path = tbPathInput.Text + "\\cataclysm-tiles.exe";
-			if (File.Exists(game_path) && tbPathInput.Text != "")
+			string game_path = tbGamepath.Text + "\\cataclysm-tiles.exe";
+			if (File.Exists(game_path) && tbGamepath.Text != "")
 			{
 				btUpdate.Text = "Update";
 				btSPinstall.Enabled = true;
@@ -179,6 +172,49 @@ namespace BN_Primitive_Launcher
 				btSPinstall.Enabled = false;
 			}
 		}
+
+		public void ToggleControlsAvailability()
+        {
+			if (!availability)
+			{
+				btDirDialogOpen.Enabled = false;
+				btPlay.Enabled = false;
+				cbVerionBox.Enabled = false;
+				SoundpackChecklistbox.Enabled = false;
+				MusicreplaceListbox.Enabled = false;
+				cbMusicbox.Enabled = false;
+				btSPinstall.Enabled = false;
+				foreach (var control in tabPage1.Controls)
+                {
+					try
+					{
+						var checkbox = (CheckBox)control; // Возможна ли утечка памяти при таком подходе?
+						checkbox.Enabled = false;
+					}
+                    catch { ; }
+                }
+			}
+            else
+            {
+				btDirDialogOpen.Enabled = true;
+				btPlay.Enabled = true;
+				cbVerionBox.Enabled = true;
+				SoundpackChecklistbox.Enabled = true;
+				MusicreplaceListbox.Enabled = true;
+				cbMusicbox.Enabled = true;
+				btSPinstall.Enabled = true;
+				foreach (var control in tabPage1.Controls)
+				{
+					try
+					{
+						var checkbox = (CheckBox)control; // Возможна ли утечка памяти при таком подходе?
+						checkbox.Enabled = true;
+					}
+					catch { ; }
+				}
+
+			}
+        }
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
 			if (e.NewValue == CheckState.Checked) 

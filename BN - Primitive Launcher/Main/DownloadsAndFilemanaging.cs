@@ -179,6 +179,16 @@ namespace BN_Primitive_Launcher
 
 
 		// Directories&Files managing
+		private void ClearOldDirectory(IProgress<sbyte> progress)
+		{
+			progress.Report(1);
+			string oldData = Path.Combine(rootdir, OLD_DATA_DIR_NAME);
+			if (Directory.Exists(oldData))
+				Directory.Delete(oldData, true);
+
+			progress.Report(0);
+		}
+
 		public void MoveFromRoot(IProgress<sbyte> progress)
 		{
 			bool toBackup = backupBox.Checked;
