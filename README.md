@@ -34,8 +34,8 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 1. ~~Different soundpack download&install~~
 2. ~~Make option to replace music on soundpack_name to [CO.AG MusicPack](https://discourse.cataclysmdda.org/t/musicpack-co-ag-musicpack-redux-11-dec-2019/18992) or smth~~
 3. ~~[UndeadPeopleTileset](https://github.com/SomeDeadGuy/UndeadPeopleTileset) tileset install. (BN & Kenan modpack has older version with bugs)~~
-4. Remove Property.Settings and replace it with XML Serialization and store it within Launcher's folder (Currently this Launcher stores your settings in %appdata%\local\BN_Primitive_Launcher\, shiting your appdata up) (PROBABLY DONE, NEEDS TESTING)
-5. Make Controls unavailable during update
+4. ~~Remove Property.Settings and replace it with XML Serialization and store it within Launcher's folder (Currently this Launcher stores your settings in %appdata%\local\BN_Primitive_Launcher\, shiting your appdata up) (PROBABLY DONE, NEEDS TESTING)
+5. ~~Make Controls unavailable during update
 6. Display current work near progressbar (like downloading Kenan; UPT; installing CO.AG and all that stuff)
 7. Add "Cancel" button to cancel updation
 8. Launcher update feature 
