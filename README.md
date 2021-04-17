@@ -5,7 +5,7 @@ Adds a primitive launcher that should be able update and run the game.
 
 Download link: https://github.com/4nonch/BN---Primitive-Launcher/releases
 
-**How it works:**
+**How it works:** [description needs updating]
 1. Creates "BN - old data" folder and moves all directories and files in root folder to it
 2. Downloads archive with the latest **win64-tiles** or **win32-tiles** release 
 3. Extracts to the root folder you specified
@@ -13,7 +13,7 @@ Download link: https://github.com/4nonch/BN---Primitive-Launcher/releases
 5. Moves folders from "BN - old data" to root folder according to your settings
 If you use english version launcher will create \en folder to store it dll in it.
 
-**Settings:**
+**Settings:** [description needs updating]
 1-8 settings moves *something* from old to new version
 1. Saves - Moves your saves
 2. Sounds - Moves your sounds from \sound and \data\sound
