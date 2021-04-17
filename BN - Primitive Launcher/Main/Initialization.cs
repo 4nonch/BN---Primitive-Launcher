@@ -31,7 +31,7 @@ namespace BN_Primitive_Launcher
 		const string OLD_DATA_DIR_NAME = "BN - old data";
 		const string OLD_DATA_NEWZIP_NAME = "BN - backup.zip";
 		const string OLD_DATA_OLDZIP_NAME = "BN - backup-old.zip";
-		const string SETTINGS_FILENAME = "BN - settings.xml";
+		const string SETTINGS_FILENAME = "LauncherSettings.xml";
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
