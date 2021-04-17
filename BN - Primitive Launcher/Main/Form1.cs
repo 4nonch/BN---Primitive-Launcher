@@ -13,7 +13,7 @@ using BN_Primitive_Launcher.Classes;
 
 namespace BN_Primitive_Launcher
 {
-	public partial class Form1 : Form // This is there Controls handling
+	public partial class Form1 : Form // This is where Controls handling
 	{
 		public Form1()
 		{
