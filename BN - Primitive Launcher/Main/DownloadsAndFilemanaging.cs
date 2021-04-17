@@ -3,14 +3,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BN_Primitive_Launcher.Classes;
-using System.Xml.Serialization;
 
 namespace BN_Primitive_Launcher
 {
@@ -38,7 +35,7 @@ namespace BN_Primitive_Launcher
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
 
-				bn_archiveName = matches[0].ToString().Split('/').Last();
+				downloaded_archive_name = matches[0].ToString().Split('/').Last();
 				client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
 				while (flagLabel.Visible) {; }
 			}
@@ -54,8 +51,8 @@ namespace BN_Primitive_Launcher
 			{
 				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 				client.Headers.Add("user-agent", "Anything");
-				bn_archiveName = "Kenan.zip";
-				client.DownloadFileAsync(new Uri(url), bn_archiveName);
+				downloaded_archive_name = "Kenan.zip";
+				client.DownloadFileAsync(new Uri(url), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
 		}
@@ -70,18 +67,18 @@ namespace BN_Primitive_Launcher
 			{
 				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 				client.Headers.Add("user-agent", "Anything");
-				bn_archiveName = "UPT.zip";
-				client.DownloadFileAsync(new Uri(url), bn_archiveName);
+				downloaded_archive_name = "UPT.zip";
+				client.DownloadFileAsync(new Uri(url), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
 		}
 
 		public void SoundpackDownload()
 		{
-			foreach (var item in checkedListBox1.CheckedItems)
+			foreach (var item in SoundpackChecklistbox.CheckedItems)
 			{
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
-				if (listbox_selected != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
+				if (soundpack_music_to_replace != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
 				{
 					using (var client = new WebClient())
 					{
@@ -89,8 +86,8 @@ namespace BN_Primitive_Launcher
 						client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 						client.Headers.Add("user-agent", "Anything");
 						//MessageBox.Show((string)item + " 1 " + MessageBox.Show(bn_archiveName));
-						bn_archiveName = $"{(string)item}.zip";
-						client.DownloadFileAsync(new Uri(soundpacks[(string)item]), bn_archiveName);
+						downloaded_archive_name = $"{(string)item}.zip";
+						client.DownloadFileAsync(new Uri(soundpacks[(string)item]), downloaded_archive_name);
 						while (flagLabel.Visible) {; }
 					}
 				}
@@ -105,8 +102,8 @@ namespace BN_Primitive_Launcher
 			{
 				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 				client.Headers.Add("user-agent", "Anything");
-				bn_archiveName = $"{musicname}.zip";
-				client.DownloadFileAsync(new Uri(soundpacks[musicname]), bn_archiveName);
+				downloaded_archive_name = $"{musicpack_name}.zip";
+				client.DownloadFileAsync(new Uri(soundpacks[musicpack_name]), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
 		}
@@ -141,7 +138,7 @@ namespace BN_Primitive_Launcher
 			bool is_first_time = true;
 			string archive_name = "";
 			//MessageBox.Show(bn_archiveName);
-			ZipArchive zipArchive = ZipFile.OpenRead(Directory.GetCurrentDirectory() + "\\" + bn_archiveName);
+			ZipArchive zipArchive = ZipFile.OpenRead(Directory.GetCurrentDirectory() + "\\" + downloaded_archive_name);
 			int ammountF = zipArchive.Entries.Count();
 			progressSetMax.Report(ammountF);
 			try
@@ -174,7 +171,7 @@ namespace BN_Primitive_Launcher
 				MessageBox.Show($"Unexpected error\n{e.Message}\n{e.TargetSite}");
 			}
 			zipArchive.Dispose();
-			File.Delete(Directory.GetCurrentDirectory() + "\\" + bn_archiveName);
+			File.Delete(Directory.GetCurrentDirectory() + "\\" + downloaded_archive_name);
 			if (error == true) { Application.Exit(); }
 
 			MoveToRoot(archive_name);
@@ -286,7 +283,7 @@ namespace BN_Primitive_Launcher
 			}
 
 			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
-			if (Properties.Settings.Default.KenanState && Directory.Exists(KenanPath))
+			if (settings.KenanBoxState && Directory.Exists(KenanPath))
 			{
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 
@@ -327,7 +324,7 @@ namespace BN_Primitive_Launcher
 				}
 
 				string[] folders;
-				if (Properties.Settings.Default.KenanState)
+				if (settings.KenanBoxState)
 				{
 
 					folders = Directory.GetDirectories(UndeadPath);
@@ -372,7 +369,7 @@ namespace BN_Primitive_Launcher
 				Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
 			}
 
-			foreach (var item in checkedListBox1.CheckedItems)
+			foreach (var item in SoundpackChecklistbox.CheckedItems)
 			{
 				string[] splited_sound = soundpacks[(string)item].Split('/');
 				string soundpath = rootdir + $"\\{splited_sound[Array.IndexOf(splited_sound, "archive") - 1] + "-master"}";
@@ -394,7 +391,7 @@ namespace BN_Primitive_Launcher
 
 				if (Directory.Exists(soundpath)) { Directory.Delete(soundpath, true); }
 
-				string[] splited_music = soundpacks[musicname].Split('/');
+				string[] splited_music = soundpacks[musicpack_name].Split('/');
 				string musicfolder = $"{splited_music[Array.IndexOf(splited_music, "archive") - 1]}";
 				string musicpack;
 				try
@@ -409,11 +406,11 @@ namespace BN_Primitive_Launcher
 				//// сабстринг с длинной (рутдир + символ слеша), сплит по слешу, беру первый элемент - это и будет название папки)
 				if (Directory.Exists(musicpack))
 				{
-					if (listbox_selected != "---")
+					if (soundpack_music_to_replace != "---")
 					{
 						string jsoncheck = Directory.GetFiles(musicpack, "musicset.json", SearchOption.AllDirectories)[0];
 						string musicdir = jsoncheck.Substring(0, jsoncheck.Length - @"\musicset.json".Length);
-						string sounddest = rootdir + $"\\data\\sound\\{listbox_selected}";
+						string sounddest = rootdir + $"\\data\\sound\\{soundpack_music_to_replace}";
 						if (Directory.Exists(sounddest + @"\music"))
 						{
 							Directory.Delete(sounddest + @"\music", true);

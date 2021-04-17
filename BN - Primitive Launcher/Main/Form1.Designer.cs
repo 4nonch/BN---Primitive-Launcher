@@ -53,12 +53,12 @@ namespace BN_Primitive_Launcher
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbMusicbox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.MusicreplaceListbox = new System.Windows.Forms.ListBox();
             this.btSPinstall = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.SoundpackChecklistbox = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.flagLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
@@ -155,7 +155,6 @@ namespace BN_Primitive_Launcher
             // 
             // cbVerionBox
             // 
-            this.cbVerionBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "GameState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbVerionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVerionBox.FormattingEnabled = true;
             this.cbVerionBox.Items.AddRange(new object[] {
@@ -166,13 +165,10 @@ namespace BN_Primitive_Launcher
             this.cbVerionBox.Name = "cbVerionBox";
             this.cbVerionBox.Size = new System.Drawing.Size(154, 21);
             this.cbVerionBox.TabIndex = 21;
-            this.cbVerionBox.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.GameState;
             // 
             // kenanBox
             // 
-            this.kenanBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.KenanState;
             this.kenanBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.kenanBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "KenanState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.kenanBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.kenanBox.Location = new System.Drawing.Point(61, 144);
             this.kenanBox.Name = "kenanBox";
@@ -183,9 +179,7 @@ namespace BN_Primitive_Launcher
             // 
             // backupBox
             // 
-            this.backupBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.backupBoxState;
             this.backupBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.backupBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "backupBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.backupBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.backupBox.Location = new System.Drawing.Point(61, 124);
             this.backupBox.Name = "backupBox";
@@ -196,20 +190,16 @@ namespace BN_Primitive_Launcher
             // 
             // tbPathInput
             // 
-            this.tbPathInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::BN_Primitive_Launcher.Properties.Settings.Default, "TextboxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tbPathInput.Location = new System.Drawing.Point(71, 45);
             this.tbPathInput.Name = "tbPathInput";
             this.tbPathInput.Size = new System.Drawing.Size(100, 20);
             this.tbPathInput.TabIndex = 1;
-            this.tbPathInput.Text = global::BN_Primitive_Launcher.Properties.Settings.Default.TextboxState;
             this.tbPathInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // graveyardBox
             // 
             this.graveyardBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.graveyardBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.graveyardBoxState;
             this.graveyardBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.graveyardBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "graveyardBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.graveyardBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.graveyardBox.Location = new System.Drawing.Point(136, 97);
             this.graveyardBox.Name = "graveyardBox";
@@ -222,9 +212,7 @@ namespace BN_Primitive_Launcher
             // memorialBox
             // 
             this.memorialBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.memorialBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.memorialBoxState;
             this.memorialBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.memorialBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "memorialBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.memorialBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.memorialBox.Location = new System.Drawing.Point(7, 97);
             this.memorialBox.Name = "memorialBox";
@@ -236,9 +224,7 @@ namespace BN_Primitive_Launcher
             // templatesBox
             // 
             this.templatesBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.templatesBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.templatesBoxState;
             this.templatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.templatesBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "templatesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.templatesBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.templatesBox.Location = new System.Drawing.Point(136, 74);
             this.templatesBox.Name = "templatesBox";
@@ -251,9 +237,7 @@ namespace BN_Primitive_Launcher
             // configBox
             // 
             this.configBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.configBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.configBoxState;
             this.configBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.configBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "configBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.configBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.configBox.Location = new System.Drawing.Point(7, 74);
             this.configBox.Name = "configBox";
@@ -265,9 +249,7 @@ namespace BN_Primitive_Launcher
             // fontBox
             // 
             this.fontBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.fontBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.fontBoxState;
             this.fontBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.fontBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "fontBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.fontBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.fontBox.Location = new System.Drawing.Point(136, 51);
             this.fontBox.Name = "fontBox";
@@ -280,9 +262,7 @@ namespace BN_Primitive_Launcher
             // soundBox
             // 
             this.soundBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.soundBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.soundBoxState;
             this.soundBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.soundBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "soundBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.soundBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.soundBox.Location = new System.Drawing.Point(136, 28);
             this.soundBox.Name = "soundBox";
@@ -295,9 +275,7 @@ namespace BN_Primitive_Launcher
             // ModsBox
             // 
             this.ModsBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ModsBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.ModBoxState;
             this.ModsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ModsBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "ModBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ModsBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ModsBox.Location = new System.Drawing.Point(7, 51);
             this.ModsBox.Name = "ModsBox";
@@ -309,9 +287,7 @@ namespace BN_Primitive_Launcher
             // saveBox
             // 
             this.saveBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.saveBox.Checked = global::BN_Primitive_Launcher.Properties.Settings.Default.savesBoxState;
             this.saveBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.saveBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::BN_Primitive_Launcher.Properties.Settings.Default, "savesBoxState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.saveBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.saveBox.Location = new System.Drawing.Point(7, 28);
             this.saveBox.Name = "saveBox";
@@ -355,30 +331,30 @@ namespace BN_Primitive_Launcher
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.comboBox2);
+            this.tabPage2.Controls.Add(this.cbMusicbox);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.listBox1);
+            this.tabPage2.Controls.Add(this.MusicreplaceListbox);
             this.tabPage2.Controls.Add(this.btSPinstall);
-            this.tabPage2.Controls.Add(this.checkedListBox1);
+            this.tabPage2.Controls.Add(this.SoundpackChecklistbox);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(276, 170);
+            this.tabPage2.Size = new System.Drawing.Size(267, 170);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Soundpack Preferences";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // cbMusicbox
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbMusicbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMusicbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbMusicbox.Items.AddRange(new object[] {
             "CO.AG"});
-            this.comboBox2.Location = new System.Drawing.Point(138, 21);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(126, 20);
-            this.comboBox2.TabIndex = 0;
+            this.cbMusicbox.Location = new System.Drawing.Point(138, 21);
+            this.cbMusicbox.Name = "cbMusicbox";
+            this.cbMusicbox.Size = new System.Drawing.Size(126, 20);
+            this.cbMusicbox.TabIndex = 0;
             // 
             // label7
             // 
@@ -398,15 +374,15 @@ namespace BN_Primitive_Launcher
             this.label6.TabIndex = 26;
             this.label6.Text = "Replace S.P. music to:";
             // 
-            // listBox1
+            // MusicreplaceListbox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
+            this.MusicreplaceListbox.FormattingEnabled = true;
+            this.MusicreplaceListbox.Items.AddRange(new object[] {
             "---"});
-            this.listBox1.Location = new System.Drawing.Point(138, 35);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(126, 95);
-            this.listBox1.TabIndex = 25;
+            this.MusicreplaceListbox.Location = new System.Drawing.Point(138, 35);
+            this.MusicreplaceListbox.Name = "MusicreplaceListbox";
+            this.MusicreplaceListbox.Size = new System.Drawing.Size(126, 95);
+            this.MusicreplaceListbox.TabIndex = 25;
             // 
             // btSPinstall
             // 
@@ -420,18 +396,18 @@ namespace BN_Primitive_Launcher
             this.btSPinstall.UseVisualStyleBackColor = true;
             this.btSPinstall.Click += new System.EventHandler(this.btSPinstall_Click);
             // 
-            // checkedListBox1
+            // SoundpackChecklistbox
             // 
-            this.checkedListBox1.CheckOnClick = true;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.SoundpackChecklistbox.CheckOnClick = true;
+            this.SoundpackChecklistbox.FormattingEnabled = true;
+            this.SoundpackChecklistbox.Items.AddRange(new object[] {
             "Otopack soundpack",
             "@\'s soundpack"});
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 21);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(126, 109);
-            this.checkedListBox1.TabIndex = 0;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.SoundpackChecklistbox.Location = new System.Drawing.Point(6, 21);
+            this.SoundpackChecklistbox.Name = "SoundpackChecklistbox";
+            this.SoundpackChecklistbox.Size = new System.Drawing.Size(126, 109);
+            this.SoundpackChecklistbox.TabIndex = 0;
+            this.SoundpackChecklistbox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // label5
             // 
@@ -512,12 +488,12 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox SoundpackChecklistbox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox MusicreplaceListbox;
         private System.Windows.Forms.Button btSPinstall;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbMusicbox;
         private System.Windows.Forms.Label flagLabel;
     }
 }
