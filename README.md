@@ -17,7 +17,7 @@ If you use english version launcher will create \en folder to store it dll in it
 1-8 settings moves *something* from old to new version
 1. Saves - Moves your saves
 2. Sounds - Moves your sounds from \sound and \data\sound
-3. \Mods folder - Moves your \Mods or \mods folder if it exists
+3. \Mods folder - Moves **only** your "\Mods" or "\mods" folder if it exists (**not** \data\mods)
 4. \font folder - Moves your \font folder
 5. \config folder - Moves your \config folder
 6. \templates folder - Moves your \templates folder
