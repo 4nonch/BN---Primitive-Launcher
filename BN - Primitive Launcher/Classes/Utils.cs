@@ -48,5 +48,23 @@ namespace BN_Primitive_Launcher.Classes
                 CopyDirectories(diSourceSubDir, nextTargetSubDir);
             }
         }
+
+        public static bool CheckRootdir(string rootdir)
+        {
+            if (!System.IO.Directory.Exists(rootdir))
+            {
+                try
+                {
+                    Directory.CreateDirectory(rootdir);
+                    return true;
+                }
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("Enter the correct path to the root folder");
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

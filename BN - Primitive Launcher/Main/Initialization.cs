@@ -15,7 +15,7 @@ namespace BN_Primitive_Launcher
 		static string launcher_name = Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location);
 		static string downloaded_archive_name = "";
 		static string rootdir = "";
-		static string soundpack_music_to_replace = "";
+		static string SP_musicreplace = "";
 		static string musicpack_name = "";
 
 		static bool availability = true;

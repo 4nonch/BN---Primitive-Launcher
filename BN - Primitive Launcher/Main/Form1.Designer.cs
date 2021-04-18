@@ -103,9 +103,9 @@ namespace BN_Primitive_Launcher
             // progressBar1
             // 
             this.progressBar1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.progressBar1.Location = new System.Drawing.Point(71, 104);
+            this.progressBar1.Location = new System.Drawing.Point(22, 109);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(133, 23);
+            this.progressBar1.Size = new System.Drawing.Size(231, 23);
             this.progressBar1.TabIndex = 4;
             this.progressBar1.Visible = false;
             // 
@@ -123,7 +123,7 @@ namespace BN_Primitive_Launcher
             // 
             this.label3.AutoSize = true;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(89, 109);
+            this.label3.Location = new System.Drawing.Point(89, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 16;
@@ -134,7 +134,7 @@ namespace BN_Primitive_Launcher
             // 
             this.progressLabel.AutoSize = true;
             this.progressLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.progressLabel.Location = new System.Drawing.Point(111, 109);
+            this.progressLabel.Location = new System.Drawing.Point(111, 114);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Size = new System.Drawing.Size(53, 13);
             this.progressLabel.TabIndex = 17;

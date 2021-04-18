@@ -92,14 +92,12 @@ namespace BN_Primitive_Launcher
 				this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"Downloading {(string)item}..."; progressLabel.Visible = true; });
 
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
-				if (soundpack_music_to_replace != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
+				if (SP_musicreplace != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
 				{
 					using (var client = new WebClient())
 					{
-						//this.BeginInvoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 						client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 						client.Headers.Add("user-agent", "Anything");
-						//MessageBox.Show((string)item + " 1 " + MessageBox.Show(bn_archiveName));
 						downloaded_archive_name = $"{(string)item}.zip";
 						client.DownloadFileAsync(new Uri(soundpacks[(string)item]), downloaded_archive_name);
 						while (flagLabel.Visible) {; }
@@ -154,12 +152,9 @@ namespace BN_Primitive_Launcher
 
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
-			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name} extracting..."; progressLabel.Visible = true; });
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} extracting..."; progressLabel.Visible = true; });
 
 			bool error = false;
-			bool is_first_time = true;
-			string archive_name = "";
-			//MessageBox.Show(bn_archiveName);
 			ZipArchive zipArchive = ZipFile.OpenRead(Directory.GetCurrentDirectory() + "\\" + downloaded_archive_name);
 			int ammountF = zipArchive.Entries.Count();
 			progressSetMax.Report(ammountF);
@@ -170,7 +165,6 @@ namespace BN_Primitive_Launcher
 					progress.Report(1);
 
 					string endname = entry.FullName;
-					if (is_first_time) { archive_name = Path.GetDirectoryName(endname); } else { is_first_time = false; }
 
 					string completeFileName = Path.GetFullPath(rootdir + "\\" + endname);
 					if (entry.Name == "")
@@ -196,7 +190,7 @@ namespace BN_Primitive_Launcher
 			File.Delete(Directory.GetCurrentDirectory() + "\\" + downloaded_archive_name);
 			if (error == true) { Application.Exit(); }
 
-			MoveToRoot(archive_name);
+			MoveToRoot();
 
 			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
@@ -212,6 +206,8 @@ namespace BN_Primitive_Launcher
 
 		public void MoveFromRoot()
 		{
+			this.Invoke((MethodInvoker)delegate { progressBar1.Visible = true; progressBar1.Style = ProgressBarStyle.Marquee; });
+
 			bool toBackup = backupBox.Checked;
 
 			string oldData = rootdir + "\\" + OLD_DATA_DIR_NAME;
@@ -270,9 +266,11 @@ namespace BN_Primitive_Launcher
 
 				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 			}
+
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 		}
 
-		public void MoveToRoot(string folder_name)
+		public void MoveToRoot()
 		{
 			string oldData = rootdir + "\\" + OLD_DATA_DIR_NAME;
 
@@ -314,6 +312,15 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
+			KenanInstall();
+
+			UndeadpeopleInstall();
+
+			SoundpackInstall();
+		}
+
+		public void KenanInstall()
+        {
 			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
 			if (settings.KenanBoxState && Directory.Exists(KenanPath))
 			{
@@ -338,7 +345,10 @@ namespace BN_Primitive_Launcher
 				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 			}
+		}
 
+		public void UndeadpeopleInstall()
+        {
 			string UndeadPath = rootdir + @"\UndeadPeopleTileset-master\TILESETS";
 			if (Directory.Exists(UndeadPath))
 			{
@@ -400,7 +410,11 @@ namespace BN_Primitive_Launcher
 				}
 				Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
 			}
+		}
 
+		// Soundpack & Musicpack
+		public void SoundpackInstall()
+        {
 			foreach (var item in SoundpackChecklistbox.CheckedItems)
 			{
 				string[] splited_sound = soundpacks[(string)item].Split('/');
@@ -438,11 +452,11 @@ namespace BN_Primitive_Launcher
 				//// сабстринг с длинной (рутдир + символ слеша), сплит по слешу, беру первый элемент - это и будет название папки)
 				if (Directory.Exists(musicpack))
 				{
-					if (soundpack_music_to_replace != "---")
+					if (SP_musicreplace != "---")
 					{
 						string jsoncheck = Directory.GetFiles(musicpack, "musicset.json", SearchOption.AllDirectories)[0];
 						string musicdir = jsoncheck.Substring(0, jsoncheck.Length - @"\musicset.json".Length);
-						string sounddest = rootdir + $"\\data\\sound\\{soundpack_music_to_replace}";
+						string sounddest = rootdir + $"\\data\\sound\\{SP_musicreplace}";
 						if (Directory.Exists(sounddest + @"\music"))
 						{
 							Directory.Delete(sounddest + @"\music", true);
