@@ -64,19 +64,8 @@ namespace BN_Primitive_Launcher
 
 			progressBar1.Visible = true;
 			progressBar1.Style = ProgressBarStyle.Marquee;
-			bool error = false;
-			IProgress<sbyte> progress = new Progress<sbyte>(value =>
-			{
-				if      (value ==  1) { label4.Visible = true; } 
-				else if (value ==  0) { label4.Visible = false; } 
-				else if (value == -1)
-				{
-					availability = true;
-					error = true; 
-				}
-			});
-			await Task.Run(() => MoveFromRoot(progress));
-			if (error) { progressBar1.Visible = false; progressBar1.Style = ProgressBarStyle.Blocks; return; }
+
+			await Task.Run(() => MoveFromRoot());
 			progressBar1.Style = ProgressBarStyle.Blocks;
 
 			string version = String.Join("-", cbVerionBox.Text.Split('-').Skip(1));
@@ -86,31 +75,14 @@ namespace BN_Primitive_Launcher
 			await Task.Run( () => UndeadpeopleDownload() );
 			await Task.Run( () => SoundpackDownload() );
 			if (soundpack_music_to_replace != "---") { await Task.Run( () => MusicDownload() ); }
-			await Task.Run( () => ClearOldDirectory(progress) );
+			await Task.Run( () => ClearOldDirectory() );
 			UpdateButtonCheck();
 
 			progressBar1.Visible = false;
 			availability = true;
-			ToggleControlsAvailability();
+			
 			label3.Visible = true;
-		}
-
-		private void btPlay_Click(object sender, EventArgs e)
-		{
-			if (!availability) { return; }
-			string game_path = tbGamepath.Text + "\\cataclysm-tiles.exe";
-			if (File.Exists(game_path) && tbGamepath.Text != "")
-            {
-				var previous_directory = Directory.GetCurrentDirectory();
-				Directory.SetCurrentDirectory(tbGamepath.Text);
-				System.Diagnostics.Process.Start(game_path);
-				Directory.SetCurrentDirectory(previous_directory);
-				Application.Exit();
-			}
-            else
-            {
-				MessageBox.Show("The game executable was not found in the root folder, or it has been renamed");
-            }
+			ToggleControlsAvailability();
 		}
 		private async void btSPinstall_Click(object sender, EventArgs e)
 		{
@@ -132,6 +104,24 @@ namespace BN_Primitive_Launcher
 			availability = true;
 			ToggleControlsAvailability();
 
+		}
+
+		private void btPlay_Click(object sender, EventArgs e)
+		{
+			if (!availability) { return; }
+			string game_path = tbGamepath.Text + "\\cataclysm-tiles.exe";
+			if (File.Exists(game_path) && tbGamepath.Text != "")
+            {
+				var previous_directory = Directory.GetCurrentDirectory();
+				Directory.SetCurrentDirectory(tbGamepath.Text);
+				System.Diagnostics.Process.Start(game_path);
+				Directory.SetCurrentDirectory(previous_directory);
+				Application.Exit();
+			}
+            else
+            {
+				MessageBox.Show("The game executable was not found in the root folder, or it has been renamed");
+            }
 		}
 
 		private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -227,5 +217,13 @@ namespace BN_Primitive_Launcher
 			}
 			//MessageBox.Show($"{listBox1.SelectedIndex}");
         }
+
+        private void progressLabel_SizeChanged(object sender, EventArgs e)
+        {
+			//MessageBox.Show($"{Size.Width}");
+			progressLabel.Left = ((Size.Width - progressLabel.Size.Width) / 2) - 8;
+			//MessageBox.Show($"{progressLabel.Width} {Form1.ActiveForm.Width / 2 - progressLabel.Width / 2} {Size.Width / 2 - progressLabel.Width / 2}");
+			//progressLabel.Left = (Size.Width - progressLabel.Width) / 2;
+		}
     }
 }

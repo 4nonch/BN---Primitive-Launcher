@@ -36,7 +36,7 @@ namespace BN_Primitive_Launcher
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.progressLabel = new System.Windows.Forms.Label();
             this.btPlay = new System.Windows.Forms.Button();
             this.cbVerionBox = new System.Windows.Forms.ComboBox();
             this.kenanBox = new System.Windows.Forms.CheckBox();
@@ -130,16 +130,17 @@ namespace BN_Primitive_Launcher
             this.label3.Text = "Update completed!";
             this.label3.Visible = false;
             // 
-            // label4
+            // progressLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(111, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Backup...";
-            this.label4.Visible = false;
+            this.progressLabel.AutoSize = true;
+            this.progressLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.progressLabel.Location = new System.Drawing.Point(111, 109);
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(53, 13);
+            this.progressLabel.TabIndex = 17;
+            this.progressLabel.Text = "Backup...";
+            this.progressLabel.Visible = false;
+            this.progressLabel.SizeChanged += new System.EventHandler(this.progressLabel_SizeChanged);
             // 
             // btPlay
             // 
@@ -445,7 +446,7 @@ namespace BN_Primitive_Launcher
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cbVerionBox);
             this.Controls.Add(this.btPlay);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.progressLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btUpdate);
             this.Controls.Add(this.btDirDialogOpen);
@@ -490,7 +491,7 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox backupBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.Button btPlay;
         private System.Windows.Forms.CheckBox kenanBox;
         private System.Windows.Forms.ComboBox cbVerionBox;

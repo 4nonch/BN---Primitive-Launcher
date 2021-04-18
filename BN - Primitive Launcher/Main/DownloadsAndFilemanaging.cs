@@ -22,6 +22,8 @@ namespace BN_Primitive_Launcher
 		// Download managing
 		public void GameDownload(string version)
 		{
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading last game release..."; progressLabel.Visible = true; });
+
 			string url = @"https://github.com/cataclysmbnteam/Cataclysm-BN/releases";
 
 			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = true; });
@@ -39,10 +41,14 @@ namespace BN_Primitive_Launcher
 				client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
 				while (flagLabel.Visible) {; }
 			}
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 
 		public void KenanDownload()
 		{
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading KenanModpack..."; progressLabel.Visible = true; });
+
 			string url = @"https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip";
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
@@ -55,10 +61,14 @@ namespace BN_Primitive_Launcher
 				client.DownloadFileAsync(new Uri(url), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 
 		public void UndeadpeopleDownload()
 		{
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading Undeadpeople Tileset..."; progressLabel.Visible = true; });
+
 			string url = @"https://github.com/SomeDeadGuy/UndeadPeopleTileset/archive/refs/heads/master.zip";
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
@@ -71,12 +81,16 @@ namespace BN_Primitive_Launcher
 				client.DownloadFileAsync(new Uri(url), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 
 		public void SoundpackDownload()
 		{
 			foreach (var item in SoundpackChecklistbox.CheckedItems)
 			{
+				this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"Downloading {(string)item}..."; progressLabel.Visible = true; });
+
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 				if (soundpack_music_to_replace != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
 				{
@@ -91,11 +105,15 @@ namespace BN_Primitive_Launcher
 						while (flagLabel.Visible) {; }
 					}
 				}
+
+				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 			}
 		}
 
 		public void MusicDownload()
 		{
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading musicpack..."; progressLabel.Visible = true; });
+
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 
 			using (var client = new WebClient())
@@ -106,6 +124,8 @@ namespace BN_Primitive_Launcher
 				client.DownloadFileAsync(new Uri(soundpacks[musicpack_name]), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 
 		void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -134,6 +154,8 @@ namespace BN_Primitive_Launcher
 
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name} extracting..."; progressLabel.Visible = true; });
+
 			bool error = false;
 			bool is_first_time = true;
 			string archive_name = "";
@@ -175,21 +197,20 @@ namespace BN_Primitive_Launcher
 			if (error == true) { Application.Exit(); }
 
 			MoveToRoot(archive_name);
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 
 
 		// Directories&Files managing
-		private void ClearOldDirectory(IProgress<sbyte> progress)
+		private void ClearOldDirectory()
 		{
-			progress.Report(1);
 			string oldData = Path.Combine(rootdir, OLD_DATA_DIR_NAME);
 			if (Directory.Exists(oldData))
 				Directory.Delete(oldData, true);
-
-			progress.Report(0);
 		}
 
-		public void MoveFromRoot(IProgress<sbyte> progress)
+		public void MoveFromRoot()
 		{
 			bool toBackup = backupBox.Checked;
 
@@ -233,9 +254,10 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
-			progress.Report(1);
 			if (toBackup && Directory.Exists(oldData))
 			{
+				this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Backup..."; progressLabel.Visible = true; });
+
 				string oldZipPath = Path.Combine(oldData, OLD_DATA_NEWZIP_NAME);
 				string oldZipPathBackup = Path.Combine(rootdir, OLD_DATA_OLDZIP_NAME);
 				if (File.Exists(oldZipPath))
@@ -245,9 +267,9 @@ namespace BN_Primitive_Launcher
 
 				if (File.Exists(oldZipPathBackup))
 					File.Delete(oldZipPathBackup);
-			}
 
-			progress.Report(0);
+				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
+			}
 		}
 
 		public void MoveToRoot(string folder_name)
