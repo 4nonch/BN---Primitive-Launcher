@@ -6,6 +6,9 @@ using System.IO;
 
 namespace BN_Primitive_Launcher.Classes
 {
+	/// <summary>
+	/// Settings
+	/// </summary>
     [Serializable]
     public class Settings
     {
