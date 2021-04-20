@@ -3,7 +3,7 @@
 
 Adds a primitive launcher that should be able update and run the game.
 
-Download link: https://github.com/4nonch/BN---Primitive-Launcher/releases
+**DOWNLOAD LINK**: https://github.com/4nonch/BN---Primitive-Launcher/releases
 
 **How it works:** [description needs updating]
 1. Creates "BN - old data" folder and moves all directories and files in root folder to it
