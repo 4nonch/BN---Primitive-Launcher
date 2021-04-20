@@ -3,7 +3,7 @@
 
 Adds a primitive launcher that should be able update and run the game.
 
-Download link: https://github.com/4nonch/BN---Primitive-Launcher/releases
+**DOWNLOAD LINK**: https://github.com/4nonch/BN---Primitive-Launcher/releases
 
 **How it works:** [description needs updating]
 1. Creates "BN - old data" folder and moves all directories and files in root folder to it
@@ -37,6 +37,6 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 4. ~~Remove Property.Settings and replace it with XML Serialization and store it within Launcher's folder (Currently this Launcher stores your settings in %appdata%\local\BN_Primitive_Launcher\, shiting your appdata up) (PROBABLY DONE, NEEDS TESTING)~~
 5. ~~Make Controls unavailable during update~~
 6. ~~Display current work near progressbar (like downloading Kenan; UPT; installing CO.AG and all that stuff)~~
-7. Add "Cancel" button to cancel updation
-8. Launcher update feature 
-9. Display new version description
+7. (?)Add "Cancel" button to cancel updation
+8. (?)Launcher update feature 
+9. (?)Display new version description
