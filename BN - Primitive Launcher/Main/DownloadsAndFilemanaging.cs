@@ -36,7 +36,7 @@ namespace BN_Primitive_Launcher
 				Regex rx = new Regex(@"\/cataclysmbnteam\/Cataclysm-BN\/releases\/download\/\d{0,99}\/\S{0,99}" + version + ".zip", RegexOptions.Compiled);
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
-
+				//MessageBox.Show($"{matches[8]}");
 				downloaded_archive_name = matches[0].ToString().Split('/').Last();
 				client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
 				while (flagLabel.Visible) {; }
@@ -196,12 +196,16 @@ namespace BN_Primitive_Launcher
 		}
 
 
-		// Directories&Files managing
+		// Directories&Files managing (надо добавить 
 		private void ClearOldDirectory()
 		{
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
+			
 			string oldData = Path.Combine(rootdir, OLD_DATA_DIR_NAME);
 			if (Directory.Exists(oldData))
 				Directory.Delete(oldData, true);
+
+			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 		}
 
 		public void MoveFromRoot()
