@@ -10,7 +10,7 @@ namespace BN_Primitive_Launcher
 	{
 		public void ToggleControlsAvailability()
 		{
-			log.Trace("Toggle controls...");
+			//log.Trace("Toggle controls...");
 			if (availability)
 			{
 				availability = false;
