@@ -24,7 +24,7 @@ namespace BN_Primitive_Launcher
 		{
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading last game release..."; progressLabel.Visible = true; });
 
-			string url = @"https://github.com/cataclysmbnteam/Cataclysm-BN/releases";
+			string url = @"https://github.com/cataclysmbnteam/Cataclysm-BN/releases"; log.Trace($"version = {version}");
 
 			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = true; });
 
@@ -90,7 +90,7 @@ namespace BN_Primitive_Launcher
 			foreach (var item in SoundpackChecklistbox.CheckedItems)
 			{
 				this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"Downloading {(string)item}..."; progressLabel.Visible = true; });
-
+				log.Trace($"soundpack = {(string)item}");
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 				if (SP_musicreplace != (string)item || !Directory.Exists(rootdir + $"\\data\\sound\\{(string)item}"))
 				{
@@ -136,6 +136,8 @@ namespace BN_Primitive_Launcher
 
 		async void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
+			log.Trace($"{downloaded_archive_name} - download complete");
+
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 			this.Invoke((MethodInvoker)delegate { progressBar1.Value = 0; });
 			IProgress<int> zip_progressSetMax = new Progress<int>(value =>
@@ -152,6 +154,8 @@ namespace BN_Primitive_Launcher
 
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
+			log.Trace($"{downloaded_archive_name} - extraction begin");
+
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} extracting..."; progressLabel.Visible = true; });
 
 			bool error = false;
@@ -199,6 +203,8 @@ namespace BN_Primitive_Launcher
 		// Directories&Files managing (надо добавить 
 		private void ClearOldDirectory()
 		{
+			log.Trace("olddata delete");
+
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 			
 			string oldData = Path.Combine(rootdir, OLD_DATA_DIR_NAME);
@@ -221,17 +227,20 @@ namespace BN_Primitive_Launcher
 			string ExecutablePath = Environment.CurrentDirectory;
 			if (ExecutablePath.IndexOf(rootdir) == 0 && ExecutablePath != rootdir)
 			{
+				log.Trace("Moving Launcher.exe to rootdir");
 				Directory.SetCurrentDirectory(rootdir);
 				File.Move(ExecutablePath + $"\\{launcher_name}", rootdir + $"\\{launcher_name}");
 			}
 
 			if (Directory.Exists(oldData))
 			{
+				log.Trace("olddata delete");
 				Directory.Delete(oldData, true);
 			}
 
 			if (folders.Count() != 0)
 			{
+				log.Trace("Moving all folders to olddata");
 				Directory.CreateDirectory(oldData);
 				foreach (var folder in folders)
 				{
@@ -244,6 +253,7 @@ namespace BN_Primitive_Launcher
 
 			if (files.Count() != 0)
 			{
+				log.Trace("Moving all files to olddata");
 				Directory.CreateDirectory(oldData);
 				foreach (var file in files)
 				{
@@ -256,6 +266,8 @@ namespace BN_Primitive_Launcher
 
 			if (toBackup && Directory.Exists(oldData))
 			{
+				log.Trace("Backup olddata");
+
 				this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Backup..."; progressLabel.Visible = true; });
 
 				string oldZipPath = Path.Combine(oldData, OLD_DATA_NEWZIP_NAME);
@@ -276,10 +288,13 @@ namespace BN_Primitive_Launcher
 
 		public void MoveToRoot()
 		{
+			log.Trace($"{downloaded_archive_name} - extraction complete.");
 			string oldData = rootdir + "\\" + OLD_DATA_DIR_NAME;
 
 			if (Directory.Exists(oldData))
 			{
+				log.Trace("Moving user folders from olddata");
+
 				var folders = Directory.GetDirectories(oldData);
 
 				if (folders.Count() != 0)
@@ -328,11 +343,14 @@ namespace BN_Primitive_Launcher
 			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
 			if (settings.KenanBoxState && Directory.Exists(KenanPath))
 			{
+				log.Trace("Install KenanModpack");
+
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 
 				var folders = Directory.GetDirectories(KenanPath);
 				if (folders.Count() != 0)
 				{
+					log.Trace("Moving mods to data\\mods");
 					foreach (var folder in folders)
 					{
 						try
@@ -346,6 +364,7 @@ namespace BN_Primitive_Launcher
 					}
 				}
 
+				log.Trace("Delete installation folder");
 				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 			}
@@ -356,10 +375,14 @@ namespace BN_Primitive_Launcher
 			string UndeadPath = rootdir + @"\UndeadPeopleTileset-master\TILESETS";
 			if (Directory.Exists(UndeadPath))
 			{
+				log.Trace("Install UndeadpeolpeTileset");
+
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 
+				string[] folders;
 				if (Directory.Exists(rootdir + @"\Mods"))
 				{
+					log.Trace("Delete graphical mods");
 					foreach (var folder in Directory.GetDirectories(rootdir + @"\Mods"))
 					{
 						if (folder.Split('\\').Last().Split('_').Contains("SDG") || folder.Split('\\').Last().Split('_').Contains("UnDeadPeople"))
@@ -368,33 +391,33 @@ namespace BN_Primitive_Launcher
 						}
 					}
 				}
+				
+				folders = Directory.GetDirectories(UndeadPath + @"\gfx"); log.Trace("Install tilesets\\gfx");
+				foreach (var folder in folders)
+				{
+					try
+					{
+						Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
+					}
+					catch (IOException)
+					{
+						Directory.Delete(rootdir + @"\gfx\" + folder.Split('\\').Last(), true);
+						Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
+					}
+				}
 
-				string[] folders;
 				if (settings.KenanBoxState)
 				{
-
-					folders = Directory.GetDirectories(UndeadPath);
+					log.Trace("Updating tilesets\\data\\mods tilesets for KenanPack");
+					folders = Directory.GetDirectories(UndeadPath + "\\data");
 					foreach (var folder in folders)
 					{
-						Utils.CopyDirectories(folder, rootdir + $"\\{folder.Split('\\').Last()}");
+						Utils.CopyDirectories(folder, rootdir + $"\\data\\{folder.Split('\\').Last()}");
 					}
 				}
 				else
 				{
-					folders = Directory.GetDirectories(UndeadPath + @"\gfx");
-					foreach (var folder in folders)
-					{
-						try
-						{
-							Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
-						}
-						catch (IOException)
-						{
-							Directory.Delete(rootdir + @"\gfx\" + folder.Split('\\').Last(), true);
-							Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
-						}
-					}
-
+					log.Trace("Install graphical&overmap mods");
 					string[] paths = new string[] { rootdir + @"\UndeadPeopleTileset-master\GRAPHICAL_OVERMAP_MODS", rootdir + @"\UndeadPeopleTileset-master\TILESET_MODS" };
 					for (int i = 0; i < 2; i++)
 					{
@@ -412,6 +435,7 @@ namespace BN_Primitive_Launcher
 						}
 					}
 				}
+				log.Trace("Delete installation folder");
 				Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
 			}
 		}
@@ -426,6 +450,7 @@ namespace BN_Primitive_Launcher
 
 				if (Directory.Exists(soundpath))
 				{
+					log.Trace($"{(string)item} install");
 					string txtcheck = Directory.GetFiles(soundpath, "soundpack.txt", SearchOption.AllDirectories)[0];
 					string sounddir = txtcheck.Substring(0, txtcheck.Length - @"\soundpack.txt".Length);
 					try
@@ -458,6 +483,7 @@ namespace BN_Primitive_Launcher
 				{
 					if (SP_musicreplace != "---")
 					{
+						log.Trace($"{SP_musicreplace} music replace");
 						string jsoncheck = Directory.GetFiles(musicpack, "musicset.json", SearchOption.AllDirectories)[0];
 						string musicdir = jsoncheck.Substring(0, jsoncheck.Length - @"\musicset.json".Length);
 						string sounddest = rootdir + $"\\data\\sound\\{SP_musicreplace}";
@@ -472,6 +498,7 @@ namespace BN_Primitive_Launcher
 						}
 					}
 				}
+				log.Trace("Delete installation folder");
 				if (Directory.Exists(musicpack)) { Directory.Delete(musicpack, true); }
 			}
 			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = false; });

@@ -9,19 +9,26 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 using BN_Primitive_Launcher.Classes;
 
 namespace BN_Primitive_Launcher
 {
 	public partial class Form1 : Form // This is where Controls handling
 	{
+		Logger log = LogManager.GetCurrentClassLogger();
 		public Form1()
 		{
+			log.Info("BEGIN LOG");
+
 			InitializeComponent();
+			webBrowser1.DocumentText = "<pre>WIP</pre>";
+			//webBrowser1.DocumentText = "<div style = \"border:1px solid black;\"><div class=\"f1 flex-auto min - width - 0 text - normal\"><a href=\" / cataclysmbnteam / Cataclysm - BN / releases / tag / 1626\">1626:Merge pull request #375 from LyleSY/patch-7</a></div><div class=\"commit - desc\"><pre class=\"text - small color - text - secondary\">[DinoMod] The Bone Wars</pre></div></div><div style = \"border:1px solid black;\"><div class=\"f1 flex-auto min - width - 0 text - normal\"><a href=\" / cataclysmbnteam / Cataclysm - BN / releases / tag / 1626\">1626:Merge pull request #375 from LyleSY/patch-7</a></div><div class=\"commit - desc\"><pre class=\"text - small color - text - secondary\">[DinoMod] The Bone Wars</pre></div></div>";
 		}
 
 		private void btDirDialogOpen_Click(object sender, EventArgs e)
 		{
+			log.Info("DirDialog - Click");
 			if (!availability) { return; }
 			var dlg = new FolderPicker();
 			dlg.InputPath = Directory.GetCurrentDirectory();
@@ -35,10 +42,12 @@ namespace BN_Primitive_Launcher
 
 		private void btUpdate_Click(object sender, EventArgs e)
 		{
+			log.Info("UpdateButton - Click");
 			ProcessInstallClick(sender);
 		}
 		private void btSPinstall_Click(object sender, EventArgs e)
 		{
+			log.Info("SPinstallButton - Click");
 			ProcessInstallClick(sender);
 		}
 		public void ProcessInstallClick(object sender)
@@ -55,17 +64,19 @@ namespace BN_Primitive_Launcher
 			progressBar1.Minimum = 0;
 			progressBar1.Maximum = 100;
 
-			preferences = SetUserPreferences();
+			log.Trace($"ROOTDIR = {rootdir}; Getting user preferences..."); preferences = SetUserPreferences();
 			SP_musicreplace = (string)MusicreplaceListbox.Items[MusicreplaceListbox.SelectedIndex];
 			musicpack_name = cbMusicbox.Text;
 
 			Button btInstall = (Button)sender;
 			if (btInstall.Name == "btUpdate")
 			{
+				log.Info("Update Begin");
 				btUpdate_process();
 			}
 			else if (btInstall.Name == "btSPinstall")
 			{
+				log.Info("Soundpack Installation Begin");
 				btSPinstall_process();
 			}
 		}
@@ -73,13 +84,13 @@ namespace BN_Primitive_Launcher
         {
 			string version = String.Join("-", cbVerionBox.Text.Split('-').Skip(1));
 
-											await Task.Run(() => MoveFromRoot());
-											await Task.Run(() => GameDownload(version));
-			if (settings.KenanBoxState) {	await Task.Run(() => KenanDownload()); }
-											await Task.Run(() => UndeadpeopleDownload());
-											await Task.Run(() => SoundpackDownload());
-			if (SP_musicreplace != "---") { await Task.Run(() => MusicDownload()); }
-											await Task.Run(() => ClearOldDirectory());
+											log.Info("MoveFromRoot Begin");			await Task.Run(() => MoveFromRoot());
+											log.Info("GameDownload Begin");			await Task.Run(() => GameDownload(version));
+			if (settings.KenanBoxState) {	log.Info("KenanDownload Begin");		await Task.Run(() => KenanDownload()); }
+											log.Info("UndeadpeopleDownload Begin"); await Task.Run(() => UndeadpeopleDownload());
+											log.Info("SoundpackDownload Begin");	await Task.Run(() => SoundpackDownload());
+			if (SP_musicreplace != "---") { log.Info("MusicDownload Begin");		await Task.Run(() => MusicDownload()); }
+											log.Info("ClearOldDirectory Begin");	await Task.Run(() => ClearOldDirectory());
 
 			progressBar1.Visible = false;
 			label3.Visible = true;
@@ -89,8 +100,8 @@ namespace BN_Primitive_Launcher
 		{
 			progressBar1.Visible = true;
 
-											await Task.Run(() => SoundpackDownload());
-			if (SP_musicreplace != "---") { await Task.Run(() => MusicDownload()); }
+											log.Info("SoundpackDownload Begin");	await Task.Run(() => SoundpackDownload());
+			if (SP_musicreplace != "---") { log.Info("MusicDownload Begin");		await Task.Run(() => MusicDownload()); }
 
 			progressBar1.Visible = false;
 			label3.Visible = true;
@@ -122,7 +133,7 @@ namespace BN_Primitive_Launcher
 		{
 			if (e.KeyCode == Keys.Enter && tbGamepath.Enabled == true)
 			{
-				MessageBox.Show($"{settings.VersionState}");
+				log.Info("Textbox Input");
 				tbGamepath.Enabled = false;
 				UpdateButtonCheck();
 			}

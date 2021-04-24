@@ -58,6 +58,7 @@ namespace BN_Primitive_Launcher
 		{
 			//UpdateUserSettings();
 			SerializeUserSettings();
+			log.Info($"END LOG");
 		}
 	}
 }

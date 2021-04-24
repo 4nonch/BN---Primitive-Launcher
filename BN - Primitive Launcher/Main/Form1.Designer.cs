@@ -59,11 +59,14 @@ namespace BN_Primitive_Launcher
             this.MusicreplaceListbox = new System.Windows.Forms.ListBox();
             this.btSPinstall = new System.Windows.Forms.Button();
             this.SoundpackChecklistbox = new System.Windows.Forms.CheckedListBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label5 = new System.Windows.Forms.Label();
             this.flagLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -159,7 +162,6 @@ namespace BN_Primitive_Launcher
             this.cbVerionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVerionBox.FormattingEnabled = true;
             this.cbVerionBox.Items.AddRange(new object[] {
-            "cataclysmbn-win64-tiles-o3",
             "cataclysmbn-win64-tiles",
             "cataclysmbn-win32-tiles"});
             this.cbVerionBox.Location = new System.Drawing.Point(61, 152);
@@ -311,6 +313,7 @@ namespace BN_Primitive_Launcher
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.Location = new System.Drawing.Point(0, 191);
             this.tabControl1.Name = "tabControl1";
@@ -420,6 +423,23 @@ namespace BN_Primitive_Launcher
             this.SoundpackChecklistbox.TabIndex = 0;
             this.SoundpackChecklistbox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.webBrowser1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(267, 170);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "Versions";
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(-4, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(275, 174);
+            this.webBrowser1.TabIndex = 25;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -468,6 +488,7 @@ namespace BN_Primitive_Launcher
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,6 +527,8 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.Button btSPinstall;
         private System.Windows.Forms.ComboBox cbMusicbox;
         private System.Windows.Forms.Label flagLabel;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 
