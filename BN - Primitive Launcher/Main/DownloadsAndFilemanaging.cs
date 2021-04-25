@@ -204,6 +204,7 @@ namespace BN_Primitive_Launcher
 		private void ClearOldDirectory()
 		{
 			//log.Trace("olddata delete");
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Old data removing..."; progressLabel.Visible = true; });
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
 			
@@ -212,6 +213,8 @@ namespace BN_Primitive_Launcher
 				Directory.Delete(oldData, true);
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 
 		public void MoveFromRoot()
@@ -343,6 +346,7 @@ namespace BN_Primitive_Launcher
 			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
 			if (settings.KenanBoxState && Directory.Exists(KenanPath))
 			{
+				this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} install..."; progressLabel.Visible = true; });
 				//log.Trace("Install KenanModpack");
 
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
@@ -367,11 +371,15 @@ namespace BN_Primitive_Launcher
 				//log.Trace("Delete installation folder");
 				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
+
+				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 			}
 		}
 
 		public void UndeadpeopleInstall()
         {
+			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} install..."; progressLabel.Visible = true; });
+
 			string UndeadPath = rootdir + @"\UndeadPeopleTileset-master\TILESETS";
 			if (Directory.Exists(UndeadPath))
 			{
@@ -437,6 +445,7 @@ namespace BN_Primitive_Launcher
 				}
 				//log.Trace("Delete installation folder");
 				Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
+				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 			}
 		}
 
@@ -445,6 +454,8 @@ namespace BN_Primitive_Launcher
         {
 			foreach (var item in SoundpackChecklistbox.CheckedItems)
 			{
+				this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} install..."; progressLabel.Visible = true; });
+
 				string[] splited_sound = soundpacks[(string)item].Split('/');
 				string soundpath = rootdir + $"\\{splited_sound[Array.IndexOf(splited_sound, "archive") - 1] + "-master"}";
 
@@ -501,6 +512,8 @@ namespace BN_Primitive_Launcher
 				if (Directory.Exists(musicpack)) { Directory.Delete(musicpack, true); }
 			}
 			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = false; });
+
+			this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
 		}
 	}
 }
