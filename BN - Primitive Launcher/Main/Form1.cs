@@ -21,8 +21,9 @@ namespace BN_Primitive_Launcher
 			//log.Info("BEGIN LOG");
 
 			InitializeComponent();
-			webBrowser1.DocumentText = "<pre>WIP</pre>";
+			//webBrowser1.DocumentText = "<pre>WIP</pre>";
 			//webBrowser1.DocumentText = "<div style = \"border:1px solid black;\"><div class=\"f1 flex-auto min - width - 0 text - normal\"><a href=\" / cataclysmbnteam / Cataclysm - BN / releases / tag / 1626\">1626:Merge pull request #375 from LyleSY/patch-7</a></div><div class=\"commit - desc\"><pre class=\"text - small color - text - secondary\">[DinoMod] The Bone Wars</pre></div></div><div style = \"border:1px solid black;\"><div class=\"f1 flex-auto min - width - 0 text - normal\"><a href=\" / cataclysmbnteam / Cataclysm - BN / releases / tag / 1626\">1626:Merge pull request #375 from LyleSY/patch-7</a></div><div class=\"commit - desc\"><pre class=\"text - small color - text - secondary\">[DinoMod] The Bone Wars</pre></div></div>";
+			//LauncherDownload();
 		}
 
 		private void btDirDialogOpen_Click(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace BN_Primitive_Launcher
 		}
 		public async void btUpdate_process()
         {
-			string version = String.Join("-", cbVerionBox.Text.Split('-').Skip(1));
+			string version = String.Join("-", cbVerionBox.Text.Split('-').Skip(3));
 
 											/*log.Info("MoveFromRoot Begin");*/			await Task.Run(() => MoveFromRoot());
 											/*log.Info("GameDownload Begin");*/			await Task.Run(() => GameDownload(version));

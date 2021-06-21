@@ -20,6 +20,31 @@ namespace BN_Primitive_Launcher
 
 
 		// Download managing
+		public void LauncherDownload()
+		{
+			//this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading last launcher version..."; progressLabel.Visible = true; });
+
+			string url = @"https://github.com/4nonch/BN---Primitive-Launcher/releases"; //log.Trace($"version = {version}");
+
+			//this.Invoke((MethodInvoker)delegate { flagLabel.Visible = true; });
+
+			using (var client = new WebClient())
+			{
+				client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+				client.Headers.Add("user-agent", "Anything");
+				Regex rx = new Regex(@"class=.+css-truncate-target.+\>.+", RegexOptions.Compiled);
+				string githubPage = client.DownloadString(url);
+				MatchCollection matches = rx.Matches(githubPage);
+									//MessageBox.Show($"{(matches[0].Value).Split('>')[1].Split('<')[0]}");
+				//downloaded_archive_name = matches[0].ToString().Split('/').Last();
+				//client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
+				//while (flagLabel.Visible) {; }
+			}
+
+			//this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
+		}
+
 		public void GameDownload(string version)
 		{
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading last game release..."; progressLabel.Visible = true; });
@@ -33,7 +58,7 @@ namespace BN_Primitive_Launcher
 				client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
 				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 				client.Headers.Add("user-agent", "Anything");
-				Regex rx = new Regex(@"\/cataclysmbnteam\/Cataclysm-BN\/releases\/download\/\d{0,99}\/\S{0,99}" + version + ".zip", RegexOptions.Compiled);
+				Regex rx = new Regex(@"\/cataclysmbnteam\/Cataclysm-BN\/releases\/download\/[^\/]*\/cbn-windows-tiles-" + version + "[^.]*.zip", RegexOptions.Compiled);
 				string githubPage = client.DownloadString(url);
 				MatchCollection matches = rx.Matches(githubPage);
 				//MessageBox.Show($"{matches[8]}");
@@ -150,6 +175,7 @@ namespace BN_Primitive_Launcher
 			});
 			await Task.Run(() => ExtractAndUpdate(zip_progress, zip_progressSetMax));
 			this.Invoke((MethodInvoker)delegate { progressBar1.Value = 0; });
+			this.Invoke((MethodInvoker)delegate { flagLabel.Visible = false; });
 		}
 
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)

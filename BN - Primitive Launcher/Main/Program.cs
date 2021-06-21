@@ -29,7 +29,7 @@ namespace BN_Primitive_Launcher
 
         private static void ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            MessageBox.Show($"{e.Exception + e.Exception.StackTrace}\nUNHANDLED EXCEPTION. Please save the Launcher.log file and report a bug here: https://discord.gg/XW7XhXuZ89 or on github page.");
+            MessageBox.Show($"{e.Exception + e.Exception.StackTrace}\nUNHANDLED EXCEPTION. Please report a bug here: https://discord.gg/XW7XhXuZ89 or on github page.");
         }
     }
 }
