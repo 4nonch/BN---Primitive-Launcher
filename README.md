@@ -6,6 +6,7 @@ Adds a primitive launcher that should be able update and run the game.
 **DOWNLOAD LINK**: https://github.com/4nonch/BN---Primitive-Launcher/releases
 
 **WARNING**:
+**cataclysm\data\mods folder deletes after update. Keep custom mods in cataclysm\Mods folder instead.**
 Translated/edited mods better not to keep in cataclysm\data\mods (try to keep it in cataclysm\Mods). Why? Because if you choose option to install KenanModpack it will rewrite mods in cataclysm\data\mods folder. Also every time updating Launcher install and rewrite UndeapPeople tiles for mods in cataclysm\data\mods folder.
 
 **How it works:** [description needs updating]
