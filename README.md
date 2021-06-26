@@ -46,4 +46,4 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 8. (?)Launcher update feature 
 9. (?)Display new version description
 
-(?)Complete rewrite in WPF planning(?)
+(?)Complete rewrite on WPF(?)
