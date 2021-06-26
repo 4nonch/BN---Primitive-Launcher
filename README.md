@@ -5,6 +5,9 @@ Adds a primitive launcher that should be able update and run the game.
 
 **DOWNLOAD LINK**: https://github.com/4nonch/BN---Primitive-Launcher/releases
 
+**WARNING**:
+Translated/edited mods better to not keep in cataclysm\data\mods (try to keep it in cataclysm\Mods). Why? Because if you choose option to install KenanModpack it will rewrite mods in cataclysm\data\mods folder. Also every time updating Launcher install and rewrite UndeapPeople tiles for mods in cataclysm\data\mods folder.
+
 **How it works:** [description needs updating]
 1. Creates "BN - old data" folder and moves all directories and files in root folder to it
 2. Downloads archive with the latest **win64-tiles** or **win32-tiles** release 
