@@ -4,6 +4,8 @@
 Adds a primitive launcher that should be able update and run the game.
 
 **DOWNLOAD LINK**: https://github.com/4nonch/BN---Primitive-Launcher/releases
+**Problem? I'm not responding on github for a long time?**
+Ping me on official BN discrod server (anonch#4587): https://discord.gg/XW7XhXuZ89
 
 **WARNING**:
 **cataclysm\data\mods folder deletes after update. Keep custom mods in cataclysm\Mods folder instead.**
