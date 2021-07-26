@@ -448,11 +448,9 @@ namespace BN_Primitive_Launcher
 					{
 						Utils.CopyDirectories(folder, rootdir + $"\\data\\{folder.Split('\\').Last()}");
 					}
-				}
-				else
-				{
+
 					//log.Trace("Install graphical&overmap mods");
-					string[] paths = new string[] { rootdir + @"\UndeadPeopleTileset-master\GRAPHICAL_OVERMAP_MODS", rootdir + @"\UndeadPeopleTileset-master\TILESET_MODS" };
+					string[] paths = new string[] { rootdir + @"\UndeadPeopleTileset-master\GRAPHICAL_OVERMAP_MODS", rootdir + @"\UndeadPeopleTileset-master\BN_TILESET_MODS" };
 					for (int i = 0; i < 2; i++)
 					{
 						folders = Directory.GetDirectories(paths[i]);
