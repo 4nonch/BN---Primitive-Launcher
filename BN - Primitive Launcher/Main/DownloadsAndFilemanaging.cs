@@ -94,7 +94,7 @@ namespace BN_Primitive_Launcher
 		{
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading Undeadpeople Tileset..."; progressLabel.Visible = true; });
 
-			string url = @"https://github.com/SomeDeadGuy/UndeadPeopleTileset/archive/refs/heads/master.zip";
+			string url = @"https://github.com/Firestorm01X2/UndeadPeopleTileset/archive/refs/heads/master.zip";
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 
