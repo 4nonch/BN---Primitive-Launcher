@@ -51,3 +51,8 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 9. (?)Display new version description
 
 (?)Complete rewrite on WPF(?)
+
+# TAKE A CLOSER LOOK:
+[Mad lad](https://github.com/qrrk) developed a [good cross-platform launcher and content manager for the game.](https://github.com/qrrk/Catapult)
+It has more feautures and probably will develop faster. 
+Catapult link: https://github.com/qrrk/Catapult
