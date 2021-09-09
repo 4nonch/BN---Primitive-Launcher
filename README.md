@@ -54,5 +54,5 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 
 # TAKE A CLOSER LOOK:
 [Mad lad](https://github.com/qrrk) developed a [good cross-platform launcher and content manager](https://github.com/qrrk/Catapult) for the game.
-It has more feautures and probably will develop faster. 
+It has more feautures and will develop faster. 
 Catapult link: https://github.com/qrrk/Catapult
