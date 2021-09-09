@@ -53,7 +53,8 @@ This way, if you use [UndeadPeopleTileset](https://github.com/SomeDeadGuy/Undead
 (?)Complete rewrite on WPF(?)
 
 # TAKE A CLOSER LOOK:
-![alt text](https://i.ibb.co/cv7V5P0/image.png)
+![alt text](https://i.ibb.co/C7RZ6H9/image.png)
+
 [Mad lad](https://github.com/qrrk) developed a [good cross-platform launcher and content manager](https://github.com/qrrk/Catapult) for the game.
 It has more feautures and will develop faster. 
 Catapult link: https://github.com/qrrk/Catapult
