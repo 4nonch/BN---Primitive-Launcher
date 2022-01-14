@@ -11,6 +11,7 @@ namespace BN_Primitive_Launcher
 		// Initializing variables and stuff
         Settings settings = new Settings();
 		List<string> preferences;
+		List<string> kenan_inst_options = new List<string>();
 
 		static string launcher_name = Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location);
 		static string downloaded_archive_name = "";
@@ -19,6 +20,7 @@ namespace BN_Primitive_Launcher
 		static string musicpack_name = "";
 
 		static bool availability = true;
+		static bool KenanState;
 
 		static Dictionary<string, string> soundpacks = new Dictionary<string, string>
 		{
@@ -41,6 +43,13 @@ namespace BN_Primitive_Launcher
 			
 			SetSecurityProtocol();
 
+			if (!kenan_downloadinstall_rb.Checked)
+            {
+				kenan_archivedBox.Enabled = false;
+				kenan_highmaintBox.Enabled = false;
+				kenan_mediummaintBox.Enabled = false;
+            }
+
 			progressBar1.Minimum = 0;
 			progressBar1.Maximum = 100;
 			
@@ -57,6 +66,7 @@ namespace BN_Primitive_Launcher
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			//UpdateUserSettings();
+			SaveUnbindValues();
 			SerializeUserSettings();
 			//log.Info($"END LOG");
 		}

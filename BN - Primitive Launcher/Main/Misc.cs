@@ -22,6 +22,7 @@ namespace BN_Primitive_Launcher
 				MusicreplaceListbox.Enabled = false;
 				cbMusicbox.Enabled = false;
 				btSPinstall.Enabled = false;
+				KenanGB.Enabled = false;
 				foreach (var control in tabPage1.Controls)
 				{
 					try
@@ -42,6 +43,7 @@ namespace BN_Primitive_Launcher
 				MusicreplaceListbox.Enabled = true;
 				cbMusicbox.Enabled = true;
 				btSPinstall.Enabled = true;
+				KenanGB.Enabled = true;
 				foreach (var control in tabPage1.Controls)
 				{
 					try

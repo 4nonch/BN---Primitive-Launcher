@@ -236,7 +236,7 @@ namespace BN_Primitive_Launcher
 			
 			string oldData = Path.Combine(rootdir, OLD_DATA_DIR_NAME);
 			if (Directory.Exists(oldData))
-				Directory.Delete(oldData, true);
+				Directory.Delete(@"\\?\" + oldData, true);
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 
@@ -264,7 +264,8 @@ namespace BN_Primitive_Launcher
 			if (Directory.Exists(oldData))
 			{
 				//log.Trace("olddata delete");
-				Directory.Delete(oldData, true);
+				//Utils.DeleteDirectory(@"\\?\" + oldData);
+				Directory.Delete(@"\\?\" + oldData, true);
 			}
 
 			if (folders.Count() != 0)
@@ -360,7 +361,7 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
-			KenanInstall();
+			if (kenan_downloadinstall_rb.Checked) { KenanInstall(); }
 
 			UndeadpeopleInstall();
 
@@ -369,8 +370,8 @@ namespace BN_Primitive_Launcher
 
 		public void KenanInstall()
         {
-			string KenanPath = rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master\Kenan-BrightNights-Modpack";
-			if (settings.KenanBoxState && Directory.Exists(KenanPath))
+			string KenanPath = rootdir + @"\BrightNights-Structured-Kenan-Modpack-master\Kenan-BrightNights-Structured-Modpack";
+			if (KenanState && Directory.Exists(KenanPath))
 			{
 				this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} install..."; progressLabel.Visible = true; });
 				//log.Trace("Install KenanModpack");
@@ -383,19 +384,23 @@ namespace BN_Primitive_Launcher
 					//log.Trace("Moving mods to data\\mods");
 					foreach (var folder in folders)
 					{
+						if (!kenan_inst_options.Contains(Path.GetFileName(folder))) { continue; }
 						try
 						{
-							Directory.Move(folder, rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}");
+							Directory.Move(folder, rootdir + $"\\data\\mods");
 						}
 						catch (IOException)
 						{
-							Utils.CopyDirectories(folder, rootdir + $"\\data\\mods\\{folder.Split('\\').Last()}");
+							Utils.CopyDirectories(folder, rootdir + $"\\data\\mods");
 						}
 					}
 				}
 
 				//log.Trace("Delete installation folder");
-				Directory.Delete(rootdir + @"\Bright-Nights-Kenan-Mod-Pack-master", true);
+				if (kenan_downloadinstall_rb.Checked)
+                {
+					Directory.Delete(rootdir + @"\BrightNights-Structured-Kenan-Modpack-master", true);
+				}
 				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Blocks; });
 
 				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
@@ -440,7 +445,7 @@ namespace BN_Primitive_Launcher
 					}
 				}
 
-				if (settings.KenanBoxState)
+				if (KenanState)
 				{
 					//log.Trace("Updating tilesets\\data\\mods tilesets for KenanPack");
 					folders = Directory.GetDirectories(UndeadPath + "\\data");
