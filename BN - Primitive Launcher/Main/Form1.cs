@@ -68,6 +68,13 @@ namespace BN_Primitive_Launcher
 			SP_musicreplace = (string)MusicreplaceListbox.Items[MusicreplaceListbox.SelectedIndex];
 			musicpack_name = cbMusicbox.Text;
 
+			if (kenan_mediummaintBox.Checked)
+				kenan_inst_options.Add(kenan_mediummaintBox.Text);
+			if(kenan_highmaintBox.Checked)
+				kenan_inst_options.Add(kenan_highmaintBox.Text);
+			if(kenan_archivedBox.Checked)
+				kenan_inst_options.Add(kenan_archivedBox.Text);
+
 			Button btInstall = (Button)sender;
 			if (btInstall.Name == "btUpdate")
 			{
@@ -86,7 +93,8 @@ namespace BN_Primitive_Launcher
 
 											/*log.Info("MoveFromRoot Begin");*/			await Task.Run(() => MoveFromRoot());
 											/*log.Info("GameDownload Begin");*/			await Task.Run(() => GameDownload(version));
-			if (settings.KenanBoxState) {	/*log.Info("KenanDownload Begin");*/		await Task.Run(() => KenanDownload()); }
+			KenanState = kenan_download_rb.Checked || kenan_downloadinstall_rb.Checked;
+			if (KenanState)				  { /*log.Info("KenanDownload Begin");*/		await Task.Run(() => KenanDownload()); }
 											/*log.Info("UndeadpeopleDownload Begin");*/ await Task.Run(() => UndeadpeopleDownload());
 											/*log.Info("SoundpackDownload Begin");*/	await Task.Run(() => SoundpackDownload());
 			if (SP_musicreplace != "---") { /*log.Info("MusicDownload Begin");*/		await Task.Run(() => MusicDownload()); }
@@ -183,6 +191,35 @@ namespace BN_Primitive_Launcher
         private void progressLabel_SizeChanged(object sender, EventArgs e)
         {
 			progressLabel.Left = ((Size.Width - progressLabel.Size.Width) / 2) - 8;
+		}
+
+        private void kenan_downloadinstall_rb_CheckedChanged(object sender, EventArgs e)
+        {
+			if (!availability) { return; }
+			kenan_archivedBox.Enabled = kenan_downloadinstall_rb.Checked;
+			kenan_highmaintBox.Enabled = kenan_downloadinstall_rb.Checked;
+			kenan_mediummaintBox.Enabled = kenan_downloadinstall_rb.Checked;
+			kenan_archivedBox.Checked = !kenan_downloadinstall_rb.Checked ? false : kenan_archivedBox.Checked;
+			kenan_highmaintBox.Checked = !kenan_downloadinstall_rb.Checked ? false : kenan_highmaintBox.Checked;
+			kenan_mediummaintBox.Checked = !kenan_downloadinstall_rb.Checked ? false : kenan_mediummaintBox.Checked;
+		}
+
+        private void kenan_downloadinstall_rb_MouseClick(object sender, MouseEventArgs e)
+        {
+			if (!availability) { return; }
+			if (kenan_download_rb.Checked)
+			{
+				kenan_download_rb.Checked = false;
+			}
+		}
+
+        private void kenan_download_rb_MouseClick(object sender, MouseEventArgs e)
+        {
+			if (!availability) { return; }
+			if (kenan_downloadinstall_rb.Checked)
+			{
+				kenan_downloadinstall_rb.Checked = false;
+			}
 		}
     }
 }

@@ -39,7 +39,6 @@ namespace BN_Primitive_Launcher
             this.progressLabel = new System.Windows.Forms.Label();
             this.btPlay = new System.Windows.Forms.Button();
             this.cbVerionBox = new System.Windows.Forms.ComboBox();
-            this.kenanBox = new System.Windows.Forms.CheckBox();
             this.backupBox = new System.Windows.Forms.CheckBox();
             this.tbGamepath = new System.Windows.Forms.TextBox();
             this.graveyardBox = new System.Windows.Forms.CheckBox();
@@ -52,6 +51,12 @@ namespace BN_Primitive_Launcher
             this.saveBox = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.KenanGB = new System.Windows.Forms.GroupBox();
+            this.kenan_downloadinstall_rb = new System.Windows.Forms.CheckBox();
+            this.kenan_download_rb = new System.Windows.Forms.CheckBox();
+            this.kenan_mediummaintBox = new System.Windows.Forms.CheckBox();
+            this.kenan_highmaintBox = new System.Windows.Forms.CheckBox();
+            this.kenan_archivedBox = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cbMusicbox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -63,6 +68,7 @@ namespace BN_Primitive_Launcher
             this.flagLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.KenanGB.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,18 +171,6 @@ namespace BN_Primitive_Launcher
             this.cbVerionBox.Name = "cbVerionBox";
             this.cbVerionBox.Size = new System.Drawing.Size(154, 21);
             this.cbVerionBox.TabIndex = 21;
-            // 
-            // kenanBox
-            // 
-            this.kenanBox.Checked = true;
-            this.kenanBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.kenanBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.kenanBox.Location = new System.Drawing.Point(61, 144);
-            this.kenanBox.Name = "kenanBox";
-            this.kenanBox.Size = new System.Drawing.Size(167, 17);
-            this.kenanBox.TabIndex = 20;
-            this.kenanBox.Text = "Install Kenan\'s modpack";
-            this.kenanBox.UseVisualStyleBackColor = true;
             // 
             // backupBox
             // 
@@ -311,18 +305,18 @@ namespace BN_Primitive_Launcher
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl1.Location = new System.Drawing.Point(0, 191);
+            this.tabControl1.Location = new System.Drawing.Point(0, 179);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(275, 196);
+            this.tabControl1.Size = new System.Drawing.Size(275, 310);
             this.tabControl1.TabIndex = 22;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.KenanGB);
             this.tabPage1.Controls.Add(this.saveBox);
             this.tabPage1.Controls.Add(this.ModsBox);
             this.tabPage1.Controls.Add(this.configBox);
-            this.tabPage1.Controls.Add(this.kenanBox);
             this.tabPage1.Controls.Add(this.memorialBox);
             this.tabPage1.Controls.Add(this.soundBox);
             this.tabPage1.Controls.Add(this.fontBox);
@@ -333,11 +327,78 @@ namespace BN_Primitive_Launcher
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(267, 170);
+            this.tabPage1.Size = new System.Drawing.Size(267, 284);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Update Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
+            // 
+            // KenanGB
+            // 
+            this.KenanGB.Controls.Add(this.kenan_downloadinstall_rb);
+            this.KenanGB.Controls.Add(this.kenan_download_rb);
+            this.KenanGB.Controls.Add(this.kenan_mediummaintBox);
+            this.KenanGB.Controls.Add(this.kenan_highmaintBox);
+            this.KenanGB.Controls.Add(this.kenan_archivedBox);
+            this.KenanGB.Location = new System.Drawing.Point(37, 147);
+            this.KenanGB.Name = "KenanGB";
+            this.KenanGB.Size = new System.Drawing.Size(192, 130);
+            this.KenanGB.TabIndex = 16;
+            this.KenanGB.TabStop = false;
+            this.KenanGB.Text = "Kenan modpack";
+            // 
+            // kenan_downloadinstall_rb
+            // 
+            this.kenan_downloadinstall_rb.AutoSize = true;
+            this.kenan_downloadinstall_rb.Location = new System.Drawing.Point(35, 42);
+            this.kenan_downloadinstall_rb.Name = "kenan_downloadinstall_rb";
+            this.kenan_downloadinstall_rb.Size = new System.Drawing.Size(124, 17);
+            this.kenan_downloadinstall_rb.TabIndex = 6;
+            this.kenan_downloadinstall_rb.Text = "Download and install";
+            this.kenan_downloadinstall_rb.UseVisualStyleBackColor = true;
+            this.kenan_downloadinstall_rb.CheckedChanged += new System.EventHandler(this.kenan_downloadinstall_rb_CheckedChanged);
+            this.kenan_downloadinstall_rb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.kenan_downloadinstall_rb_MouseClick);
+            // 
+            // kenan_download_rb
+            // 
+            this.kenan_download_rb.AutoSize = true;
+            this.kenan_download_rb.Location = new System.Drawing.Point(35, 19);
+            this.kenan_download_rb.Name = "kenan_download_rb";
+            this.kenan_download_rb.Size = new System.Drawing.Size(96, 17);
+            this.kenan_download_rb.TabIndex = 5;
+            this.kenan_download_rb.Text = "Download only";
+            this.kenan_download_rb.UseVisualStyleBackColor = true;
+            this.kenan_download_rb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.kenan_download_rb_MouseClick);
+            // 
+            // kenan_mediummaintBox
+            // 
+            this.kenan_mediummaintBox.AutoSize = true;
+            this.kenan_mediummaintBox.Location = new System.Drawing.Point(5, 111);
+            this.kenan_mediummaintBox.Name = "kenan_mediummaintBox";
+            this.kenan_mediummaintBox.Size = new System.Drawing.Size(185, 17);
+            this.kenan_mediummaintBox.TabIndex = 4;
+            this.kenan_mediummaintBox.Text = "Medium-Maintenance-Small-Mods";
+            this.kenan_mediummaintBox.UseVisualStyleBackColor = true;
+            // 
+            // kenan_highmaintBox
+            // 
+            this.kenan_highmaintBox.AutoSize = true;
+            this.kenan_highmaintBox.Location = new System.Drawing.Point(5, 88);
+            this.kenan_highmaintBox.Name = "kenan_highmaintBox";
+            this.kenan_highmaintBox.Size = new System.Drawing.Size(171, 17);
+            this.kenan_highmaintBox.TabIndex = 3;
+            this.kenan_highmaintBox.Text = "High-Maintenance-Huge-Mods";
+            this.kenan_highmaintBox.UseVisualStyleBackColor = true;
+            // 
+            // kenan_archivedBox
+            // 
+            this.kenan_archivedBox.AutoSize = true;
+            this.kenan_archivedBox.Location = new System.Drawing.Point(5, 65);
+            this.kenan_archivedBox.Name = "kenan_archivedBox";
+            this.kenan_archivedBox.Size = new System.Drawing.Size(97, 17);
+            this.kenan_archivedBox.TabIndex = 2;
+            this.kenan_archivedBox.Text = "Archived-Mods";
+            this.kenan_archivedBox.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -350,7 +411,7 @@ namespace BN_Primitive_Launcher
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(267, 170);
+            this.tabPage2.Size = new System.Drawing.Size(267, 284);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Soundpack Preferences";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -440,7 +501,7 @@ namespace BN_Primitive_Launcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 387);
+            this.ClientSize = new System.Drawing.Size(275, 489);
             this.Controls.Add(this.flagLabel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cbVerionBox);
@@ -454,8 +515,8 @@ namespace BN_Primitive_Launcher
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label5);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(291, 426);
-            this.MinimumSize = new System.Drawing.Size(291, 426);
+            this.MaximumSize = new System.Drawing.Size(291, 528);
+            this.MinimumSize = new System.Drawing.Size(291, 528);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BN Launcher";
@@ -465,6 +526,8 @@ namespace BN_Primitive_Launcher
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.KenanGB.ResumeLayout(false);
+            this.KenanGB.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -492,7 +555,6 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.Button btPlay;
-        private System.Windows.Forms.CheckBox kenanBox;
         private System.Windows.Forms.ComboBox cbVerionBox;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -505,6 +567,12 @@ namespace BN_Primitive_Launcher
         private System.Windows.Forms.Button btSPinstall;
         private System.Windows.Forms.ComboBox cbMusicbox;
         private System.Windows.Forms.Label flagLabel;
+        private System.Windows.Forms.GroupBox KenanGB;
+        private System.Windows.Forms.CheckBox kenan_mediummaintBox;
+        private System.Windows.Forms.CheckBox kenan_highmaintBox;
+        private System.Windows.Forms.CheckBox kenan_archivedBox;
+        private System.Windows.Forms.CheckBox kenan_downloadinstall_rb;
+        private System.Windows.Forms.CheckBox kenan_download_rb;
     }
 }
 

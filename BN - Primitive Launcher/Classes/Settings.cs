@@ -45,16 +45,28 @@ namespace BN_Primitive_Launcher.Classes
 		public bool BackupBoxState { get { return backupBoxState; } set { backupBoxState = value; } }
 
 
-		private bool kenanBoxState = true;
-		public bool KenanBoxState { get { return kenanBoxState; } set { kenanBoxState = value; } }
-
-
 		private string textboxState = "";
 		public string TextboxState { get { return textboxState; } set { textboxState = value; } }
 
 
 		private string versionState = "";
 		public string VersionState { get { return versionState; } set { versionState = value; } }
+
+
+		private bool kenan_download_rbState = false;
+		public bool Kenan_download_rbState { get { return kenan_download_rbState; } set { kenan_download_rbState = value; } }
+
+		private bool kenan_downloadinstall_rbState = false;
+		public bool Kenan_downloadinstall_rbState { get { return kenan_downloadinstall_rbState; } set { kenan_downloadinstall_rbState = value; } }
+
+		private bool kenan_archivedBoxState = false;
+		public bool Kenan_archivedBoxState { get { return kenan_archivedBoxState; } set { kenan_archivedBoxState = value; } }
+
+		private bool kenan_highmaintBoxState = false;
+		public bool Kenan_highmaintBoxState { get { return kenan_highmaintBoxState; } set { kenan_highmaintBoxState = value; } }
+
+		private bool kenan_mediummaintBoxState = false;
+		public bool Kenan_mediummaintBoxState { get { return kenan_mediummaintBoxState; } set { kenan_mediummaintBoxState = value; } }
 	}
 }
 
@@ -73,9 +85,14 @@ namespace BN_Primitive_Launcher
 			memorialBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "MemorialBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			graveyardBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "GraveyardBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			backupBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "BackupBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
-			kenanBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "KenanBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			tbGamepath.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings, "TextboxState", true, DataSourceUpdateMode.OnPropertyChanged));
 			cbVerionBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings, "VersionState", true, DataSourceUpdateMode.OnPropertyChanged));
+			
+			//kenan_download_rb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "Kenan_download_rbState", true, DataSourceUpdateMode.OnPropertyChanged));
+			//kenan_downloadinstall_rb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "Kenan_downloadinstall_rbState", true, DataSourceUpdateMode.OnPropertyChanged));
+			kenan_archivedBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "Kenan_archivedBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
+			kenan_highmaintBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "Kenan_highmaintBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
+			kenan_mediummaintBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings, "Kenan_mediummaintBoxState", true, DataSourceUpdateMode.OnPropertyChanged));
 		}
 
 		public void SerializeUserSettings()
@@ -114,9 +131,14 @@ namespace BN_Primitive_Launcher
 			memorialBox.Checked  = settings.MemorialBoxState;
 			graveyardBox.Checked = settings.GraveyardBoxState;
 			backupBox.Checked    = settings.BackupBoxState;
-			kenanBox.Checked     = settings.KenanBoxState;
 			tbGamepath.Text     = settings.TextboxState;
 			cbVerionBox.Text     = settings.VersionState;
+
+			kenan_download_rb.Checked = settings.Kenan_download_rbState;
+			kenan_downloadinstall_rb.Checked = settings.Kenan_downloadinstall_rbState;
+			kenan_archivedBox.Checked = settings.Kenan_archivedBoxState;
+			kenan_highmaintBox.Checked = settings.Kenan_highmaintBoxState;
+			kenan_mediummaintBox.Checked = settings.Kenan_mediummaintBoxState;
 		}
 
 		public void UpdateUserSettings()
@@ -130,9 +152,14 @@ namespace BN_Primitive_Launcher
 			settings.MemorialBoxState  = memorialBox.Checked;
 			settings.GraveyardBoxState = graveyardBox.Checked;
 			settings.BackupBoxState    = backupBox.Checked;
-			settings.KenanBoxState     = kenanBox.Checked;
 			settings.TextboxState      = tbGamepath.Text;
 			settings.VersionState      = cbVerionBox.Text;
+
+			settings.Kenan_download_rbState = kenan_download_rb.Checked;
+			settings.Kenan_downloadinstall_rbState = kenan_downloadinstall_rb.Checked;
+			settings.Kenan_archivedBoxState = kenan_archivedBox.Checked;
+			settings.Kenan_highmaintBoxState = kenan_highmaintBox.Checked;
+			settings.Kenan_mediummaintBoxState = kenan_mediummaintBox.Checked;
 		}
 
 		public List<string> SetUserPreferences()
@@ -150,5 +177,11 @@ namespace BN_Primitive_Launcher
 
 			return preferences;
 		}
+
+		public void SaveUnbindValues()
+        {
+			settings.Kenan_download_rbState = kenan_download_rb.Checked;
+			settings.Kenan_downloadinstall_rbState = kenan_downloadinstall_rb.Checked;
+        }
 	}
 }
