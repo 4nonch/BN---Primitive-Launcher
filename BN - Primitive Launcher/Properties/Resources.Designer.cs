@@ -59,5 +59,23 @@ namespace BN_Primitive_Launcher.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip.
+        /// </summary>
+        internal static string KenanModpackURL {
+            get {
+                return ResourceManager.GetString("KenanModpackURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://github.com/Theawesomeboophis/UndeadPeopleTileset/archive/refs/heads/master.zip.
+        /// </summary>
+        internal static string UndeadpeopleURL {
+            get {
+                return ResourceManager.GetString("UndeadpeopleURL", resourceCulture);
+            }
+        }
     }
 }

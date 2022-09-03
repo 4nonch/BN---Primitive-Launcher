@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BN_Primitive_Launcher.Classes;
+using BN_Primitive_Launcher.Properties;
 
 namespace BN_Primitive_Launcher
 {
@@ -74,7 +75,7 @@ namespace BN_Primitive_Launcher
 		{
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading KenanModpack..."; progressLabel.Visible = true; });
 
-			string url = @"https://github.com/Kenan2000/Bright-Nights-Kenan-Mod-Pack/archive/refs/heads/master.zip";
+			string url = Resources.KenanModpackURL;
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 
@@ -94,7 +95,7 @@ namespace BN_Primitive_Launcher
 		{
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = "Downloading Undeadpeople Tileset..."; progressLabel.Visible = true; });
 
-			string url = @"https://github.com/Firestorm01X2/UndeadPeopleTileset/archive/refs/heads/master.zip";
+			string url = Resources.UndeadpeopleURL;
 
 			this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; flagLabel.Visible = true; });
 
