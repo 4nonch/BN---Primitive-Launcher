@@ -59,12 +59,20 @@ namespace BN_Primitive_Launcher
 				client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
 				client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 				client.Headers.Add("user-agent", "Anything");
-				Regex rx = new Regex(@"\/cataclysmbnteam\/Cataclysm-BN\/releases\/download\/[^\/]*\/cbn-windows-tiles-" + version + "[^.]*.zip", RegexOptions.Compiled);
+
 				string githubPage = client.DownloadString(url);
-				MatchCollection matches = rx.Matches(githubPage);
-				//MessageBox.Show($"{matches[8]}");
-				downloaded_archive_name = matches[0].ToString().Split('/').Last();
-				client.DownloadFileAsync(new Uri(@"https://github.com/" + matches[0]), matches[0].ToString().Split('/').Last());
+				string downloadPrefix = @"https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download";
+
+				Regex rx = new Regex("\\/cataclysmbnteam\\/Cataclysm-BN\\/tree\\/cbn([^\"]+)", RegexOptions.Compiled);
+				Match match = rx.Match(githubPage);
+
+				string lastReleaseName = match.ToString().Split('/').Last();
+				int toSkip = lastReleaseName.Contains("experimental") ? 2 : 1;
+				string lastPostfix = String.Join("-", lastReleaseName.Split('-').Skip(toSkip));
+				string donwloadLink = $"{downloadPrefix}/{lastReleaseName}/cbn-windows-tiles-{version}-{lastPostfix}.zip";
+
+				downloaded_archive_name = $"{lastReleaseName}.zip";
+				client.DownloadFileAsync(new Uri(donwloadLink), downloaded_archive_name);
 				while (flagLabel.Visible) {; }
 			}
 
