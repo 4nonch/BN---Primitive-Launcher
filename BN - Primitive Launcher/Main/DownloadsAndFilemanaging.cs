@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 using BN_Primitive_Launcher.Classes;
 using BN_Primitive_Launcher.Properties;
 
@@ -190,6 +191,7 @@ namespace BN_Primitive_Launcher
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
 			//log.Trace($"{downloaded_archive_name} - extraction begin");
+			Thread.Sleep(500);
 
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} extracting..."; progressLabel.Visible = true; });
 
