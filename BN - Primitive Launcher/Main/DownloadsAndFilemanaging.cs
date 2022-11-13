@@ -70,7 +70,7 @@ namespace BN_Primitive_Launcher
 				string lastReleaseName = match.ToString().Split('/').Last();
 				int toSkip = lastReleaseName.Contains("experimental") ? 2 : 1;
 				string lastPostfix = String.Join("-", lastReleaseName.Split('-').Skip(toSkip));
-				string donwloadLink = $"{downloadPrefix}/{lastReleaseName}/cbn-windows-tiles-{version}-{lastPostfix}.zip";
+				string donwloadLink = $"{downloadPrefix}/{lastReleaseName}/cbn-windows-tiles-{version}-msvc-{lastPostfix}.zip";
 
 				downloaded_archive_name = $"{lastReleaseName}.zip";
 				client.DownloadFileAsync(new Uri(donwloadLink), downloaded_archive_name);
@@ -191,12 +191,36 @@ namespace BN_Primitive_Launcher
 		public void ExtractAndUpdate(IProgress<int> progress, IProgress<int> progressSetMax)
 		{
 			//log.Trace($"{downloaded_archive_name} - extraction begin");
-			Thread.Sleep(500);
-
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} extracting..."; progressLabel.Visible = true; });
 
 			bool error = false;
-			ZipArchive zipArchive = ZipFile.OpenRead(Directory.GetCurrentDirectory() + "\\" + downloaded_archive_name);
+			
+			string archivePath = Directory.GetCurrentDirectory() + "\\" + downloaded_archive_name;
+			ZipArchive zipArchive;
+
+			const int DELAY_LINIT = 10;
+			int delay = 0;
+
+			while (true)
+            {
+				try
+                {
+					zipArchive = ZipFile.OpenRead(archivePath);
+					break;
+				}
+				catch (System.IO.InvalidDataException)
+                {
+					if (delay >= DELAY_LINIT)
+                    {
+						error = true;
+						MessageBox.Show($"Central Directory corrupt. Please report a bug.");
+					}
+					
+					delay++;
+					Thread.Sleep(1000);
+				}
+            }
+
 			int ammountF = zipArchive.Entries.Count();
 			progressSetMax.Report(ammountF);
 			try
@@ -213,8 +237,14 @@ namespace BN_Primitive_Launcher
 						Directory.CreateDirectory(Path.GetDirectoryName(completeFileName));
 						continue;
 					}
-					try { entry.ExtractToFile(completeFileName, true); }
-					catch { continue; }
+
+					string directory = Path.GetDirectoryName(completeFileName);
+					if (!Directory.Exists(directory))
+                    {
+						Directory.CreateDirectory(directory);
+                    }
+					entry.ExtractToFile(completeFileName, true);
+
 				}
 			}
 			catch (System.UnauthorizedAccessException)
