@@ -64,13 +64,13 @@ namespace BN_Primitive_Launcher
 				string githubPage = client.DownloadString(url);
 				string downloadPrefix = @"https://github.com/cataclysmbnteam/Cataclysm-BN/releases/download";
 
-				Regex rx = new Regex("\\/cataclysmbnteam\\/Cataclysm-BN\\/tree\\/cbn([^\"]+)", RegexOptions.Compiled);
+				Regex rx = new Regex("\\/cataclysmbnteam\\/Cataclysm-BN\\/tree\\/([^\"]+)", RegexOptions.Compiled);
 				Match match = rx.Match(githubPage);
 
 				string lastReleaseName = match.ToString().Split('/').Last();
 				int toSkip = lastReleaseName.Contains("experimental") ? 2 : 1;
 				string lastPostfix = String.Join("-", lastReleaseName.Split('-').Skip(toSkip));
-				string donwloadLink = $"{downloadPrefix}/{lastReleaseName}/cbn-windows-tiles-{version}-msvc-{lastPostfix}.zip";
+				string donwloadLink = $"{downloadPrefix}/{lastReleaseName}/cbn-windows-tiles-{version}-msvc-{lastReleaseName}.zip";
 
 				downloaded_archive_name = $"{lastReleaseName}.zip";
 				client.DownloadFileAsync(new Uri(donwloadLink), downloaded_archive_name);
