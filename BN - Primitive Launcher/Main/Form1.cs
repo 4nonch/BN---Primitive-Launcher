@@ -94,8 +94,11 @@ namespace BN_Primitive_Launcher
 											/*log.Info("MoveFromRoot Begin");*/			await Task.Run(() => MoveFromRoot());
 											/*log.Info("GameDownload Begin");*/			await Task.Run(() => GameDownload(version));
 			KenanState = kenan_download_rb.Checked || kenan_downloadinstall_rb.Checked;
-			if (KenanState)				  { /*log.Info("KenanDownload Begin");*/		await Task.Run(() => KenanDownload()); }
-											/*log.Info("UndeadpeopleDownload Begin");*/ await Task.Run(() => UndeadpeopleDownload());
+			if (KenanState)
+			{
+				await Task.Run(() => KenanDownload());
+                await Task.Run(() => UndeadpeopleDownload());
+            }
 											/*log.Info("SoundpackDownload Begin");*/	await Task.Run(() => SoundpackDownload());
 			if (SP_musicreplace != "---") { /*log.Info("MusicDownload Begin");*/		await Task.Run(() => MusicDownload()); }
 											/*log.Info("ClearOldDirectory Begin");*/	await Task.Run(() => ClearOldDirectory());
@@ -120,7 +123,7 @@ namespace BN_Primitive_Launcher
 		{
 			if (!availability) { return; }
 
-			string game_path = tbGamepath.Text + "\\cataclysm-tiles.exe";
+			string game_path = tbGamepath.Text + "\\cataclysm-bn-tiles.exe";
 			if (File.Exists(game_path) && tbGamepath.Text != "")
             {
 				var previous_directory = Directory.GetCurrentDirectory();
@@ -163,7 +166,7 @@ namespace BN_Primitive_Launcher
 
 		public void UpdateButtonCheck()
         {
-			string game_path = tbGamepath.Text + "\\cataclysm-tiles.exe";
+			string game_path = tbGamepath.Text + "\\cataclysm-bn-tiles.exe";
 			if (File.Exists(game_path) && tbGamepath.Text != "")
 			{
 				btUpdate.Text = "Update";

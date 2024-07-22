@@ -402,9 +402,11 @@ namespace BN_Primitive_Launcher
 				}
 			}
 
-			if (kenan_downloadinstall_rb.Checked) { KenanInstall(); }
-
-			UndeadpeopleInstall();
+			if (KenanState)
+			{
+				KenanInstall();
+                UndeadpeopleInstall();
+            }
 
 			SoundpackInstall();
 		}
@@ -453,71 +455,37 @@ namespace BN_Primitive_Launcher
 			this.Invoke((MethodInvoker)delegate { progressLabel.Text = $"{downloaded_archive_name.Split('.')[0]} install..."; progressLabel.Visible = true; });
 
 			string UndeadPath = rootdir + @"\UndeadPeopleTileset-master\TILESETS";
-			if (Directory.Exists(UndeadPath))
+			if (!Directory.Exists(UndeadPath))
 			{
-				//log.Trace("Install UndeadpeolpeTileset");
-
-				this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
-
-				string[] folders;
-				if (Directory.Exists(rootdir + @"\Mods"))
-				{
-					//log.Trace("Delete graphical mods");
-					foreach (var folder in Directory.GetDirectories(rootdir + @"\Mods"))
-					{
-						if (folder.Split('\\').Last().Split('_').Contains("SDG") || folder.Split('\\').Last().Split('_').Contains("UnDeadPeople"))
-						{
-							Directory.Delete(rootdir + $"\\Mods\\{folder.Split('\\').Last()}", true);
-						}
-					}
-				}
-				
-				folders = Directory.GetDirectories(UndeadPath + @"\gfx"); //log.Trace("Install tilesets\\gfx");
-				foreach (var folder in folders)
-				{
-					try
-					{
-						Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
-					}
-					catch (IOException)
-					{
-						Directory.Delete(rootdir + @"\gfx\" + folder.Split('\\').Last(), true);
-						Directory.Move(folder, rootdir + @"\gfx\" + folder.Split('\\').Last());
-					}
-				}
-
-				if (KenanState)
-				{
-					//log.Trace("Updating tilesets\\data\\mods tilesets for KenanPack");
-					folders = Directory.GetDirectories(UndeadPath + "\\data");
-					foreach (var folder in folders)
-					{
-						Utils.CopyDirectories(folder, rootdir + $"\\data\\{folder.Split('\\').Last()}");
-					}
-				}
-
-				//log.Trace("Install graphical&overmap mods");
-				string[] paths = new string[] { rootdir + @"\UndeadPeopleTileset-master\GRAPHICAL_OVERMAP_MODS", rootdir + @"\UndeadPeopleTileset-master\BN_TILESET_MODS" };
-				for (int i = 0; i < 2; i++)
-				{
-					folders = Directory.GetDirectories(paths[i]);
-					foreach (var folder in folders)
-					{
-						try
-						{
-							Directory.Move(folder, rootdir + $"\\{folder.Split('\\').Last()}");
-						}
-						catch (IOException)
-						{
-							Utils.CopyDirectories(folder, rootdir + $"\\{folder.Split('\\').Last()}");
-						}
-					}
-				}
-				//log.Trace("Delete installation folder");
-				Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
-				this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
+				return;
 			}
-		}
+
+            this.Invoke((MethodInvoker)delegate { progressBar1.Style = ProgressBarStyle.Marquee; });
+
+            string[] folders;
+            if (Directory.Exists(rootdir + @"\Mods"))
+            {
+                //log.Trace("Delete graphical mods");
+                foreach (var folder in Directory.GetDirectories(rootdir + @"\Mods"))
+                {
+                    if (folder.Split('\\').Last().Split('_').Contains("SDG") || folder.Split('\\').Last().Split('_').Contains("UnDeadPeople"))
+                    {
+                        Directory.Delete(rootdir + $"\\Mods\\{folder.Split('\\').Last()}", true);
+                    }
+                }
+            }
+
+            //log.Trace("Updating tilesets\\data\\mods tilesets for KenanPack");
+            folders = Directory.GetDirectories(UndeadPath + "\\data");
+            foreach (var folder in folders)
+            {
+                Utils.CopyDirectories(folder, rootdir + $"\\data\\{folder.Split('\\').Last()}");
+            }
+
+            //log.Trace("Delete installation folder");
+            Directory.Delete(rootdir + @"\UndeadPeopleTileset-master", true);
+            this.Invoke((MethodInvoker)delegate { progressLabel.Visible = false; });
+        }
 
 		// Soundpack & Musicpack
 		public void SoundpackInstall()
